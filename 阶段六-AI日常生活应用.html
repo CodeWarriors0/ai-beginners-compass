@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第六阶段：把 AI 用到日常生活 · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #27ae60; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #27ae60; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .scene { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 18px 0; border-left: 4px solid #27ae60; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .scene h3 { margin-top: 0; color: #1e8449; }
+  .template { background: #2c3e50; color: #ecf0f1; padding: 14px 18px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.75; margin: 10px 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第六阶段：把 AI 用到日常生活</h1>
+<p class="subtitle">学习时长：持续 · 学习目标：让 AI 真正成为你的生活助手</p>
+
+<div class="card">
+  <p><strong>前四个阶段教的是"怎么用"，这一阶段教的是"用在哪"。</strong>本节列出 6 大类、共 20+ 个高频生活场景，每个都给了"现成模板"，你直接抄、稍微改两个字就能用。</p>
+  <p>不要一次都试，<strong>挑你最近就遇到的场景试一两个</strong>，体验"AI 真的能帮上忙"那种感觉，然后慢慢扩展。</p>
+</div>
+
+<h2>一、写作场景（最常用）</h2>
+
+<div class="scene">
+  <h3>1. 写朋友圈/微博文案</h3>
+  <div class="template">帮我写 3 条朋友圈文案，主题是【今天爬了泰山看日出】，风格要【文艺一点 / 接地气一点 / 凡尔赛一点】，每条不超过 40 字。</div>
+</div>
+
+<div class="scene">
+  <h3>2. 写请假条/感谢信/慰问信</h3>
+  <div class="template">帮我写一份请假条，向直属领导请【3 天事假】，原因是【回老家照顾生病的母亲】，语气得体不卑不亢，200 字以内。</div>
+</div>
+
+<div class="scene">
+  <h3>3. 写发言稿/祝酒词</h3>
+  <div class="template">我下周参加【老同学结婚酒席】，要上台讲两句，请帮我写一段 1 分钟的发言稿，要求【真诚不油腻、稍带点小幽默、提到我们大学时的友情】。</div>
+</div>
+
+<div class="scene">
+  <h3>4. 写商务邮件</h3>
+  <div class="template">帮我写一封邮件给【供应商王总】，主题是【催促上月发货延迟问题】，语气要【礼貌但坚定】，要求对方在【3 天内】给出明确答复，最后附上希望保持合作的态度。</div>
+</div>
+
+<div class="scene">
+  <h3>5. 起标题</h3>
+  <div class="template">我写了一篇关于【家庭收纳】的小红书笔记，请给我 10 个吸引人点击的标题，风格参考小红书爆款。</div>
+</div>
+
+<h2>二、学习与理解场景</h2>
+
+<div class="scene">
+  <h3>6. 解释看不懂的合同/条款/说明书</h3>
+  <div class="template">我把租房合同里看不懂的部分粘贴在下面，请用大白话解释，并提醒我哪些条款对租客不利、需要重点关注。
+"""
+（粘贴合同内容）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>7. 解释专业术语</h3>
+  <div class="template">医生说我妈检查结果是【冠脉斑块、轻度狭窄】，请用我能听懂的话解释什么意思，严重吗，平时要注意什么。</div>
+</div>
+
+<div class="scene">
+  <h3>8. 学新技能</h3>
+  <div class="template">我想从零开始学【吉他 / 烘焙 / Excel / 摄影】，请帮我设计一个【4 周入门计划】，每周一个小目标，列出需要的工具和参考视频/书籍。</div>
+</div>
+
+<div class="scene">
+  <h3>9. 解题 / 辅导孩子作业</h3>
+  <div class="template">请用小学 4 年级学生能听懂的方式，一步一步讲解这道数学题：【题目】。讲完后再出 2 道类似的练习题给我。</div>
+</div>
+
+<h2>三、翻译场景</h2>
+
+<div class="scene">
+  <h3>10. 整段翻译</h3>
+  <div class="template">请把下面这段【英文邮件】翻译成中文，要求【商务正式 / 口语化】：
+"""
+（粘贴原文）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>11. 出国旅游应急</h3>
+  <div class="template">我在【日本】旅游遇到这种情况：【钱包丢了，想去警察局报案】。请告诉我用日语怎么说常用的几句话，附上中文谐音和注音。</div>
+</div>
+
+<div class="scene">
+  <h3>12. 解释文化背景</h3>
+  <div class="template">这首英文歌歌词里说【XXX】，请翻译并解释里面的文化背景、典故、双关。</div>
+</div>
+
+<div class="tip">
+  豆包、Kimi 都支持<span class="term">拍照翻译<span class="tooltip">用 App 的相机或上传图片功能，AI 能识别图里的文字并翻译。出国看菜单、看路牌、看说明书时神器。</span></span>：直接拍照菜单/路牌，发给 AI 让它翻译。
+</div>
+
+<h2>四、总结与提炼场景</h2>
+
+<div class="scene">
+  <h3>13. 总结长文章</h3>
+  <div class="template">请把下面这篇文章用 5 句话概括，提炼出 3 个核心观点，并告诉我作者的立场：
+"""
+（粘贴文章）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>14. 总结视频字幕</h3>
+  <p>很多视频网站可以下载字幕或在简介里有"AI 总结"。也可以把字幕粘贴进 AI：</p>
+  <div class="template">下面是一段视频的字幕，请帮我总结视频讲了什么，提炼【3 个有用知识点】和【1 个金句】：
+"""
+（粘贴字幕）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>15. 总结会议记录</h3>
+  <div class="template">下面是会议录音转出来的文字，请帮我整理出：①讨论了哪些议题 ②做了哪些决定 ③谁负责什么、deadline 是何时 ④有什么悬而未决的问题：
+"""
+（粘贴会议记录）
+"""</div>
+</div>
+
+<h2>五、整理与规划场景</h2>
+
+<div class="scene">
+  <h3>16. 整理乱糟糟的笔记</h3>
+  <div class="template">下面是我开会时随手记的笔记，比较乱，请帮我整理成有条理的清单，按主题分组：
+"""
+（粘贴笔记）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>17. 整理 Excel/表格</h3>
+  <div class="template">下面这些数据是我从微信群里收集来的报名信息，请帮我整理成表格，列包括【姓名、电话、人数、备注】：
+"""
+（粘贴数据）
+"""</div>
+</div>
+
+<div class="scene">
+  <h3>18. 做计划/做菜单</h3>
+  <div class="template">帮我做一份【一周三餐食谱】，要求：①4 口之家，有 1 个小学生 ②少油少盐 ③每餐荤素搭配 ④给出对应的购物清单。</div>
+</div>
+
+<div class="scene">
+  <h3>19. 做对比表</h3>
+  <div class="template">请帮我对比【方案 A: 公积金贷款】和【方案 B: 商业贷款】，从利率、首付比例、放款速度、提前还款条件四个维度做表格，最后告诉我【我这种情况】（写明你的情况）适合哪种。</div>
+</div>
+
+<h2>六、灵感与创意场景</h2>
+
+<div class="scene">
+  <h3>20. 想礼物</h3>
+  <div class="template">我要送礼物给【一位 65 岁的妈妈，喜欢养花、爱看电视剧、不舍得给自己花钱】，预算 500 元，请给我 5 个有创意的礼物建议，并说明为什么适合她。</div>
+</div>
+
+<div class="scene">
+  <h3>21. 起名字</h3>
+  <div class="template">请帮我给【新出生的女宝宝】起 10 个名字，姓【李】，希望【寓意聪慧温柔，不要太大众化】，附上每个名字的含义。</div>
+</div>
+
+<div class="scene">
+  <h3>22. 想活动方案</h3>
+  <div class="template">我们部门【15 个人】下周六要团建，预算【人均 300】，地点【上海市区】，请给我 3 个不同风格的方案（休闲型、户外型、文化型），列出大致流程和费用。</div>
+</div>
+
+<h2>七、AI 用于生活的 3 个心法</h2>
+
+<div class="card">
+  <p><strong>心法 1：把 AI 当"草稿手"，不当"终稿手"。</strong><br>
+  让它出第一版，你来改和定稿。这样既省时间，又保留你的味道。</p>
+
+  <p><strong>心法 2：遇到不会的事，先问 AI 而不是百度。</strong><br>
+  AI 给的回答更结构化、更针对你的问题。然后再用百度核对关键点。</p>
+
+  <p><strong>心法 3：把高频任务存成"个人模板"。</strong><br>
+  你写了一段好用的提示词，存到备忘录里。下次直接套用，越攒越好用。</p>
+</div>
+
+<h2>八、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我至少在【写作类】场景用过 AI 帮我写过一段东西</div>
+  <div class="checkbox">☐ 我至少用 AI 解释过一份合同/说明书/医学报告</div>
+  <div class="checkbox">☐ 我用过 AI 翻译过一段文字</div>
+  <div class="checkbox">☐ 我用过 AI 总结过一篇长文章或视频</div>
+  <div class="checkbox">☐ 我已经形成"先问 AI 再决定"的习惯</div>
+  <div class="checkbox">☐ 我有 2-3 个保存下来的"私人提示词模板"</div>
+</div>
+
+<div class="practice">
+  <strong>本周作业：</strong>挑 3 个上面的场景，用真实生活中的事去试。完成后，把这 3 段提示词存到手机备忘录建个"我的 AI 提示词"文件夹。
+</div>
+
+<div class="ref-list">
+  <h2>📚 延伸阅读 & 相关工具</h2>
+  <ol>
+    <li>豆包"发现"页：有大量按场景分类的提示词模板</li>
+    <li>Kimi+ 应用广场：<a class="ref" href="https://kimi.moonshot.cn" target="_blank">kimi.moonshot.cn</a>（有"翻译官""文档分析"等专用工具）</li>
+    <li>WPS AI：在 Word/Excel 内直接调用 AI 写作和整理表格</li>
+    <li>飞书妙记 / 腾讯会议 AI：自动转写会议并总结</li>
+    <li>提示词收集站：<a class="ref" href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" target="_blank">awesome-chatgpt-prompts-zh</a></li>
+    <li>小红书搜索"AI 提示词"、"AI 生活妙用"——大量真实案例</li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 第六阶段结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a> 进入第七阶段（选学）
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

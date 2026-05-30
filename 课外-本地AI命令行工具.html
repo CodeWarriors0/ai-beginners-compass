@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>课外教程：本地 AI 命令行工具（Claude Code / Codex） · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 880px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #16a085; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 28px; border-bottom: 3px solid #16a085; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  .badge { display: inline-block; background: #16a085; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #16a085; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 300px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 14.5px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  pre.cmd { background: #1e1e1e; color: #d4d4d4; padding: 16px 18px; border-radius: 6px; font-family: "SF Mono", "Courier New", monospace; font-size: 13.5px; line-height: 1.7; overflow-x: auto; margin: 12px 0; }
+  pre.cmd .comment { color: #6a9955; }
+  pre.cmd .prompt { color: #569cd6; }
+  pre.cmd .user { color: #ce9178; }
+  .scene { background: #fff; border-radius: 8px; padding: 22px 26px; margin: 22px 0; border-left: 5px solid #16a085; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .scene h3 { margin-top: 0; color: #117a65; }
+  .step { background: #fff; border-radius: 8px; padding: 18px 24px; margin: 12px 0; border-left: 4px solid #16a085; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .step-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #16a085; color: #fff; border-radius: 50%; font-weight: 600; margin-right: 10px; }
+  .level { display: inline-block; font-size: 12px; color: #fff; padding: 2px 8px; border-radius: 8px; margin-left: 8px; vertical-align: middle; }
+  .easy { background: #27ae60; }
+  .medium { background: #f5a623; }
+  .hard { background: #e74c3c; }
+  .compare-table th { background: #16a085; color: #fff; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>课外教程：本地 AI 命令行工具<span class="badge">课外 · 进阶</span></h1>
+<p class="subtitle">认识 Claude Code、Codex 这类"住在你电脑里"的 AI，以及它们能干什么对话 AI 干不了的事</p>
+
+<div class="card">
+  <p><strong>本节是给已经走完正课、想再进一步的同学。</strong>在<a class="ref" href="阶段三-AI的三种形态.html">第三阶段</a>你已经了解了"聊天 AI / CLI AI / Agent"三种形态的区别——本节聚焦其中的 <strong>CLI AI</strong>：怎么装、怎么用，以及它能在家庭场景里帮你做哪些实在事（优化网络、配置软路由、批处理文件等）。</p>
+</div>
+
+<h2>一、几个主流的 CLI AI 工具</h2>
+
+<table>
+  <tr>
+    <th>工具</th>
+    <th>归属</th>
+    <th>底层模型</th>
+    <th>用什么装</th>
+    <th>费用</th>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://claude.com/claude-code" target="_blank">Claude Code</a></td>
+    <td>Anthropic</td>
+    <td>Claude</td>
+    <td><a class="ref" href="课外-npm安装教程.html" title="点击查看 npm 安装教程"><code>npm install -g @anthropic-ai/claude-code</code></a></td>
+    <td>订阅 Claude Pro 或 API 计费</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/openai/codex" target="_blank">Codex CLI</a></td>
+    <td>OpenAI</td>
+    <td>GPT</td>
+    <td><a class="ref" href="课外-npm安装教程.html" title="点击查看 npm 安装教程"><code>npm install -g @openai/codex</code></a></td>
+    <td>OpenAI API key 或 ChatGPT Plus</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/google-gemini/gemini-cli" target="_blank">Gemini CLI</a></td>
+    <td>Google</td>
+    <td>Gemini</td>
+    <td><a class="ref" href="课外-npm安装教程.html" title="点击查看 npm 安装教程"><code>npm install -g @google/gemini-cli</code></a></td>
+    <td>免费额度 + 付费</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://aider.chat" target="_blank">Aider</a></td>
+    <td>开源</td>
+    <td>可接任意模型</td>
+    <td><code>pip install aider-chat</code></td>
+    <td>取决于你接的模型</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://www.cursor.com" target="_blank">Cursor</a> / <a class="ref" href="https://windsurf.com" target="_blank">Windsurf</a></td>
+    <td>独立公司</td>
+    <td>多模型</td>
+    <td>下载图形界面 App</td>
+    <td>免费 + 订阅</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>使用前提（每一项独立一行，逐条核对）：</strong>
+  <ol style="margin:8px 0 0; padding-left:22px;">
+    <li>一台 Mac / Linux / Windows 电脑</li>
+    <li>会打开"终端"（macOS：Terminal；Windows：PowerShell）</li>
+    <li>有 Node.js / npm（点上面表格里的命令跳转 <a class="ref" href="课外-npm安装教程.html">npm 安装教程</a>）或 Python 环境</li>
+    <li>能稳定访问海外网络（Claude / OpenAI / Gemini 的官方服务在国外）</li>
+    <li><strong>替代方案：</strong>用 <a class="ref" href="课外-cc-switch安装教程.html">cc-switch</a> 一键把 Claude Code / Codex / Gemini CLI 切到国内模型（DeepSeek、Kimi、智谱 GLM、通义、豆包等），就不再依赖海外网络</li>
+    <li>国内原生 CLI 工具：<strong>通义灵码 CLI</strong>、<strong>豆包 MarsCode</strong>、<strong>智谱 Coding</strong>（多偏编程场景）</li>
+  </ol>
+</div>
+
+<h2>二、安装与第一次使用（以 Claude Code 为例）</h2>
+
+<p>下面用 Claude Code 做一个最短上手演示，其它工具流程类似。</p>
+
+<h3>1. 准备环境</h3>
+<p>需要先装 Node.js（去 <a class="ref" href="https://nodejs.org" target="_blank">nodejs.org</a> 下 LTS 版）。装完打开终端验证：</p>
+<pre class="cmd"><span class="prompt">$</span> node -v
+v22.10.0</pre>
+
+<h3>2. 安装</h3>
+<pre class="cmd"><span class="prompt">$</span> npm install -g @anthropic-ai/claude-code</pre>
+
+<h3>3. 启动并登录</h3>
+<pre class="cmd"><span class="prompt">$</span> claude
+<span class="comment"># 首次会让你登录 Anthropic 账号</span></pre>
+
+<h3>4. 给它下第一个指令</h3>
+<pre class="cmd"><span class="prompt">&gt;</span> <span class="user">你能看到我这个目录吗？列一下里面有什么文件，并告诉我每个大概是干什么的。</span></pre>
+
+<p>它会调用 <code>ls</code>、<code>cat</code> 等命令，把目录内容整理成易读的中文摘要给你。</p>
+
+<div class="practice">
+  装完后，先在一个<strong>空目录</strong>里试用，不要直接对着重要文件下命令。每个操作请求都看清再放行。
+</div>
+
+<h2>三、CLI AI 的三块积木：Tools / MCP / Skills</h2>
+
+<p>你装完 Claude Code 后会发现它"突然就能干很多事"——读文件、跑命令、连服务器、改配置。这些能力其实是<strong>三种东西组合出来的</strong>，搞懂它们，你才会知道怎么扩展自己的 AI。</p>
+
+<div class="analogy">
+  把 CLI AI 想象成一个新搬进你家的厨子：<br>
+  - <strong>Tools</strong> = 厨房里已有的锅碗瓢盆（他能用的能力）<br>
+  - <strong>MCP</strong> = 你给厨房加新设备的<strong>接口</strong>（比如可以接烤箱、空气炸锅）<br>
+  - <strong>Skills</strong> = 你交给他的<strong>食谱本</strong>（不增加工具，但教他"做某道菜该怎么做"）
+</div>
+
+<h3>1. <span class="term">Tools<span class="tooltip">中文"工具"。AI 在回答时不只是"输出文字"，还可以"调用一个函数"去做事——查天气、读文件、跑命令。每次 AI 决定调用工具，就叫一次 "tool call"。</span></span> —— AI 能做的"具体动作"</h3>
+
+<p>Claude Code 启动后内置了一组工具，你可以直接看到：</p>
+<table>
+  <tr><th>工具名</th><th>作用</th></tr>
+  <tr><td><code>Read</code></td><td>读你电脑里的文件</td></tr>
+  <tr><td><code>Write</code> / <code>Edit</code></td><td>新建或修改文件</td></tr>
+  <tr><td><code>Bash</code></td><td>跑终端命令（<code>ls</code>、<code>ping</code>、<code>git</code> 等都靠它）</td></tr>
+  <tr><td><code>Grep</code> / <code>Glob</code></td><td>在文件里搜内容、找文件</td></tr>
+  <tr><td><code>WebFetch</code></td><td>抓取网页内容</td></tr>
+</table>
+<p>每次它"决定动手"，本质就是调用了这些工具中的一个。每次调用<strong>默认都会请示你</strong>"允许吗？"。</p>
+
+<h3>2. <span class="term">MCP<span class="tooltip">全称 Model Context Protocol（模型上下文协议），Anthropic 在 2024 年底推出的开放标准。简单说就是"AI 工具的 USB 接口"——任何人写一个 MCP server，所有支持 MCP 的 AI 都能即插即用。</span></span> —— 给 AI 接上"外挂能力"</h3>
+
+<p>内置工具不够用？MCP 就是为此而生：<strong>它定义了一套"插头标准"，让任何人都能开发一个"AI 外设"</strong>，AI 接上后立刻多一组新工具。</p>
+
+<p>常见的 MCP server 比如：</p>
+<ul>
+  <li><strong>filesystem</strong>：给 AI 限定可访问的本地目录</li>
+  <li><strong>github</strong>：让 AI 能查 PR、Issue、读仓库代码</li>
+  <li><strong>sqlite / postgres</strong>：让 AI 能查你的数据库</li>
+  <li><strong>puppeteer</strong>：让 AI 能控制浏览器</li>
+  <li><strong>fetch</strong>：让 AI 能稳定抓取 URL 内容</li>
+</ul>
+
+<div class="analogy">
+  Tools 是出厂自带的功能；MCP 是"AI 的应用商店"——你需要什么能力，就装哪个 MCP server。
+</div>
+
+<h3>3. <span class="term">Skills<span class="tooltip">Claude Code 的"做事食谱"。一段 markdown 文件，告诉 AI："遇到这类任务时，按下面这个流程办，注意这些坑。" 与提示词的区别是：Skills 是按需自动加载的，不会一直占用上下文。</span></span> —— 教 AI "怎么做某件事"</h3>
+
+<p>Skills 不增加新工具，而是<strong>固化"做某类事的方法"</strong>。它本质上就是一个 markdown 文件，描述："当用户想做 X 时，按以下步骤、用以下风格、注意以下坑。"</p>
+
+<p>Skills 和提示词的区别：</p>
+<ul>
+  <li>提示词每次对话都要重写或粘贴</li>
+  <li>Skills 一次写好，AI 自动识别合适场景调用</li>
+</ul>
+
+<h3>三者关系一张图</h3>
+<div class="card" style="text-align:center; font-family:monospace; font-size:14px; line-height:2; background:#f7fafc;">
+  你说："帮我整理桌面上的照片"<br>↓<br>
+  Skill"<strong>photo-organize</strong>"被触发（告诉 AI 该怎么做）<br>↓<br>
+  AI 调用 Tool <code>Bash</code> 列文件，再调用 MCP <code>filesystem</code> 安全地移动文件<br>↓<br>
+  完成
+</div>
+
+<h2>四、轻量实战 1：5 分钟给 Claude Code 写一个 Skill（零依赖）</h2>
+
+<p>这个实战<strong>不需要装任何东西</strong>，只要你已经装好 Claude Code，新建一个 markdown 文件就行。</p>
+
+<h3>步骤</h3>
+
+<div class="step">
+  <span class="step-num">1</span><strong>创建 skill 目录</strong>
+  <pre class="cmd"><span class="prompt">$</span> mkdir -p ~/.claude/skills/weekly-report</pre>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><strong>新建 SKILL.md</strong>，用任何文本编辑器（VSCode、记事本都行）写入：
+  <pre class="cmd">---
+name: weekly-report
+description: 把零散的工作笔记整理成结构化周报。当用户提到"周报""周总结""work review"时触发。
+---
+
+# 周报助手
+
+当用户需要写周报时，按以下流程：
+
+1. 先问用户："本周做了哪些事？可以贴一段笔记，也可以一条一条说。"
+2. 把内容自动归类为三组：
+   - 🎯 重要交付（推动核心目标的事）
+   - ⚙️ 日常运维（必要但不显眼的事）
+   - 📚 学习成长（看的书、学的工具、踩的坑）
+3. 输出 markdown 格式：
+   ```
+   ## 本周完成
+   ## 进行中
+   ## 下周计划
+   ## 风险/需协助
+   ```
+4. 末尾给出 1 句"亮点提炼"用作汇报开场白。
+
+提醒：宁缺勿增，不要替用户编没发生的事。</pre>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>启动 Claude Code，验证 skill 被加载</strong>
+  <pre class="cmd"><span class="prompt">$</span> claude
+<span class="prompt">&gt;</span> <span class="user">/skills</span>
+<span class="comment"># 应该能在列表里看到 weekly-report</span></pre>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span><strong>触发它</strong>
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">帮我写一份周报</span>
+<span class="comment"># Claude Code 会自动加载 weekly-report skill，按你定义的流程提问、整理、输出</span></pre>
+</div>
+
+<div class="tip">
+  Skill 文件的<strong>第一行 description 非常重要</strong>——AI 是根据它判断"现在这个对话要不要加载这个 skill"。description 写得越精准，命中率越高。
+</div>
+
+<h3>更多可以照着写的轻量 Skills</h3>
+<ul>
+  <li><strong>日记整理</strong>：把语音转写的杂乱文字整理成结构化日记</li>
+  <li><strong>中英对照翻译</strong>：固定按你偏好的术语和语气翻译</li>
+  <li><strong>读书笔记</strong>：从一本书的章节笔记提炼核心观点 + 行动清单</li>
+  <li><strong>会议纪要</strong>：从会议录音文字稿提取议题、决策、待办</li>
+</ul>
+
+<h2>五、轻量实战 2：启用一个 MCP（零安装）</h2>
+
+<p>很多 MCP server 都用 <code>npx</code> 启动—— <code>npx</code> 是 Node.js 自带的"用时下载、用完不留"运行方式，<strong>不需要全局安装任何服务</strong>。我们用最简单的 <strong>filesystem MCP</strong> 演示。</p>
+
+<h3>它能做什么？</h3>
+<p>给 AI 一个"安全沙盒"——AI 只能在你指定的目录里读写文件，碰不到目录外的东西。比让 AI 满硬盘乱跑安全得多。</p>
+
+<h3>步骤</h3>
+
+<div class="step">
+  <span class="step-num">1</span><strong>找到 Claude Code 的配置文件</strong>（首次没有就新建）
+  <pre class="cmd"><span class="prompt">$</span> mkdir -p ~/.config/claude-code
+<span class="prompt">$</span> open ~/.claude.json  <span class="comment"># macOS</span></pre>
+  <p>不同版本路径略有差异，<code>claude config</code> 命令可以告诉你当前用的是哪个。</p>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><strong>添加 mcpServers 段</strong>（如果文件已有别的内容，把 <code>mcpServers</code> 字段合并进去）
+  <pre class="cmd">{
+  "mcpServers": {
+    "fs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/你的用户名/Desktop"
+      ]
+    }
+  }
+}</pre>
+  <p>路径换成你想让 AI 能访问的那个目录（这里限定在桌面，比较安全）。</p>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>重启 Claude Code，验证</strong>
+  <pre class="cmd"><span class="prompt">$</span> claude
+<span class="prompt">&gt;</span> <span class="user">/mcp</span>
+<span class="comment"># 看到 "fs" 已连接，并列出了它提供的工具（list_directory、read_file、write_file...）</span></pre>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span><strong>试一下</strong>
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">用 fs 工具看一下我桌面上有哪些文件，给我列一个清单。</span></pre>
+  <p>注意：第一次 npx 会临时下载 server 包（几兆，几秒），之后会缓存。</p>
+</div>
+
+<div class="tip">
+  想看更多 MCP？官方仓库收录了几十个开箱即用的 server：<a class="ref" href="https://github.com/modelcontextprotocol/servers" target="_blank">github.com/modelcontextprotocol/servers</a>，按需把 <code>args</code> 一改就能用。
+</div>
+
+<h3>Skill vs MCP 该选哪个？</h3>
+<table>
+  <tr><th>你想…</th><th>用</th></tr>
+  <tr><td>给 AI 固化"做某类事的方法 / 风格"</td><td>Skill</td></tr>
+  <tr><td>给 AI 接上一个新外部数据源或新动作</td><td>MCP</td></tr>
+  <tr><td>把流程写死给所有同事共享</td><td>Skill（一个 markdown 拷贝即可）</td></tr>
+  <tr><td>调用真实 API / 数据库 / 浏览器</td><td>MCP</td></tr>
+</table>
+
+<h2>六、家用场景：用 CLI AI 优化你的电脑和网络</h2>
+
+<h3>场景 1：诊断 Wi-Fi 慢、网页打不开<span class="level easy">入门</span></h3>
+
+<div class="scene">
+  <strong>对它说：</strong>
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">我电脑最近上网很慢，帮我系统地检查一下网络情况：测速、看 DNS、看路由跳数、看 wifi 信号强度，最后给我一份诊断报告和优化建议。</span></pre>
+  <strong>它会自动跑：</strong>
+  <ul>
+    <li><code>ping 223.5.5.5</code> / <code>ping www.baidu.com</code>（看丢包/延迟）</li>
+    <li><code>traceroute</code>（看从你这到目标网站走了几跳，哪一跳卡）</li>
+    <li><code>scutil --dns</code>（macOS 看当前 DNS 配置）</li>
+    <li><code>networksetup -getairportnetwork en0</code>（看连的是哪个 wifi）</li>
+    <li>调用 <code>speedtest-cli</code>（如已安装）测速</li>
+    <li>读 <code>system_profiler SPAirPortDataType</code> 看信号强度、信噪比</li>
+  </ul>
+  <strong>它给你的报告大致：</strong>
+  <div class="card">
+    诊断结果：到百度延迟 12ms 正常，但到 GitHub 600ms 且第 5 跳丢包 30%——典型国际线路拥塞。DNS 用的是路由器默认的运营商 DNS，可换 <strong>223.5.5.5（阿里）</strong> 或 <strong>1.1.1.1（Cloudflare）</strong> 提升解析速度。WiFi 信号强度 -72dBm 偏弱，建议靠近路由器或换 5GHz 频段。
+  </div>
+</div>
+
+<h3>场景 2：改 DNS / Hosts，立刻见效<span class="level easy">入门</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">把我 Mac 的 DNS 改成阿里和 Cloudflare（备用 8.8.8.8），改完后帮我测一下解析速度有没有提升。</span></pre>
+  <p>它会用 <code>networksetup -setdnsservers Wi-Fi 223.5.5.5 1.1.1.1 8.8.8.8</code>，然后跑 <code>dig</code> 对比前后耗时。</p>
+</div>
+
+<h3>场景 3：SSH 登录软路由（OpenWrt / iKuai / RouterOS）优化配置<span class="level medium">中等</span></h3>
+
+<p>这是 CLI AI 真正的"杀手锏"场景之一——你不用记一堆 Linux 命令、不用查 OpenWrt 文档。</p>
+
+<div class="scene">
+  <strong>前提：</strong>你有一台软路由（如 NanoPi、N100 小主机刷 OpenWrt / iStoreOS），知道 IP 和 SSH 密码。<br><br>
+  <strong>对它说：</strong>
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">帮我 SSH 到 192.168.1.1（用户 root），先检查这台 OpenWrt 的：
+1. CPU、内存、温度
+2. 网络接口（WAN/LAN）状态
+3. 现在开启了哪些服务
+4. 无线信道是否冲突
+然后给我一份"可以这样优化"的清单，但每条改动改之前都要先问我确认。</span></pre>
+  <strong>它会自动做：</strong>
+  <ul>
+    <li><code>ssh root@192.168.1.1</code> 登录</li>
+    <li>跑 <code>top</code>、<code>free -m</code>、<code>cat /sys/class/thermal/thermal_zone0/temp</code></li>
+    <li><code>ifstatus wan</code>、<code>ifstatus lan</code></li>
+    <li><code>/etc/init.d</code> 下看启用的服务</li>
+    <li><code>iw dev wlan0 scan | grep -E 'freq|signal'</code> 看周围信道占用</li>
+  </ul>
+  <strong>典型优化建议：</strong>
+  <ul>
+    <li>切换 2.4G 到 1/6/11 中冲突最少的信道</li>
+    <li>启用 Software / Hardware Flow Offloading 提升转发性能</li>
+    <li>开启 Cake QoS 解决游戏卡顿</li>
+    <li>启用 DNS over HTTPS（DoH）</li>
+    <li>开启 IPv6 PD（如运营商支持）</li>
+  </ul>
+</div>
+
+<div class="warn">
+  路由器是家里所有设备的"大门"，<strong>改动前请先在路由器后台备份配置</strong>。一旦改坏导致断网，可以恢复。如果你完全是新手，建议每条变更都让 AI 先解释一遍再执行。
+</div>
+
+<h3>场景 4：清理 Mac / Windows 上的垃圾文件<span class="level easy">入门</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">扫描我用户目录下大于 500MB 的文件，按大小排序列出来，并标注哪些是缓存/可以安全删的，但删除前一定要让我确认每一项。</span></pre>
+  <p>它会用 <code>find ~ -type f -size +500M</code>，并理解 <code>~/Library/Caches</code>、<code>node_modules</code>、Docker 镜像等是可清理的。</p>
+</div>
+
+<h3>场景 5：批量处理照片/视频<span class="level easy">入门</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">~/Pictures/旅游 下所有 jpg 帮我：①统一缩到长边 1920 ②文件名改成"日期-序号" ③转成 webp 节省空间，保留原图到 /原图 子目录。</span></pre>
+  <p>它会用 <code>ffmpeg</code> 或 <code>sips</code>（macOS 自带）一条命令搞定，比手动一张张处理快百倍。</p>
+</div>
+
+<h3>场景 6：搭建家庭 NAS / 内网服务<span class="level medium">中等</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">SSH 到 192.168.1.5（家里的群晖 / 树莓派），帮我用 docker compose 部署一个 Vaultwarden（密码管理器），配好 HTTPS 自签证书，端口 8443，部署完告诉我从手机怎么访问。</span></pre>
+</div>
+
+<h3>场景 7：定时任务<span class="level medium">中等</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">写一个 macOS launchd 任务，每周一早上 9 点自动把 ~/Documents 备份到我挂载的 NAS（//nas.local/backup），并把备份日志发到我邮箱。</span></pre>
+</div>
+
+<h3>场景 8：分析路由器日志找异常<span class="level hard">较难</span></h3>
+
+<div class="scene">
+  <pre class="cmd"><span class="prompt">&gt;</span> <span class="user">下载我路由器最近一周的 syslog，分析有没有异常登录尝试、ARP 欺骗、可疑外联，把可疑 IP 列出来并查一下归属。</span></pre>
+</div>
+
+<h2>七、用 CLI AI 的 5 条安全守则</h2>
+
+<div class="card">
+  <p><strong>1. 永远在"专门的工作目录"启动它。</strong>不要直接在桌面或 <code>/</code> 根目录用，免得它操作范围太大。</p>
+  <p><strong>2. 危险命令要看清楚。</strong>遇到 <code>rm -rf</code>、<code>sudo</code>、<code>chmod 777</code>、<code>curl ... | sh</code> 这类，先让它解释再放行。</p>
+  <p><strong>3. 重要文件先备份。</strong>路由器改配置前导出备份；改电脑系统设置前记下原值。</p>
+  <p><strong>4. 不要把密码、密钥贴进对话。</strong>用环境变量或 SSH key，不要明文。</p>
+  <p><strong>5. 学会随时打断它。</strong>看到方向不对，直接 Ctrl+C 停下，再用自然语言调整方向，不要硬看它跑完。</p>
+</div>
+
+<h2>八、本节自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我能用一句话解释 Tools / MCP / Skills 各是什么</div>
+  <div class="checkbox">☐ 我知道 Claude Code / Codex 大致是什么以及怎么安装</div>
+  <div class="checkbox">☐ 我自己写过至少一个 Skill 文件</div>
+  <div class="checkbox">☐ 我配置过至少一个 MCP server（哪怕只是 filesystem）</div>
+  <div class="checkbox">☐ 我能想到 2 个适合用 CLI AI 做的家庭场景</div>
+  <div class="checkbox">☐ 我知道 5 条使用安全守则</div>
+</div>
+
+<div class="ref-list">
+  <h2>📚 参考链接</h2>
+  <ol>
+    <li>Claude Code 官方：<a class="ref" href="https://claude.com/claude-code" target="_blank">https://claude.com/claude-code</a></li>
+    <li>Claude Code 文档：<a class="ref" href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank">docs.claude.com/en/docs/claude-code/overview</a></li>
+    <li>OpenAI Codex CLI（开源仓库）：<a class="ref" href="https://github.com/openai/codex" target="_blank">https://github.com/openai/codex</a></li>
+    <li>Gemini CLI：<a class="ref" href="https://github.com/google-gemini/gemini-cli" target="_blank">github.com/google-gemini/gemini-cli</a></li>
+    <li>Aider（开源）：<a class="ref" href="https://aider.chat" target="_blank">https://aider.chat</a></li>
+    <li>Cursor 编辑器：<a class="ref" href="https://www.cursor.com" target="_blank">https://www.cursor.com</a></li>
+    <li>OpenWrt 官方文档：<a class="ref" href="https://openwrt.org/docs/start" target="_blank">https://openwrt.org/docs/start</a></li>
+    <li>iStoreOS（国内 OpenWrt 发行版）：<a class="ref" href="https://www.istoreos.com" target="_blank">https://www.istoreos.com</a></li>
+    <li>Node.js 下载：<a class="ref" href="https://nodejs.org" target="_blank">https://nodejs.org</a></li>
+    <li>Homebrew（macOS 安装 ffmpeg 等工具）：<a class="ref" href="https://brew.sh" target="_blank">https://brew.sh</a></li>
+    <li>MCP（Model Context Protocol）官方介绍：<a class="ref" href="https://modelcontextprotocol.io" target="_blank">https://modelcontextprotocol.io</a></li>
+    <li>MCP 官方 server 仓库（几十个开箱即用）：<a class="ref" href="https://github.com/modelcontextprotocol/servers" target="_blank">github.com/modelcontextprotocol/servers</a></li>
+    <li>Claude Code Skills 官方文档：<a class="ref" href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank">docs.claude.com/en/docs/claude-code/skills</a></li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 课外教程结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a>
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

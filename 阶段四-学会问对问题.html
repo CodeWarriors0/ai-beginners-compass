@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第四阶段：学会"问对问题" · AI 小白入门课程</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose',flowchart:{curve:'basis'}}));</script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #4a90e2; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #4a90e2; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .bad, .good { padding: 12px 18px; border-radius: 6px; margin: 8px 0; }
+  .bad { background: #fdecea; border-left: 4px solid #e74c3c; }
+  .good { background: #eafaf1; border-left: 4px solid #27ae60; }
+  .bad::before { content: "❌ 模糊问法："; font-weight: 600; color: #c0392b; display: block; margin-bottom: 4px; }
+  .good::before { content: "✅ 清晰问法："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 4px; }
+  .reply { background: #fff; border-radius: 6px; padding: 14px 18px; margin: 6px 0 8px 18px; border-left: 3px solid #bdc3c7; font-size: 15px; line-height: 1.75; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .reply::before { content: "🤖 AI 回复："; font-weight: 600; color: #7f8c8d; display: block; margin-bottom: 6px; font-size: 13px; }
+  .reply.bad-reply { border-left-color: #e74c3c; }
+  .reply.bad-reply::before { color: #c0392b; }
+  .reply.good-reply { border-left-color: #27ae60; }
+  .reply.good-reply::before { color: #1e8449; }
+  .template { background: #2c3e50; color: #ecf0f1; padding: 16px 20px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.8; margin: 12px 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第四阶段：学会"问对问题"</h1>
+<p class="subtitle">学习时长：2-3 天 · 学习目标：让 AI 回答得又准又好用</p>
+
+<div class="card">
+  <p><strong>同样的问题，不同的问法，得到的答案天差地别。</strong>这一阶段，是整个 AI 学习中"投入产出比最高"的一段——花两三天掌握后，你能让 AI 的回答质量直接翻好几倍。</p>
+</div>
+
+<h2>一、为什么"会问"这么重要？</h2>
+
+<p>你发给 AI 的那段话叫<span class="term">提示词<span class="tooltip">英文 Prompt。指你输入给 AI 的文字指令。提示词写得越具体清楚，AI 答得越准确。学 AI 的核心技能就是学"怎么写提示词"，也叫"提示词工程"。</span></span>。AI 不像谷歌——你输几个关键词就能搜出结果——它更像一个新来的助理：你交代得越清楚，它做得越好。</p>
+
+<div class="analogy">
+  你跟刚来的实习生说"帮我搞个 PPT"，他做出来的肯定不是你想要的。但如果你说"做一份给客户看的产品介绍 PPT，10 页以内，深蓝色基调，重点突出价格优势"——他立刻知道怎么干。AI 一模一样。
+</div>
+
+<h2>二、问对问题的黄金公式：身份 + 任务 + 受众 + 格式</h2>
+
+<p>记住这四个要素，你已经超过 80% 的 AI 用户了：</p>
+
+<table>
+  <tr><th>要素</th><th>意思</th><th>举例</th></tr>
+  <tr>
+    <td>① <strong>身份</strong></td>
+    <td>告诉 AI "你扮演谁"</td>
+    <td>"你是一位儿科医生"</td>
+  </tr>
+  <tr>
+    <td>② <strong>任务</strong></td>
+    <td>具体要做什么</td>
+    <td>"帮我解释为什么宝宝半夜哭"</td>
+  </tr>
+  <tr>
+    <td>③ <strong>受众</strong></td>
+    <td>说给谁听</td>
+    <td>"用新手妈妈能懂的大白话"</td>
+  </tr>
+  <tr>
+    <td>④ <strong>格式</strong></td>
+    <td>怎么输出</td>
+    <td>"列出 3 个最常见原因，每个 1 句话"</td>
+  </tr>
+</table>
+
+<h3>对比一下效果</h3>
+
+<div class="bad">为什么宝宝半夜哭？</div>
+<div class="reply bad-reply">婴儿夜间啼哭可能由多种生理与病理因素引起：生理性因素含饥饿、尿布潮湿、肠胀气（婴儿肠绞痛 colic）、胃食管反流（GERD）、惊跳反射（Moro reflex）、睡眠周期转换困难、出牙不适、维生素 D 缺乏或低钙血症等；病理性因素涉及鼻塞、中耳炎、湿疹瘙痒、肠套叠、嵌顿性疝、神经系统异常、感染性疾病发热等，需结合伴随症状综合判断，建议详细记录排便、体温、进食情况并咨询儿科医生进一步评估……</div>
+<p style="color:#888;margin-left:8px;">→ 一长串可能性 + 一堆医学术语，看完更焦虑，不知从哪查起。</p>
+
+<div class="good">你是一位儿科医生，请用新手妈妈能听懂的大白话，告诉我宝宝半夜哭最常见的 3 个原因，每个原因用一句话讲清楚，并附一句应对建议。</div>
+<div class="reply good-reply">最常见的 3 个原因 👶<br>
+<strong>1. 饿了 / 尿布湿了</strong>——先看奶量和尿不湿，多数能立刻止哭。<br>
+<strong>2. 肠胀气</strong>——肚子鼓鼓、腿乱蹬，试试"飞机抱"+ 顺时针轻揉肚子。<br>
+<strong>3. 困过头</strong>——其实是困得难受反而睡不着，调暗灯光、白噪音哄睡即可。<br>
+⚠️ 如果连续几晚伴随发烧、拒奶、精神差，请及时就医。</div>
+<p style="color:#888;margin-left:8px;">→ 清爽、可立刻照做的清单，焦虑指数瞬间降一半。</p>
+
+<h2>三、5 个立刻能用的提示词模板</h2>
+
+<h3>模板 1：解释类（看不懂的东西）</h3>
+<div class="template">请用【XX】能听懂的语言，解释一下【某个概念/术语】，举一个生活中的例子。</div>
+<p>例：请用 60 岁的妈妈能听懂的语言，解释一下"什么是云盘"，举一个生活中的例子。</p>
+
+<h3>模板 2：写作类</h3>
+<div class="template">你是【某身份】，请帮我写一份【什么内容】，给【谁】看，要求【风格/字数/重点】。</div>
+<p>例：你是一位有经验的 HR，请帮我写一份请假条，向直属领导请 3 天事假回家照顾老人，要求语气得体、不卑不亢，控制在 200 字。</p>
+
+<h3>模板 3：对比类</h3>
+<div class="template">请帮我对比【A】和【B】在【哪几个维度】上的区别，最后给出一个针对【我的情况】的推荐。</div>
+<p>例：请帮我对比 iPhone 16 和华为 Mate 70 在拍照、续航、价格三个维度上的区别，最后针对一个 50 岁不爱折腾的用户给出推荐。</p>
+
+<h3>模板 4：总结类</h3>
+<div class="template">请把下面这段内容用【XX】句话总结，提炼出【XX】个关键点：
+（粘贴你的长文/会议记录/文章）</div>
+<p>例：请把下面这段内容用 5 句话总结，提炼出 3 个核心观点：……</p>
+
+<h3>模板 5：步骤类（学做某事）</h3>
+<div class="template">我想【做某件事】，请帮我列出【新手】可以照做的步骤，每步用一句话说明，最后提醒我【常见坑】。</div>
+<p>例：我想给爸妈在抖音开个号发短视频，请帮我列出新手可以照做的步骤，每步一句话，最后提醒我常见的坑。</p>
+
+<div class="tip">
+  把这 5 个模板存进手机备忘录，遇到要问 AI 的时候照着填空，新手期完全够用了。
+</div>
+
+<h2>四、追问的艺术：让 AI 越聊越懂你</h2>
+
+<p>第一次回答不满意？不要重打提示词，<strong>直接追问</strong>。AI 记得你前面说过的话。</p>
+
+<h3>常用的 10 句"魔法追问"</h3>
+
+<table>
+  <tr><th>不满意的地方</th><th>这样说</th></tr>
+  <tr><td>太长</td><td>"再短一点，控制在 100 字"</td></tr>
+  <tr><td>太短</td><td>"展开讲讲，每点举个例子"</td></tr>
+  <tr><td>太难懂</td><td>"换成我奶奶能听懂的说法"</td></tr>
+  <tr><td>太书面</td><td>"用更口语、更接地气的语气重写"</td></tr>
+  <tr><td>不够正式</td><td>"用更正式的商务语气重写"</td></tr>
+  <tr><td>缺重点</td><td>"用加粗或编号标出最重要的 3 点"</td></tr>
+  <tr><td>想要表格</td><td>"用表格的形式呈现"</td></tr>
+  <tr><td>想要清单</td><td>"改成项目符号清单"</td></tr>
+  <tr><td>想换风格</td><td>"再写一版风格完全不同的"</td></tr>
+  <tr><td>想要例子</td><td>"举 3 个真实生活中的例子"</td></tr>
+</table>
+
+<h2>五、5 个让 AI 答得更好的小技巧</h2>
+
+<h3>1. 用"分隔符"区分"指令"和"内容"</h3>
+<p>当你要 AI 处理一大段文字时，用三个引号或破折号把内容圈起来：</p>
+<div class="template">请把下面这段话改写成更通顺的版本：
+"""
+（粘贴你的原文）
+"""</div>
+
+<h3>2. 给"例子"，让 AI 模仿（叫<span class="term">少样本提示<span class="tooltip">英文 Few-shot Prompting。给 AI 一两个范例，让它模仿格式或风格作答。比凭空让它猜你想要什么效果好得多。</span></span>）</h3>
+<div class="template">请按下面这种风格给我写 3 个朋友圈文案：
+范例：今天的咖啡，比上司的脸还苦。
+你的输出：</div>
+
+<h3>3. 让 AI "一步步想"（叫<span class="term">思维链<span class="tooltip">英文 Chain-of-Thought。让 AI 在回答前先把思考过程写出来，结果通常更准确。对数学题、逻辑题特别管用。</span></span>）</h3>
+<div class="template">请一步一步分析：……（你的问题）。先列出思考过程，再给结论。</div>
+<p>对算数题、逻辑判断、规划类问题特别有效。</p>
+
+<h3>4. 设定边界（"不要 XX"）</h3>
+<p>例：</p>
+<ul>
+  <li>"回答不要超过 200 字"</li>
+  <li>"不要使用专业术语"</li>
+  <li>"不要给我列出超过 5 条建议"</li>
+</ul>
+
+<h3>5. 允许 AI "反问"</h3>
+<div class="template">在回答之前，如果你觉得我的需求还有不清楚的地方，请先反问我 1-2 个问题。</div>
+<p>加上这一句，AI 会先确认再答，减少答跑偏的情况。</p>
+
+<h2>六、新手常犯的 5 个错</h2>
+
+<div class="card">
+  <p><strong>❌ 错 1：太简短</strong>——"写个东西" → AI 完全不知道写啥<br>
+  <strong>✅ 改：</strong>"写一份给客户的中秋祝福短信，60 字内，温馨不油腻"</p>
+
+  <p><strong>❌ 错 2：一句话塞 5 个任务</strong>——AI 容易顾此失彼<br>
+  <strong>✅ 改：</strong>拆成多轮对话，一次只干一件事</p>
+
+  <p><strong>❌ 错 3：用"或"提多种可能</strong>——"写邮件或微信都行" → AI 选最简单的应付<br>
+  <strong>✅ 改：</strong>"写一封正式邮件"</p>
+
+  <p><strong>❌ 错 4：不给背景</strong>——"这个怎么改？" → AI 一头雾水<br>
+  <strong>✅ 改：</strong>把"这个"是什么先讲清楚，或直接把内容贴上来</p>
+
+  <p><strong>❌ 错 5：得到答案就走</strong>——其实再追问一两轮，质量能翻倍<br>
+  <strong>✅ 改：</strong>养成"再优化一下"的习惯</p>
+</div>
+
+<h2>七、3 个练习题（动手做完，受益终身）</h2>
+
+<div class="practice">
+  <strong>练习 1（解释类）</strong>：让 AI 用 3 种不同身份解释"什么是区块链"——分别用①给小学生听 ②给爷爷听 ③给金融从业者听。对比三个版本的差别。
+</div>
+
+<div class="practice">
+  <strong>练习 2（写作类）</strong>：让 AI 写一段给同事的生日祝福。第一次只发"写个生日祝福"。第二次用四要素公式（身份+任务+受众+格式）重写。对比两次质量。
+</div>
+
+<div class="practice">
+  <strong>练习 3（追问类）</strong>：让 AI 推荐 5 部电影。然后追问"再短一点"、"换成喜剧"、"按豆瓣评分排序"、"加上一句推荐理由"。体会"追问"的威力。
+</div>
+
+<h2>八、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我记得"身份 + 任务 + 受众 + 格式"四要素</div>
+  <div class="checkbox">☐ 我至少用过 3 个提示词模板</div>
+  <div class="checkbox">☐ 我会通过追问让 AI 改长改短、换风格</div>
+  <div class="checkbox">☐ 我知道把例子给 AI 让它模仿（少样本）</div>
+  <div class="checkbox">☐ 我能避开 5 个新手常犯的错</div>
+  <div class="checkbox">☐ 我感受到了"问得好"和"问得差"的明显差距</div>
+</div>
+
+<h2>九、热门提示词库（直接拿来用）</h2>
+
+<p>下面是 GitHub 上最受欢迎的几个开源提示词仓库——你不用从零写，<strong>翻一翻、复制、改两个词就能用</strong>。按"中文友好程度"和"适合新手程度"排序：</p>
+
+<table>
+  <tr>
+    <th>仓库</th>
+    <th>Star</th>
+    <th>能拿到什么</th>
+    <th>适合谁</th>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" target="_blank">awesome-chatgpt-prompts-zh</a></td>
+    <td>60k+</td>
+    <td>中文调教指南——按"角色 + 场景"分类的几百条中文提示词，复制即用</td>
+    <td>⭐ 中文用户首选</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/yzfly/awesome-chatgpt-zh" target="_blank">awesome-chatgpt-zh</a></td>
+    <td>12k+</td>
+    <td>中文使用指南 + 资源清单，覆盖学习/办公/编程多场景</td>
+    <td>想系统学的中文用户</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/f/awesome-chatgpt-prompts" target="_blank">f/awesome-chatgpt-prompts</a>（prompts.chat）</td>
+    <td>140k+</td>
+    <td>全球最火的英文提示词大全，已支持 Claude / Gemini / Llama 等</td>
+    <td>能看英文 / 想找原版</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/dair-ai/Prompt-Engineering-Guide" target="_blank">Prompt-Engineering-Guide</a></td>
+    <td>50k+</td>
+    <td>系统的"提示词工程"教科书：少样本、思维链、自洽性等技术原理</td>
+    <td>想"知其所以然"的进阶者</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/EmbraceAGI/LangGPT" target="_blank">LangGPT</a></td>
+    <td>9k+</td>
+    <td>把提示词当"代码"写的结构化框架，模板化输出更稳定</td>
+    <td>需要反复复用同一提示词的人</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/linshenkx/prompt-optimizer" target="_blank">prompt-optimizer</a></td>
+    <td>6k+</td>
+    <td>一个网页/插件工具，自动帮你把"差的提示词"优化成"好的提示词"</td>
+    <td>懒得自己琢磨的人</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/wenhaomin/ChatGPT-PromptGenius" target="_blank">ChatGPT-PromptGenius</a></td>
+    <td>3k+</td>
+    <td>带层级分类的提示词站，多语言支持，可一键复制</td>
+    <td>喜欢"逛网站"找灵感</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/0xeb/TheBigPromptLibrary" target="_blank">TheBigPromptLibrary</a></td>
+    <td>10k+</td>
+    <td>各大 AI 工具（ChatGPT / Claude / Cursor / v0 等）<strong>系统提示词逆向</strong>合集</td>
+    <td>想"偷师"大厂提示词的人</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>用法建议：</strong>新手只看 <strong>awesome-chatgpt-prompts-zh</strong> 就够了——按场景搜（"翻译"、"PPT"、"简历"），找到模板复制到豆包/Kimi，把方括号 <code>[你的内容]</code> 替换成自己的需求即可。其他仓库等你想深入研究时再翻。
+</div>
+
+<div class="warn">
+  GitHub 上"越狱破限"、"NSFW"、"绕过安全限制"类提示词请<strong>不要随便用</strong>——可能让 AI 输出违法/有害内容，账号也可能被封禁。学正经的就够你受用一辈子。
+</div>
+  <h2>📚 延伸阅读 & 参考链接</h2>
+  <ol>
+    <li>OpenAI 官方提示词指南（英文）：<a class="ref" href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank">platform.openai.com/docs/guides/prompt-engineering</a></li>
+    <li>Anthropic 提示词工程指南（英文）：<a class="ref" href="https://docs.anthropic.com/claude/docs/prompt-engineering" target="_blank">docs.anthropic.com</a></li>
+    <li>开源中文提示词大全：<a class="ref" href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" target="_blank">github.com/PlexPt/awesome-chatgpt-prompts-zh</a></li>
+    <li>提示词工程综合指南（中文）：<a class="ref" href="https://www.promptingguide.ai/zh" target="_blank">promptingguide.ai/zh</a></li>
+    <li>豆包提示词广场：在豆包 App 内"发现"页有大量现成模板可参考</li>
+    <li>B 站搜索关键词推荐：<em>"提示词技巧"、"prompt 工程"、"AI 提问技巧"</em></li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 第四阶段结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a> 进入第五阶段（重点）
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

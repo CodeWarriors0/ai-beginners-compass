@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第五阶段：用 AI 查网络信息 · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #e74c3c; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  .badge { display: inline-block; background: #e74c3c; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #e74c3c; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .step { background: #fff; border-radius: 8px; padding: 18px 24px; margin: 12px 0; border-left: 4px solid #e74c3c; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .step-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #e74c3c; color: #fff; border-radius: 50%; font-weight: 600; margin-right: 10px; }
+  .template { background: #2c3e50; color: #ecf0f1; padding: 16px 20px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.8; margin: 12px 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第五阶段：用 AI 查网络信息<span class="badge">重点</span></h1>
+<p class="subtitle">学习时长：3-5 天 · 学习目标：把 AI 当成"会聊天的搜索引擎"，但绝不上当受骗</p>
+
+<div class="card">
+  <p><strong>这一阶段是整个课程的核心。</strong>学会后，AI 能替代你大半的百度搜索、知乎查询、小红书翻找。但反过来——<strong>用得不对，会被 AI 编出来的信息坑得很惨。</strong>所以本节既教你怎么用，也教你怎么防。</p>
+</div>
+
+<h2>一、先搞懂：AI 怎么"查到"网络信息？</h2>
+
+<p>普通的 AI（不联网）只懂"训练时已经学过"的知识，有<span class="term">知识截止日期<span class="tooltip">英文 Knowledge Cutoff。AI 在某个日期之前的资料里训练出来，那个日期之后的事它就不知道。例如某模型截止 2024 年 10 月，问它 2025 年的事就是瞎猜。</span></span>，比如它学的是 2024 年之前的资料，那 2025 年最新政策它就不知道。</p>
+
+<p><span class="term">联网搜索<span class="tooltip">让 AI 在回答前先去搜索引擎查一下最新资料，再基于查到的内容作答。是 AI 获取实时信息的关键能力。也叫"Web Search""实时搜索"。</span></span>能力的 AI 则不同：它能<strong>边搜边答</strong>——先去百度/谷歌搜一圈，再用搜来的资料给你写答案，并附上链接。</p>
+
+<div class="analogy">
+  不联网的 AI = 一个博学但闭关多年的隐士，新闻一概不知。<br>
+  联网的 AI = 一个旁边放着电脑的助理，你一问他就去查最新资料再告诉你。
+</div>
+
+<h2>二、哪些 AI 能联网查信息？</h2>
+
+<table>
+  <tr>
+    <th>AI 名称</th>
+    <th>联网功能</th>
+    <th>怎么开启</th>
+    <th>新手推荐度</th>
+  </tr>
+  <tr>
+    <td><strong>Kimi</strong></td>
+    <td>默认就联网</td>
+    <td>不用开，自动用</td>
+    <td>⭐⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><strong>豆包</strong></td>
+    <td>默认联网</td>
+    <td>不用开，自动用</td>
+    <td>⭐⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><strong>腾讯元宝</strong></td>
+    <td>支持，可手动开</td>
+    <td>对话框下方"联网"按钮</td>
+    <td>⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><strong>通义千问</strong></td>
+    <td>支持</td>
+    <td>对话框下方"实时搜索"</td>
+    <td>⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><strong>DeepSeek</strong></td>
+    <td>支持，可手动开</td>
+    <td>对话框下方"联网搜索"</td>
+    <td>⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://www.perplexity.ai" target="_blank">Perplexity</a></td>
+    <td>专门做联网搜索</td>
+    <td>默认开启，引用极清晰</td>
+    <td>⭐⭐⭐⭐⭐（需英文/特殊网络）</td>
+  </tr>
+</table>
+
+<div class="tip">
+  小白查信息，<strong>直接用 Kimi 或豆包</strong>，开箱即用、引用清晰、中文体验好。
+</div>
+
+<h2>三、查信息黄金三步法</h2>
+
+<p>这是本阶段的<strong>核心方法论</strong>，请务必养成习惯：</p>
+
+<div class="step">
+  <span class="step-num">1</span><strong>具体地问 + 要求附来源</strong><br>
+  问题里加一句："请附上信息来源链接"，AI 就会把出处给你。
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><strong>读答案 + 看引用</strong><br>
+  AI 答案下方一般会有一排"参考链接"或脚注编号 [1] [2]，点开看是哪个网站。
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>关键信息自己核对</strong><br>
+  涉及钱、健康、法律、重要日期数字，<strong>必须点开原始链接</strong>对照一下。
+</div>
+
+<div class="warn">
+  AI 有时候会"半真半假"——主体是对的，但某个数字、某条法规细节是编的。这就是为什么第三步不能省。
+</div>
+
+<h2>四、查信息常用句式（直接抄）</h2>
+
+<h3>1. 查最新政策/新闻</h3>
+<div class="template">请查一下【2025 年北京医保异地报销】最新政策，列出关键变化点，并附上官方文件来源链接。</div>
+
+<h3>2. 查产品对比</h3>
+<div class="template">请帮我对比【iPhone 16 Pro】和【华为 Mate 70 Pro】，包括价格、拍照、续航、信号四个维度，数据要标注来源（官网/权威评测），最后给出一个针对【日常使用、不怎么打游戏】的推荐。</div>
+
+<h3>3. 查菜谱/做法</h3>
+<div class="template">请告诉我【红烧排骨】的家常做法，列出材料、步骤、关键火候，并告诉我新手容易翻车的地方。</div>
+
+<h3>4. 查旅游攻略</h3>
+<div class="template">请帮我做一份【11 月去成都 3 天 2 晚】的旅游攻略，要求：①带 60 岁老人 ②不爬高山 ③包含交通建议、必吃和必去地点，参考最新的小红书/马蜂窝热门推荐并附链接。</div>
+
+<h3>5. 查名词解释</h3>
+<div class="template">什么是【个人养老金账户】？请用 50 岁普通人能听懂的话解释，告诉我它对我有什么好处和风险，并附官方政策依据。</div>
+
+<h3>6. 查实时信息（天气/股价/航班）</h3>
+<div class="template">请查【明天上海的天气】、【上证指数今天收盘价】、【明天 CA1532 北京到上海的航班是否准点】。</div>
+
+<h2>五、识别 AI 在"编"的 5 个信号</h2>
+
+<p><span class="term">幻觉<span class="tooltip">AI 一本正经地胡说八道。它不是故意骗人，而是它本质上是"概率续写"——下一个词最像什么就写什么，所以有时会编出看起来合理但完全不存在的内容。</span></span>很难根除，但下面这些"嗅觉信号"能帮你及时识破：</p>
+
+<div class="card">
+  <p><strong>🚩 信号 1：没有任何引用链接</strong><br>
+  你问的明明是个具体事实，AI 却泛泛而谈不给来源。</p>
+
+  <p><strong>🚩 信号 2：引用了，但你点开发现链接打不开 / 网站根本没有这内容</strong><br>
+  AI 会编 URL 和书名，这是经典坑。</p>
+
+  <p><strong>🚩 信号 3：太"圆满"了</strong><br>
+  数字精确到小数点、人物姓名生日全有、地点门牌号都给——现实中很少有这么齐整的资料。</p>
+
+  <p><strong>🚩 信号 4：你换个问法，它给出完全不同的答案</strong><br>
+  说明它在猜，不在引用。</p>
+
+  <p><strong>🚩 信号 5：涉及小众/冷门/最近发生的事</strong><br>
+  AI 训练数据里可能根本没有，但它不会说"我不知道"，而是编一个。</p>
+</div>
+
+<div class="warn">
+  <strong>真实案例：</strong>有律师把 AI 编的"假判例"用进法庭文书，被法官当场识破并罚款。AI 引用的所有案例编号都查不到——但写得有鼻子有眼。
+</div>
+
+<h2>六、6 个高价值的查询场景</h2>
+
+<table>
+  <tr><th>场景</th><th>示例提问</th></tr>
+  <tr>
+    <td><strong>买东西做决策</strong></td>
+    <td>"请帮我对比 3 款 3000 元以内的扫地机器人，列出优劣并给出推荐。"</td>
+  </tr>
+  <tr>
+    <td><strong>查政策/办事流程</strong></td>
+    <td>"在上海办理居住证需要哪些材料？流程是什么？请附官方页面链接。"</td>
+  </tr>
+  <tr>
+    <td><strong>读懂某个新闻事件</strong></td>
+    <td>"最近 XX 公司爆出的瓜是怎么回事？请给我时间线和各方观点，并附信息来源。"</td>
+  </tr>
+  <tr>
+    <td><strong>规划行程</strong></td>
+    <td>"帮我规划国庆 5 天云南自由行，预算 1 万，带父母，需要养生型行程。"</td>
+  </tr>
+  <tr>
+    <td><strong>解释专业内容</strong></td>
+    <td>"医生说我妈妈是'冠脉钙化'，到底是什么意思？严重吗？应该怎么办？请附医学权威来源。"</td>
+  </tr>
+  <tr>
+    <td><strong>查询软件操作</strong></td>
+    <td>"微信怎么把聊天记录迁移到新手机？请按步骤说明，最好截图描述。"</td>
+  </tr>
+</table>
+
+<h2>七、绝对不能只信 AI 的 4 种场景</h2>
+
+<div class="warn">
+  下面这些场景，AI 可以辅助你"理解"，但<strong>不能作为最终决策依据</strong>：
+  <ol>
+    <li><strong>医疗：</strong>诊断、用药、剂量——必须问医生</li>
+    <li><strong>法律：</strong>合同效力、官司打不打、判例引用——必须问律师</li>
+    <li><strong>金融：</strong>投资建议、税务计算、利率——必须查官方公告或问理财顾问</li>
+    <li><strong>实时数据：</strong>航班时刻、股票价格、天气预报——以官方 App 为准</li>
+  </ol>
+</div>
+
+<h2>八、练习题（强烈建议都做一遍）</h2>
+
+<div class="practice">
+  <strong>练习 1：</strong>用 Kimi 或豆包查一下"2025 年个税专项附加扣除有哪些"，让它列出来并附官方链接，然后你点开一个链接核对一下数字是否一致。
+</div>
+
+<div class="practice">
+  <strong>练习 2：</strong>故意问一个"刁钻问题"——比如"《XXX》这本书的第 47 页讲的什么"（一个不存在的书或随机页码），看 AI 会不会编。体会幻觉是什么样子。
+</div>
+
+<div class="practice">
+  <strong>练习 3：</strong>用三步法做一次真实查询：决定下周末去哪家餐厅过生日。完整走完"问 → 看引用 → 核对评分"。
+</div>
+
+<h2>九、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我知道哪几个 AI 能联网查信息</div>
+  <div class="checkbox">☐ 我会要求 AI "附上来源链接"</div>
+  <div class="checkbox">☐ 我会点开 AI 给的链接，核对内容是否一致</div>
+  <div class="checkbox">☐ 我能识别 AI 可能在"编"的几个信号</div>
+  <div class="checkbox">☐ 我清楚哪些场景不能只信 AI</div>
+  <div class="checkbox">☐ 我至少用 AI 完成过 3 次真实生活中的信息查询</div>
+</div>
+
+<div class="ref-list">
+  <h2>📚 延伸阅读 & 权威核对来源</h2>
+  <ol>
+    <li>中国政府网（政策查询）：<a class="ref" href="https://www.gov.cn" target="_blank">https://www.gov.cn</a></li>
+    <li>国家医保局：<a class="ref" href="http://www.nhsa.gov.cn" target="_blank">http://www.nhsa.gov.cn</a></li>
+    <li>国家税务总局：<a class="ref" href="https://www.chinatax.gov.cn" target="_blank">https://www.chinatax.gov.cn</a></li>
+    <li>国家卫健委：<a class="ref" href="http://www.nhc.gov.cn" target="_blank">http://www.nhc.gov.cn</a></li>
+    <li>中国裁判文书网（查判例）：<a class="ref" href="https://wenshu.court.gov.cn" target="_blank">https://wenshu.court.gov.cn</a></li>
+    <li>新华网（核对新闻）：<a class="ref" href="http://www.xinhuanet.com" target="_blank">http://www.xinhuanet.com</a></li>
+    <li>Perplexity（专门的联网搜索 AI）：<a class="ref" href="https://www.perplexity.ai" target="_blank">https://www.perplexity.ai</a></li>
+    <li>关于 AI 幻觉的科普文章（IBM）：<a class="ref" href="https://www.ibm.com/topics/ai-hallucinations" target="_blank">ibm.com/topics/ai-hallucinations</a></li>
+    <li>"AI 律师引用假案例被罚款"案例报道：搜索"ChatGPT lawyer fake cases"</li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 第五阶段结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a> 进入第六阶段
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

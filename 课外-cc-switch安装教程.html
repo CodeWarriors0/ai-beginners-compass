@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>课外：cc-switch 安装与使用教程 · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #9b59b6; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #9b59b6; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  .badge { display: inline-block; background: #9b59b6; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #9b59b6; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #9b59b6; border-bottom: 1px dashed #9b59b6; cursor: help; font-weight: 500; }
+  .term:hover { background: #f4ecf7; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #9b59b6; text-decoration: none; border-bottom: 1px solid #d7bde2; }
+  a.ref:hover { border-bottom-color: #9b59b6; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
+  th { background: #f4ecf7; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .step { background: #fff; border-radius: 8px; padding: 18px 24px; margin: 12px 0; border-left: 4px solid #9b59b6; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .step-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #9b59b6; color: #fff; border-radius: 50%; font-weight: 600; margin-right: 10px; }
+  .cmd { background: #2c3e50; color: #ecf0f1; padding: 14px 18px; border-radius: 6px; font-family: "SF Mono", "Courier New", monospace; font-size: 14px; line-height: 1.7; margin: 10px 0; white-space: pre-wrap; overflow-x: auto; }
+  .cmd .prompt { color: #2ecc71; user-select: none; margin-right: 8px; }
+  .cmd .comment { color: #95a5a6; }
+  .cmd .user { color: #f1c40f; }
+  code { background: #f4ecf7; color: #8e44ad; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", "Courier New", monospace; font-size: 13.5px; }
+  .shot { background: #fff; border-radius: 8px; padding: 16px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center; }
+  .shot img { max-width: 100%; border-radius: 6px; border: 1px solid #e0e6ed; }
+  .shot .caption { font-size: 13px; color: #888; margin-top: 10px; }
+  .os-tag { display: inline-block; padding: 4px 12px; border-radius: 14px; font-size: 13px; background: #ecf0f1; color: #34495e; }
+  .os-tag.mac { background: #d5f5e3; color: #1e8449; }
+  .os-tag.win { background: #d6eaf8; color: #1f618d; }
+  .os-tag.linux { background: #fdebd0; color: #b9770e; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>cc-switch 安装与使用教程<span class="badge">课外 · 国内模型一键切换</span></h1>
+<p class="subtitle">让 Claude Code / Codex / Gemini CLI 一键切到 DeepSeek / Kimi / 智谱 / 通义 / 豆包等国内模型</p>
+
+<div class="card">
+  <p>用过 <a class="ref" href="课外-本地AI命令行工具.html">Claude Code / Codex / Gemini CLI</a> 的同学都会发现一个痛点：<strong>它们默认连的是海外厂商，国内网络不稳，注册/付费门槛也高。</strong></p>
+  <p><strong><span class="term">cc-switch<span class="tooltip">由 farion1231 开源的桌面 App（Tauri + React），把 50+ 个国内外 API 服务商做成预设，让你在 Claude Code / Codex / Gemini CLI / OpenCode / OpenClaw 之间一键切换"用哪家的模型"。</span></span></strong> 就是来解决这个的：一个图形界面，<strong>50+ 个预设服务商</strong>，点一下就能把这些 CLI 切换到 DeepSeek、Kimi、智谱 GLM、通义千问、豆包等国内模型（很多还有免费额度）。</p>
+</div>
+
+<h2>一、它到底解决了什么问题？</h2>
+
+<div class="analogy">
+  把 Claude Code 想成一台"咖啡机"——默认装的是 Anthropic 牌咖啡豆（要外汇买、运得慢）。cc-switch 就像一个<strong>豆子转换器</strong>：插上后，你可以一键换成猫屎咖啡（Claude）、瑞幸（DeepSeek）、星巴克（Kimi）……机器还是那台，只是豆子换了。
+</div>
+
+<table>
+  <tr><th>用 cc-switch 前</th><th>用 cc-switch 后</th></tr>
+  <tr>
+    <td>手动改 <code>~/.claude/settings.json</code> 里的 API 地址和 key</td>
+    <td>图形界面点一下即可切换</td>
+  </tr>
+  <tr>
+    <td>记不住每家服务商的 base URL 和模型名</td>
+    <td>50+ 预设，含字段全自动填好</td>
+  </tr>
+  <tr>
+    <td>切换还要重启终端</td>
+    <td>Claude Code 切换<strong>无需重启</strong>，其它工具重开终端即可</td>
+  </tr>
+  <tr>
+    <td>不同 CLI 工具配置散落各处</td>
+    <td>统一管理 Claude Code / Codex / Gemini CLI / OpenCode / OpenClaw</td>
+  </tr>
+</table>
+
+<div class="shot">
+  <img src="https://github.com/farion1231/cc-switch/raw/main/assets/screenshots/main-en.png" alt="cc-switch 主界面">
+  <div class="caption">图 1 ｜ cc-switch 主界面（来源：项目官方 GitHub README）</div>
+</div>
+
+<h2>二、安装</h2>
+
+<h3><span class="os-tag mac">macOS</span> 推荐用 Homebrew</h3>
+
+<p>如果你已经装了 <a class="ref" href="https://brew.sh" target="_blank">Homebrew</a>，复制下面两行到终端：</p>
+
+<div class="cmd"><span class="prompt">$</span> brew install --cask cc-switch
+<span class="comment"># 以后想升级</span>
+<span class="prompt">$</span> brew upgrade --cask cc-switch</div>
+
+<p>没装 Homebrew？也可以从 <a class="ref" href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a> 下 <code>.dmg</code> 文件，双击安装。</p>
+
+<h3><span class="os-tag win">Windows</span></h3>
+
+<p>去 <a class="ref" href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a> 下载：</p>
+<ul>
+  <li><code>CC-Switch-v{版本号}-Windows.msi</code> —— 标准安装包（推荐）</li>
+  <li><code>CC-Switch-v{版本号}-Windows-Portable.zip</code> —— 绿色版（解压即用，不写注册表）</li>
+</ul>
+
+<h3><span class="os-tag linux">Linux</span></h3>
+
+<p>Arch / Manjaro 用户：</p>
+<div class="cmd"><span class="prompt">$</span> paru -S cc-switch-bin</div>
+
+<p>其它发行版从 Releases 下 <code>.deb</code> / <code>.rpm</code> / <code>.AppImage</code> 都行。</p>
+
+<h2>三、第一次使用（4 步上手）</h2>
+
+<div class="step">
+  <span class="step-num">1</span><strong>打开 cc-switch</strong><br>
+  从应用程序里启动，会看到主界面（如上图）。左侧是"应用"列表（Claude Code / Codex / Gemini CLI 等），中间是当前应用的"供应商"列表。
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><strong>添加一个供应商</strong><br>
+  点右上角"添加"，会弹出预设列表（DeepSeek、Kimi、智谱 GLM、通义、豆包、SiliconFlow、AnyRouter……）。<strong>挑一个有免费额度的试水</strong>，比如 SiliconFlow 或 DeepSeek 都不错。
+</div>
+
+<div class="shot">
+  <img src="https://github.com/farion1231/cc-switch/raw/main/assets/screenshots/add-en.png" alt="cc-switch 添加供应商界面">
+  <div class="caption">图 2 ｜ 添加供应商：选预设 + 填 API Key（来源：项目官方 GitHub README）</div>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>填 API Key</strong><br>
+  选定预设后，会让你填 <strong>API Key</strong>。这个去对应服务商网站注册即可（多数支持微信/手机号登录），首次注册一般送几块到几十块的免费额度。base URL、模型名等字段已经自动填好，不用动。
+</div>
+
+<div class="step">
+  <span class="step-num">4</span><strong>点"启用"</strong><br>
+  添加好后，在供应商卡片上点"启用"。Claude Code 当前会话立即生效；Codex / Gemini CLI 需要关掉再重开终端。
+</div>
+
+<p>切换好之后正常打开 Claude Code：</p>
+<div class="cmd"><span class="prompt">$</span> claude
+<span class="comment"># 此时它已经在用国内模型回话，不再走 Anthropic 海外服务器</span></div>
+
+<h2>四、常见国内服务商一览（cc-switch 已预设）</h2>
+
+<table>
+  <tr><th>服务商</th><th>能用的模型</th><th>特点</th></tr>
+  <tr><td>DeepSeek 官方</td><td>DeepSeek-V3、R1</td><td>价格便宜、推理强、注册即用</td></tr>
+  <tr><td>Kimi（月之暗面）</td><td>Kimi-K2、Moonshot 系列</td><td>长上下文擅长、国内体验流畅</td></tr>
+  <tr><td>智谱 BigModel</td><td>GLM-4.6、GLM-4.5</td><td>有 Coding 套餐、写代码效果好</td></tr>
+  <tr><td>通义（阿里）</td><td>Qwen-Max、Qwen-Coder</td><td>免费额度大、模型迭代快</td></tr>
+  <tr><td>豆包（字节）</td><td>Doubao 系列</td><td>对中文友好、客服活跃</td></tr>
+  <tr><td>SiliconFlow（硅基流动）</td><td>聚合多家国产模型</td><td>一个 key 通吃多家、有免费额度</td></tr>
+  <tr><td>AnyRouter / OpenRouter 等中转</td><td>声称支持 Claude / GPT 系</td><td>方便但需要看清是否官方授权</td></tr>
+</table>
+
+<div class="tip">
+  新手第一次玩，推荐路径：<strong>SiliconFlow → 注册 → 拿 API Key → 在 cc-switch 里选 SiliconFlow 预设填 Key → 启用</strong>。一条龙不到 5 分钟。
+</div>
+
+<h2>五、切回 Claude / Codex 官方</h2>
+
+<p>哪天你想切回 Anthropic 官方账号：</p>
+<ol>
+  <li>在 cc-switch 里添加预设 "Anthropic Official Login"</li>
+  <li>点"启用"</li>
+  <li>重启你的 Claude Code 终端</li>
+  <li>按提示走一遍 OAuth 登录就回到了官方</li>
+</ol>
+
+<h2>六、不想装桌面 App？还有这些选择</h2>
+
+<table>
+  <tr><th>替代项目</th><th>形态</th><th>适合谁</th></tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/SaladDay/cc-switch-cli" target="_blank">cc-switch-cli</a></td>
+    <td>纯命令行</td>
+    <td>不喜欢 GUI、想在服务器上用</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/Laliet/cc-switch-web" target="_blank">cc-switch-web</a></td>
+    <td>Web 界面</td>
+    <td>想在远程/云端电脑切换</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/foreveryh/claude-code-switch" target="_blank">claude-code-switch (ccm)</a></td>
+    <td>纯命令行</td>
+    <td>只玩 Claude Code，想要最简切换</td>
+  </tr>
+</table>
+
+<h2>七、5 个常见踩坑</h2>
+
+<div class="card">
+  <p><strong>❌ 坑 1：切换后报 401 / 403 错误</strong><br>
+  ✅ 多半是 API Key 填错或额度耗尽。先到对应服务商网站登录看看额度，再回 cc-switch 编辑这个供应商重填 Key。</p>
+
+  <p><strong>❌ 坑 2：切换后报"model not found"</strong><br>
+  ✅ 服务商支持的模型名可能更新过。在供应商详情里把模型名换成它官网当前提供的（比如 <code>deepseek-chat</code> → <code>deepseek-v3</code>）。</p>
+
+  <p><strong>❌ 坑 3：Codex / Gemini CLI 切完没反应</strong><br>
+  ✅ Codex / Gemini CLI 都<strong>需要关掉再重开终端</strong>才能读到新配置。只有 Claude Code 是热切换。</p>
+
+  <p><strong>❌ 坑 4：用中转 / 转发服务遇到限速或封号</strong><br>
+  ✅ 第三方中转可能违反原厂 ToS，账号有被封的风险。<strong>正式工作场景请直接用国产模型官方 API。</strong></p>
+
+  <p><strong>❌ 坑 5：找不到配置文件想手动改</strong><br>
+  ✅ cc-switch 的数据放在 <code>~/.cc-switch/cc-switch.db</code>（SQLite）。Claude Code 真正读的还是 <code>~/.claude/settings.json</code>，cc-switch 会自动同步它。</p>
+</div>
+
+<div class="warn">
+  <strong>安全提醒：</strong>API Key 等于钱。<strong>不要</strong>把含 Key 的配置文件发到群里、传到 GitHub 公共仓库、贴到 AI 对话框。cc-switch 本地存储是加密的，但导出/截图时要注意打码。
+</div>
+
+<h2>八、本节自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我知道 cc-switch 是干什么的（一句话讲清楚）</div>
+  <div class="checkbox">☐ 我按系统装好了 cc-switch，能打开主界面</div>
+  <div class="checkbox">☐ 我至少添加并启用了 1 个国内模型供应商</div>
+  <div class="checkbox">☐ 我能让 Claude Code 真正用上这个国内模型回话</div>
+  <div class="checkbox">☐ 我知道切换 Codex / Gemini CLI 后要重开终端</div>
+  <div class="checkbox">☐ 我清楚 API Key 不能外泄</div>
+</div>
+
+<div class="practice">
+  小练习：去 <a class="ref" href="https://siliconflow.cn" target="_blank">SiliconFlow</a> 或 <a class="ref" href="https://platform.deepseek.com" target="_blank">DeepSeek 开放平台</a> 注册，拿到 API Key 后在 cc-switch 里启用，然后在终端跑 <code>claude</code> 并问它"你是谁？背后用的什么模型？"——验证切换是否真的生效。
+</div>
+
+<div class="ref-list">
+  <h2>📚 参考链接</h2>
+  <ol>
+    <li>cc-switch 主项目（桌面 App）：<a class="ref" href="https://github.com/farion1231/cc-switch" target="_blank">github.com/farion1231/cc-switch</a></li>
+    <li>cc-switch 官网：<a class="ref" href="https://ccswitch.io" target="_blank">https://ccswitch.io</a></li>
+    <li>cc-switch-cli（命令行版）：<a class="ref" href="https://github.com/SaladDay/cc-switch-cli" target="_blank">github.com/SaladDay/cc-switch-cli</a></li>
+    <li>cc-switch-web（Web 版）：<a class="ref" href="https://github.com/Laliet/cc-switch-web" target="_blank">github.com/Laliet/cc-switch-web</a></li>
+    <li>DeepSeek 开放平台：<a class="ref" href="https://platform.deepseek.com" target="_blank">https://platform.deepseek.com</a></li>
+    <li>Kimi 开放平台：<a class="ref" href="https://platform.moonshot.cn" target="_blank">https://platform.moonshot.cn</a></li>
+    <li>智谱 BigModel：<a class="ref" href="https://bigmodel.cn" target="_blank">https://bigmodel.cn</a></li>
+    <li>SiliconFlow（多模型聚合）：<a class="ref" href="https://siliconflow.cn" target="_blank">https://siliconflow.cn</a></li>
+    <li>回到 <a class="ref" href="课外-本地AI命令行工具.html">课外-本地AI命令行工具</a></li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— cc-switch 教程结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a>
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第二阶段：注册并打开第一个 AI · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #4a90e2; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #4a90e2; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .step { background: #fff; border-radius: 8px; padding: 18px 24px; margin: 12px 0; border-left: 4px solid #4a90e2; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .step-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #4a90e2; color: #fff; border-radius: 50%; font-weight: 600; margin-right: 10px; }
+  .chat-demo { background: #f5f7fa; border-radius: 10px; padding: 16px; margin: 14px 0; }
+  .msg-user, .msg-ai { padding: 10px 14px; border-radius: 12px; margin: 8px 0; max-width: 80%; line-height: 1.6; }
+  .msg-user { background: #4a90e2; color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+  .msg-ai { background: #fff; border: 1px solid #e0e6ed; border-bottom-left-radius: 4px; }
+  .msg-label { font-size: 12px; color: #888; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第二阶段：注册并打开第一个 AI</h1>
+<p class="subtitle">学习时长：半天 · 学习目标：能独立打开 AI 并和它对话</p>
+
+<div class="card">
+  <p><strong>这一阶段你要"动手"了！</strong>但别紧张——总共只有三件事：选一个 AI、注册账号、发出第一句话。完成后你就正式入门了。</p>
+</div>
+
+<h2>一、先选一个 AI（不用纠结）</h2>
+
+<p>新手第一次用，强烈推荐下面这两个其中之一：</p>
+
+<table>
+  <tr>
+    <th>推荐</th>
+    <th>名称</th>
+    <th>为什么适合新手</th>
+    <th>怎么用</th>
+  </tr>
+  <tr>
+    <td>⭐ 首选</td>
+    <td><strong><a class="ref" href="https://www.doubao.com" target="_blank">豆包</a></strong></td>
+    <td>界面像微信、有 App、支持语音、字节出品稳定</td>
+    <td>下载"豆包" App，或访问 <a class="ref" href="https://www.doubao.com" target="_blank">doubao.com</a></td>
+  </tr>
+  <tr>
+    <td>⭐ 备选</td>
+    <td><strong><a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a></strong></td>
+    <td>能联网搜索、能读 PDF、回答详细</td>
+    <td>下载"Kimi" App，或访问 <a class="ref" href="https://www.kimi.com" target="_blank">kimi.com</a></td>
+  </tr>
+</table>
+
+<div class="tip">
+  纠结症发作？<strong>直接选<a class="ref" href="https://www.doubao.com" target="_blank">豆包</a>。</strong>它最像微信的使用习惯，最不容易劝退新手。学会一个之后，其他的 AI 用起来都一通百通。
+</div>
+
+<h2>二、注册账号（3 分钟搞定）</h2>
+
+<p>以<strong><a class="ref" href="https://www.doubao.com" target="_blank">豆包 App</a></strong>为例（其他 AI 流程几乎一样）：</p>
+
+<div class="step">
+  <span class="step-num">1</span><strong>下载 App</strong><br>
+  打开手机应用商店（苹果用 App Store，安卓用应用市场），搜索"豆包"，认准"字节跳动"出品，点"获取/安装"。
+</div>
+
+<div class="step">
+  <span class="step-num">2</span><strong>打开 App，点"登录/注册"</strong><br>
+  首次打开会让你同意隐私协议，勾上"同意"即可。
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>输入手机号</strong><br>
+  填你常用的手机号，点"获取验证码"。
+</div>
+
+<div class="step">
+  <span class="step-num">4</span><strong>填验证码</strong><br>
+  手机会收到一条 6 位数字短信，填进去，点"登录"。
+</div>
+
+<div class="step">
+  <span class="step-num">5</span><strong>完成！</strong><br>
+  你已经进入豆包了。看到一个聊天界面，就表示成功了。
+</div>
+
+<div class="warn">
+  注册时如果让你"绑定微信/QQ"或"开通会员"，<strong>都可以跳过</strong>，免费功能完全够用。
+</div>
+
+<h2>三、认识 AI 的"聊天界面"</h2>
+
+<p>不管哪个 AI，界面布局都大同小异，只需要认识这几个区域：</p>
+
+<table>
+  <tr>
+    <th>区域</th>
+    <th>作用</th>
+  </tr>
+  <tr>
+    <td><strong>聊天主区域</strong>（中间）</td>
+    <td>显示你和 AI 的对话历史</td>
+  </tr>
+  <tr>
+    <td><strong>输入框</strong>（底部）</td>
+    <td>你在这里打字</td>
+  </tr>
+  <tr>
+    <td><strong>发送按钮</strong>（输入框右侧）</td>
+    <td>点它把消息发出去（也可以按回车）</td>
+  </tr>
+  <tr>
+    <td><strong>"+" / 📎 按钮</strong></td>
+    <td>上传图片、文件（进阶功能，先不管）</td>
+  </tr>
+  <tr>
+    <td><strong>🎤 语音按钮</strong></td>
+    <td>不想打字可以说话</td>
+  </tr>
+  <tr>
+    <td><strong>左上角菜单/历史</strong></td>
+    <td>查看以前的对话，开新对话点"+" 或"新建"</td>
+  </tr>
+</table>
+
+<h3>什么时候开"新对话"？</h3>
+<p>当你想<strong>换一个完全不相关的话题</strong>时，建议点"新建对话"。否则 AI 会把前面聊过的内容也当作<span class="term">上下文<span class="tooltip">AI 能记住的对话内容范围。在同一个对话里，AI 会参考你前面说过的话；开新对话后，它就"忘干净了"，从头开始。</span></span>，可能影响回答的准确性。
+
+<div class="analogy">
+  跟换微信群一样：在"家庭群"问"今晚吃啥"，跟在"工作群"问"今晚吃啥"，得到的回应是不一样的。AI 的"对话窗口"就相当于一个独立的群。
+</div>
+
+<h2>四、发出你的第一句话</h2>
+
+<p>什么都别想，先把下面这句话原样复制进输入框，按发送：</p>
+
+<div class="card" style="font-size:17px; text-align:center; background:#e8f4fd;">
+  <strong>"你好，请用三句话介绍一下你自己，并告诉我你最擅长什么。"</strong>
+</div>
+
+<p>AI 会"哒哒哒"地一边想一边吐字，回出类似这样的内容：</p>
+
+<div class="chat-demo">
+  <div class="msg-label" style="text-align:right;">你</div>
+  <div class="msg-user">你好，请用三句话介绍一下你自己，并告诉我你最擅长什么。</div>
+  <div class="msg-label">豆包</div>
+  <div class="msg-ai">你好呀！我是豆包，字节跳动旗下的 AI 助手 🤗 我可以陪你聊天、帮你写作、解答问题、翻译、查信息……几乎你能想到的文字类任务我都能搭把手。我最擅长的是用大白话把复杂的事讲清楚，欢迎随时问我！</div>
+</div>
+
+<div class="practice">
+  收到回答后，再发一句："那你能不能帮我写一句给妈妈的生日祝福？" 体会一下 AI 是怎么"接住上一句"的。
+</div>
+
+<h2>五、四个必学的小操作</h2>
+
+<h3>1. 复制 AI 的回答</h3>
+<p>长按（手机）或鼠标选中（电脑）AI 的回答 → 出现"复制"按钮 → 点一下 → 就可以粘贴到微信、备忘录、Word 里了。</p>
+<p>很多 AI 回答下方还有一排小图标：</p>
+<ul>
+  <li>📋 复制 —— 一键复制全部</li>
+  <li>👍 / 👎 点赞/吐槽 —— 反馈给 AI 团队（可选）</li>
+  <li>🔄 重新生成 —— 不满意？让它再答一遍</li>
+  <li>🔊 朗读 —— 让它念出来给你听</li>
+</ul>
+
+<h3>2. 重新生成</h3>
+<p>如果回答得不满意，点"重新生成"（🔄 图标），AI 会用稍微不同的角度再答一次，不需要你重新打字。</p>
+
+<h3>3. 追问 / 继续聊</h3>
+<p>不需要把背景重新说一遍，直接接着问就行。AI 记得你刚才说了什么。</p>
+<div class="chat-demo">
+  <div class="msg-label" style="text-align:right;">你</div>
+  <div class="msg-user">帮我写一首关于春天的小诗</div>
+  <div class="msg-label">AI</div>
+  <div class="msg-ai">（生成了一首诗）</div>
+  <div class="msg-label" style="text-align:right;">你</div>
+  <div class="msg-user">短一点，再活泼一些</div>
+  <div class="msg-ai">（自动理解"短一点活泼一些"指的是上面那首诗）</div>
+</div>
+
+<h3>4. 语音输入</h3>
+<p>不想打字？点🎤按钮，按住说话，松开自动转成文字发送。<strong>对老人和不擅长打字的朋友特别友好。</strong></p>
+
+<h2>六、新手最常见的 5 个困惑</h2>
+
+<div class="card">
+  <p><strong>Q1：AI 卡住不回怎么办？</strong><br>
+  A：检查网络，或点"重新生成"。极少数情况是服务器忙，等几秒重试即可。</p>
+
+  <p><strong>Q2：要花钱吗？</strong><br>
+  A：<a class="ref" href="https://www.doubao.com" target="_blank">豆包</a>、<a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a>、<a class="ref" href="https://tongyi.aliyun.com" target="_blank">通义</a>、<a class="ref" href="https://yiyan.baidu.com" target="_blank">文心</a>、<a class="ref" href="https://chat.deepseek.com" target="_blank">DeepSeek</a> 的基础功能<strong>都免费</strong>。看到"开通会员"按钮可以无视。</p>
+
+  <p><strong>Q3：会泄露隐私吗？</strong><br>
+  A：聊家常、写文章不用担心。但<strong>不要发身份证号、银行卡号、密码、家庭住址</strong>给 AI。</p>
+
+  <p><strong>Q4：AI 答错了怎么办？</strong><br>
+  A：直接告诉它"错了，应该是 XXX"，它会重答。涉及重要信息（数字、政策、医学），<strong>务必去权威网站再核实一遍</strong>。</p>
+
+  <p><strong>Q5：手机版和网页版有什么区别？</strong><br>
+  A：功能基本一样。手机版更方便随时用，网页版适合复制长文、写报告。账号互通。</p>
+</div>
+
+<h2>七、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我下载并注册了至少一个 AI App（或打开了网页版）</div>
+  <div class="checkbox">☐ 我会找到输入框，发出消息</div>
+  <div class="checkbox">☐ 我会复制 AI 的回答</div>
+  <div class="checkbox">☐ 我知道怎么"重新生成"和"新建对话"</div>
+  <div class="checkbox">☐ 我和 AI 至少完成过 3 轮对话</div>
+  <div class="checkbox">☐ 我知道哪些信息不能发给 AI</div>
+</div>
+
+<div class="practice">
+  全部打勾 = 通关！下一站第三阶段，我们学"怎么问 AI 才能让它答得更好"。
+</div>
+
+<div class="ref-list">
+  <h2>📚 各 AI 官网与下载入口</h2>
+  <ol>
+    <li>豆包官网：<a class="ref" href="https://www.doubao.com" target="_blank">https://www.doubao.com</a></li>
+    <li>Kimi 官网：<a class="ref" href="https://www.kimi.com" target="_blank">https://www.kimi.com</a></li>
+    <li>通义千问：<a class="ref" href="https://tongyi.aliyun.com" target="_blank">https://tongyi.aliyun.com</a></li>
+    <li>文心一言：<a class="ref" href="https://yiyan.baidu.com" target="_blank">https://yiyan.baidu.com</a></li>
+    <li>DeepSeek：<a class="ref" href="https://chat.deepseek.com" target="_blank">https://chat.deepseek.com</a></li>
+    <li>腾讯元宝：<a class="ref" href="https://yuanbao.tencent.com" target="_blank">https://yuanbao.tencent.com</a></li>
+    <li>iOS App Store 搜索"<a class="ref" href="https://www.doubao.com" target="_blank">豆包</a>/<a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a>/<a class="ref" href="https://tongyi.aliyun.com" target="_blank">通义</a>/<a class="ref" href="https://yiyan.baidu.com" target="_blank">文心一言</a>/<a class="ref" href="https://yuanbao.tencent.com" target="_blank">元宝</a>"即可下载</li>
+    <li>安卓应用市场（华为/小米/OPPO/vivo）搜索同上</li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 第二阶段结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a> 选择第三阶段
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

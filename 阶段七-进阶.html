@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第七阶段：进阶 · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #9b59b6; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #9b59b6; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  .badge { display: inline-block; background: #9b59b6; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #9b59b6; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .level { display: inline-block; font-size: 12px; color: #fff; background: #9b59b6; padding: 2px 8px; border-radius: 8px; margin-left: 8px; vertical-align: middle; }
+  .easy { background: #27ae60; }
+  .medium { background: #f5a623; }
+  .hard { background: #e74c3c; }
+  .template { background: #2c3e50; color: #ecf0f1; padding: 14px 18px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.75; margin: 10px 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第七阶段：进阶<span class="badge">选学</span></h1>
+<p class="subtitle">学习时长：按兴趣安排 · 学习目标：解锁更多玩法，让 AI 帮你做更复杂的事</p>
+
+<div class="card">
+  <p>前面 5 个阶段已经让你能"日常用 AI"。这一阶段是<strong>给有兴趣的同学准备的</strong>——不是必修，也没必要按顺序学。</p>
+  <p>建议挑一个你最感兴趣的玩，玩通透后再看下一个。每节后面我都标了<span class="level easy">入门</span>、<span class="level medium">中等</span>、<span class="level hard">较难</span>，按自己节奏来。</p>
+</div>
+
+<h2>一、上传文件：让 AI 读你的资料<span class="level easy">入门</span></h2>
+
+<p>这是最简单也最实用的进阶能力。AI 不仅能聊天，还能"读"你给的文档。</p>
+
+<h3>能读什么？</h3>
+<ul>
+  <li><strong>PDF</strong>（说明书、合同、论文、电子书）</li>
+  <li><strong>Word / Excel / PPT</strong></li>
+  <li><strong>图片</strong>（拍照、截图、报告单）</li>
+  <li><strong>网页链接</strong>（直接发 URL 让它读）</li>
+</ul>
+
+<h3>怎么用？</h3>
+<ol>
+  <li>在 AI 输入框旁找 📎 / + / "上传" 按钮</li>
+  <li>选择本地文件或拍照</li>
+  <li>等几秒让 AI 读完，然后提问</li>
+</ol>
+
+<h3>实用场景示例</h3>
+
+<div class="card">
+  <strong>场景 1：读医院化验单</strong><br>
+  拍照上传 → "请用大白话解释这份化验单，标出指标异常的地方，并告诉我可能的原因和建议下一步做什么。"
+</div>
+
+<div class="card">
+  <strong>场景 2：读购房/租房合同</strong><br>
+  上传 PDF → "请逐条解释这份合同，标出对我（买/租方）不利的条款，建议如何与对方协商修改。"
+</div>
+
+<div class="card">
+  <strong>场景 3：读家电说明书</strong><br>
+  拍照上传 → "请告诉我这台洗衣机怎么设置'羽绒服洗涤'，并提醒我使用时的注意事项。"
+</div>
+
+<div class="card">
+  <strong>场景 4：让 AI 读论文/电子书</strong><br>
+  Kimi 是这方面的强项，能读几十万字的长文档，问它"第三章主要讲什么"、"这本书最重要的 3 个观点"。
+</div>
+
+<div class="tip">
+  推荐工具：<strong>Kimi</strong>（读长文档最强）、<strong>豆包</strong>（拍照识别快）、<strong>WPS AI</strong>（直接在 Word/Excel 里用）。
+</div>
+
+<h2>二、AI 画图：用文字"画"出图<span class="level easy">入门</span></h2>
+
+<p>用<span class="term">文生图<span class="tooltip">Text-to-Image。你用一段文字描述想要的画面，AI 给你画出来。背后是另一种大模型，叫"扩散模型"（Diffusion Model）。</span></span>技术，AI 能根据你的描述生成图片，做朋友圈封面、PPT 配图、头像、海报都行。</p>
+
+<h3>主流 AI 画图工具</h3>
+
+<table>
+  <tr>
+    <th>工具</th>
+    <th>归属</th>
+    <th>特点</th>
+    <th>新手友好度</th>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://jimeng.jianying.com" target="_blank">即梦</a></td>
+    <td>字节</td>
+    <td>免费、中文好、有 App</td>
+    <td>⭐⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://klingai.kuaishou.com" target="_blank">可灵</a></td>
+    <td>快手</td>
+    <td>图、视频都能生</td>
+    <td>⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td>豆包 / Kimi 内置画图</td>
+    <td>—</td>
+    <td>无需另装 App</td>
+    <td>⭐⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td>通义万相</td>
+    <td>阿里</td>
+    <td>免费、风格丰富</td>
+    <td>⭐⭐⭐⭐</td>
+  </tr>
+  <tr>
+    <td>Midjourney</td>
+    <td>海外</td>
+    <td>画质天花板</td>
+    <td>⭐⭐（付费+英文+特殊网络）</td>
+  </tr>
+</table>
+
+<h3>画图提示词公式</h3>
+
+<div class="template">【主体】+【场景/环境】+【风格】+【画质/视角】+【细节要求】</div>
+
+<p>例：</p>
+<div class="template">一只穿着宇航服的橘猫，漂浮在月球表面，背景是地球，皮克斯卡通风格，超精细，4K 高清，俯视视角</div>
+
+<h3>常用风格关键词</h3>
+<ul>
+  <li>真实摄影：<em>"超写实、单反摄影、4K"</em></li>
+  <li>动漫：<em>"宫崎骏风格、二次元、新海诚风格"</em></li>
+  <li>插画：<em>"扁平插画、水彩画、油画、国风水墨"</em></li>
+  <li>3D：<em>"皮克斯风格、3D 渲染、C4D"</em></li>
+</ul>
+
+<div class="warn">
+  AI 生成图片中的<strong>文字、手指、表盘等细节经常出错</strong>——这是当前技术通病。重要场合用前一定要看清楚。
+</div>
+
+<h2>三、智能体 / Agent：把常用任务封装成"小机器人"<span class="level medium">中等</span></h2>
+
+<p><span class="term">智能体<span class="tooltip">英文 Agent，也叫"AI Agent""GPTs""Bot"。本质是：把一段你写好的提示词 + 一组工具能力固化下来，做成一个专门干某件事的"小 AI"。下次直接调用，不用重复交代背景。</span></span>是把"提示词 + 知识 + 工具"打包，做成一个专门处理某类任务的小 AI。</p>
+
+<div class="analogy">
+  普通对话 AI = 一个万能的客服，每次都得跟他重新介绍你的需求。<br>
+  智能体 = 你训练好的私人助理，专做某件事，每次直接叫他干活。
+</div>
+
+<h3>常见智能体场景</h3>
+<ul>
+  <li><strong>翻译官</strong>：固定翻译某门语言，按你常用风格</li>
+  <li><strong>简历优化师</strong>：上传简历自动给修改建议</li>
+  <li><strong>育儿百科</strong>：基于权威育儿资料回答问题</li>
+  <li><strong>菜谱助手</strong>：根据你说的食材推荐菜</li>
+  <li><strong>面试官</strong>：模拟岗位面试给你练手</li>
+</ul>
+
+<h3>怎么用？（不需要编程）</h3>
+
+<table>
+  <tr><th>平台</th><th>怎么找</th></tr>
+  <tr><td>豆包</td><td>App 里的"发现"→"AI 智能体" / "智能体广场"</td></tr>
+  <tr><td>扣子（Coze）</td><td><a class="ref" href="https://www.coze.cn" target="_blank">coze.cn</a> ——字节出品，可视化创建智能体</td></tr>
+  <tr><td>Kimi+</td><td>Kimi 网页版/App 的"应用广场"</td></tr>
+  <tr><td>ChatGPT GPTs</td><td>chatgpt.com（需海外账号）</td></tr>
+</table>
+
+<h3>自己做一个简单智能体的 4 步</h3>
+<ol>
+  <li>打开扣子或豆包智能体创建页</li>
+  <li>给它一个名字和头像</li>
+  <li>填写"人设与指令"——也就是它的固定提示词（"你是一位 XX，你的任务是 XX，回答时要 XX"）</li>
+  <li>上传你希望它"学习"的资料（可选），保存发布</li>
+</ol>
+
+<div class="practice">
+  动手做一个"<strong>朋友圈文案大师</strong>"智能体：人设设定为"你是擅长写小红书爆款风格朋友圈的文案专家"，上传 10 条你喜欢的文案。之后每次需要发朋友圈，直接用这个智能体即可。
+</div>
+
+<h2>四、AI 视频生成<span class="level medium">中等</span></h2>
+
+<p>用文字或图片生成短视频，从几秒钟开始。</p>
+
+<table>
+  <tr><th>工具</th><th>能做什么</th></tr>
+  <tr><td><a class="ref" href="https://jimeng.jianying.com" target="_blank">即梦</a></td><td>文字/图片生成 5-10 秒视频，免费</td></tr>
+  <tr><td><a class="ref" href="https://klingai.kuaishou.com" target="_blank">可灵</a></td><td>视频质量较高，国内顶级</td></tr>
+  <tr><td>Sora（OpenAI）</td><td>海外，效果惊艳，需特殊网络</td></tr>
+  <tr><td>Runway / Pika</td><td>海外专业工具</td></tr>
+</table>
+
+<div class="tip">
+  适合：做短视频开头、制作产品介绍小动画、做创意素材。<br>
+  不适合：长视频（目前都只能生成几秒到十几秒）、严格控制内容的场景。
+</div>
+
+<h2>五、AI 编程 / 自动化<span class="level hard">较难</span></h2>
+
+<p>即使你不会编程，AI 也能帮你做一些简单的自动化：</p>
+
+<ul>
+  <li><strong>Excel 公式</strong>："帮我写一个 Excel 公式，把 A 列日期是周末的行标红"</li>
+  <li><strong>批量处理文本</strong>："请把下面这些电话号码格式统一成 138-xxxx-xxxx"</li>
+  <li><strong>简单脚本</strong>："帮我写一个 Python 脚本，把文件夹里所有 jpg 改名"</li>
+</ul>
+
+<p>有兴趣深入的可以了解：</p>
+<ul>
+  <li><strong>Cursor / Windsurf / Claude Code</strong>：AI 编程工具，能直接写代码、改代码</li>
+  <li><strong>n8n / Dify / 扣子</strong>：可视化搭建 AI 工作流</li>
+</ul>
+
+<h2>六、本地 AI / 私有部署<span class="level hard">较难</span></h2>
+
+<p><span class="term">本地 AI<span class="tooltip">把开源大模型下载到自己电脑上运行，不联网也能用。优点是隐私安全、不花钱；缺点是需要好显卡，效果不如顶级在线 AI。</span></span>就是把开源模型装到自己电脑上：</p>
+
+<ul>
+  <li><strong>优点</strong>：不联网、不上传数据、隐私安全</li>
+  <li><strong>缺点</strong>：需要好显卡、效果不如最新的在线 AI、安装复杂</li>
+</ul>
+
+<p>主流工具：</p>
+<ul>
+  <li><a class="ref" href="https://ollama.com" target="_blank">Ollama</a> —— 一键运行开源大模型</li>
+  <li><a class="ref" href="https://lmstudio.ai" target="_blank">LM Studio</a> —— 图形界面，最适合新手</li>
+</ul>
+
+<div class="warn">
+  本地 AI 对小白门槛较高（需要懂一点命令行、有合适的显卡），不建议作为入门方向。除非你有<strong>特殊隐私需求</strong>，否则用在线 AI 性价比更高。
+</div>
+
+<h2>七、API 调用 / 接入自己的应用<span class="level hard">较难</span></h2>
+
+<p>如果你或团队想<strong>把 AI 嵌入自家的网站、小程序、办公系统</strong>，需要通过<span class="term">API<span class="tooltip">Application Programming Interface，应用程序接口。说白了就是"程序间的快递员"——你的程序通过 API 把问题发给 AI，AI 把答案传回来。</span></span>调用。</p>
+
+<p>常用 API：</p>
+<ul>
+  <li>OpenAI API（ChatGPT 背后）</li>
+  <li>Anthropic Claude API</li>
+  <li>豆包 API、通义 API、DeepSeek API（国内）</li>
+</ul>
+
+<p>这块属于开发者范畴，普通用户了解概念即可。</p>
+
+<h2>八、继续学习的资源推荐</h2>
+
+<div class="card">
+  <p><strong>视频</strong>：B 站搜索"AI 教程"、"大模型科普"，推荐 UP 主：<em>李永乐老师、林粒粒、新石器公园、回旋托马斯</em></p>
+  <p><strong>播客</strong>：硅谷 101、What's Next、张小珺访谈录</p>
+  <p><strong>公众号</strong>：机器之心、量子位、新智元（偏技术）；歸藏的 AI 工具箱（偏实用）</p>
+  <p><strong>动手实践</strong>：每周尝试一个新工具或新场景，胜过看 100 篇文章</p>
+</div>
+
+<h2>九、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我至少试过一次"上传文件让 AI 读"</div>
+  <div class="checkbox">☐ 我至少用 AI 生成过一张图片</div>
+  <div class="checkbox">☐ 我体验过别人做好的"智能体/Bot"</div>
+  <div class="checkbox">☐ 我知道有 AI 视频、AI 编程、本地 AI 这些方向</div>
+  <div class="checkbox">☐ 我找到了 1-2 个长期愿意关注的 AI 学习渠道</div>
+</div>
+
+<div class="card" style="background:#f8f4ff; border-left:4px solid #9b59b6;">
+  <h3 style="margin-top:0; color:#7d3c98;">🎓 课程结业</h3>
+  <p>恭喜你！走完六个阶段，你已经从"AI 小白"成长为"<strong>能熟练用 AI 解决日常问题</strong>"的实战派。</p>
+  <p>记住三句话：</p>
+  <ol>
+    <li><strong>多用</strong>——技能是用出来的，不是学出来的。</li>
+    <li><strong>不全信</strong>——AI 会编，重要信息必须核实。</li>
+    <li><strong>越具体越好</strong>——把 AI 当新同事，交代清楚就有惊喜。</li>
+  </ol>
+  <p>祝你用 AI 用得开心，生活更轻松 🌟</p>
+</div>
+
+<div class="ref-list">
+  <h2>📚 延伸阅读 & 工具汇总</h2>
+  <ol>
+    <li>扣子智能体平台：<a class="ref" href="https://www.coze.cn" target="_blank">https://www.coze.cn</a></li>
+    <li>即梦（AI 画图/视频）：<a class="ref" href="https://jimeng.jianying.com" target="_blank">https://jimeng.jianying.com</a></li>
+    <li>可灵 AI（视频生成）：<a class="ref" href="https://klingai.kuaishou.com" target="_blank">https://klingai.kuaishou.com</a></li>
+    <li>通义万相（画图）：<a class="ref" href="https://tongyi.aliyun.com/wanxiang" target="_blank">https://tongyi.aliyun.com/wanxiang</a></li>
+    <li>Ollama 本地模型：<a class="ref" href="https://ollama.com" target="_blank">https://ollama.com</a></li>
+    <li>LM Studio：<a class="ref" href="https://lmstudio.ai" target="_blank">https://lmstudio.ai</a></li>
+    <li>Cursor AI 编程：<a class="ref" href="https://www.cursor.com" target="_blank">https://www.cursor.com</a></li>
+    <li>Hugging Face（开源模型大本营）：<a class="ref" href="https://huggingface.co" target="_blank">https://huggingface.co</a></li>
+    <li>AI 工具导航站：<a class="ref" href="https://ai-bot.cn" target="_blank">https://ai-bot.cn</a></li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 全部课程结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a>
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

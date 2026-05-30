@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>杂谈：热门 AI 模型大盘点 · AI 小白入门课程</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #e67e22; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #e67e22; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  .badge { display: inline-block; background: #e67e22; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #e67e22; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #e67e22; border-bottom: 1px dashed #e67e22; cursor: help; font-weight: 500; }
+  .term:hover { background: #fdf2e9; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #e67e22; text-decoration: none; border-bottom: 1px solid #f5cba7; }
+  a.ref:hover { border-bottom-color: #e67e22; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 14.5px; vertical-align: top; }
+  th { background: #fdf2e9; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .flag { display: inline-block; font-size: 13px; padding: 1px 7px; border-radius: 10px; margin-right: 4px; }
+  .flag.cn { background: #fdebd0; color: #b9770e; }
+  .flag.us { background: #d6eaf8; color: #1f618d; }
+  .flag.eu { background: #e8daef; color: #6c3483; }
+  .flag.open { background: #d5f5e3; color: #1e8449; }
+  .flag.closed { background: #f5d5d5; color: #a93226; }
+  .score { display: inline-block; background: #2c3e50; color: #fff; font-size: 12px; padding: 1px 8px; border-radius: 10px; }
+  .score.s { background: #c0392b; }
+  .score.a { background: #e67e22; }
+  .score.b { background: #f1c40f; color: #2c3e50; }
+  .score.c { background: #95a5a6; }
+  code { background: #fdf2e9; color: #af601a; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", "Courier New", monospace; font-size: 13.5px; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>热门 AI 模型大盘点<span class="badge">杂谈 · 选型参考</span></h1>
+<p class="subtitle">数据快照：2026 年 5 月 · 模型迭代飞快，下次打开前先看一眼排行榜</p>
+
+<div class="card">
+  <p>新模型几乎每周都在发，名字一个比一个长（V4 Pro Max Reasoning Plus……）。这篇<strong>不是教程</strong>，而是一份"<strong>记到本子上随时翻</strong>"的参考——告诉你：</p>
+  <ol>
+    <li>权威排行榜去哪看（不要听营销稿）</li>
+    <li>当前主流模型有哪些、各自擅长啥</li>
+    <li>遇到具体任务该挑谁</li>
+  </ol>
+</div>
+
+<div class="warn">
+  本文写于 2026 年 5 月，模型名字、版本号、能力分数<strong>过几个月就会变</strong>。文中所有数据都给了原始链接，<strong>用之前去原网站再核对一下</strong>。
+</div>
+
+<h2>一、看排行榜，认准这 5 个 GitHub 来源</h2>
+
+<p>下面这些是<strong>开源、可复现、有学术声誉</strong>的排行榜——它们不卖广告，数据相对客观。</p>
+
+<table>
+  <tr><th>项目</th><th>它评什么</th><th>用法</th></tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/lm-sys/FastChat" target="_blank">lm-sys/FastChat</a><br><span style="color:#888;font-size:12px;">⭐ 38k+</span></td>
+    <td><span class="term">Chatbot Arena<span class="tooltip">现已更名为 LMArena。让两个匿名模型同时回答你的问题，你投票哪个更好，用国际象棋的 Elo 评分计算"人类偏好"。是目前最权威的"主观体验"榜单。</span></span> 的开源代码与榜单数据</td>
+    <td>看"<strong>人类主观偏好</strong>"——哪个模型让真人觉得"答得更好"</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/CLUEbenchmark/SuperCLUE" target="_blank">CLUEbenchmark/SuperCLUE</a><br><span style="color:#888;font-size:12px;">⭐ 3k+</span></td>
+    <td>中文综合能力评测（语言/专业/Agent/安全 4 大维度）</td>
+    <td>看"<strong>哪个模型最懂中文</strong>"——国产模型在这里有主场优势</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/open-compass/opencompass" target="_blank">open-compass/OpenCompass</a><br><span style="color:#888;font-size:12px;">⭐ 5k+</span></td>
+    <td>上海 AI 实验室出品，覆盖 100+ 数据集的综合评测框架</td>
+    <td>看"<strong>客观题打分</strong>"——数学、推理、代码各项分开看</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/EleutherAI/lm-evaluation-harness" target="_blank">EleutherAI/lm-evaluation-harness</a><br><span style="color:#888;font-size:12px;">⭐ 8k+</span></td>
+    <td>HuggingFace Open LLM Leaderboard 背后的评测引擎</td>
+    <td>看"<strong>开源模型的标准化分数</strong>"——MMLU、HellaSwag 等</td>
+  </tr>
+  <tr>
+    <td><a class="ref" href="https://github.com/Hannibal046/Awesome-LLM" target="_blank">Hannibal046/Awesome-LLM</a><br><span style="color:#888;font-size:12px;">⭐ 22k+</span></td>
+    <td>"大模型大全"——按时间线收录所有重要模型与论文</td>
+    <td>想"<strong>了解某个模型的来龙去脉</strong>"时去翻</td>
+  </tr>
+</table>
+
+<div class="tip">
+  懒人推荐路径：先看 <a class="ref" href="https://lmarena.ai" target="_blank">lmarena.ai</a> 看真人偏好排名，再去 <a class="ref" href="https://www.superclueai.com" target="_blank">SuperCLUEAI.com</a> 验证中文表现，两者交叉印证基本不会踩坑。
+</div>
+
+<h2>二、国外主流模型（2026 年 5 月）</h2>
+
+<table>
+  <tr>
+    <th>模型</th>
+    <th>厂商</th>
+    <th>属性</th>
+    <th>当前梯队</th>
+    <th>擅长领域</th>
+  </tr>
+  <tr>
+    <td><strong>GPT-5 / GPT-5 Pro</strong></td>
+    <td>OpenAI <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score s">S</span></td>
+    <td>通用对话、办公写作、生态最完整（插件 / GPTs 多）</td>
+  </tr>
+  <tr>
+    <td><strong>Claude Opus 4.x</strong></td>
+    <td>Anthropic <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score s">S</span></td>
+    <td><strong>写代码 / 长文档分析 / 严谨推理</strong>——开发者首选</td>
+  </tr>
+  <tr>
+    <td><strong>Claude Sonnet 4.x</strong></td>
+    <td>Anthropic <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score a">A+</span></td>
+    <td>性价比版 Claude，日常编程 / 写作够用</td>
+  </tr>
+  <tr>
+    <td><strong>Gemini 3 Pro / Ultra</strong></td>
+    <td>Google <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score s">S</span></td>
+    <td><strong>多模态（图/视频/音频）</strong>、超长上下文、Google 全家桶集成</td>
+  </tr>
+  <tr>
+    <td><strong>Grok 4</strong></td>
+    <td>xAI <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>实时信息（接 X / Twitter）、风格幽默直白、敢说</td>
+  </tr>
+  <tr>
+    <td><strong>Llama 4 系列</strong></td>
+    <td>Meta <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>本地部署首选、英语能力强、社区生态最大</td>
+  </tr>
+  <tr>
+    <td><strong>Mistral Large 3</strong></td>
+    <td>Mistral <span class="flag eu">🇫🇷</span></td>
+    <td><span class="flag open">部分开源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>欧洲合规友好、多语言（含小语种）能力均衡</td>
+  </tr>
+  <tr>
+    <td><strong>Gemma 3</strong></td>
+    <td>Google <span class="flag us">🇺🇸</span></td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score b">B+</span></td>
+    <td>小尺寸（2B/9B/27B），笔记本就能跑</td>
+  </tr>
+</table>
+
+<h2>三、国内主流模型（2026 年 5 月）</h2>
+
+<table>
+  <tr>
+    <th>模型</th>
+    <th>厂商</th>
+    <th>属性</th>
+    <th>当前梯队</th>
+    <th>擅长领域</th>
+  </tr>
+  <tr>
+    <td><strong>DeepSeek V4 / R1</strong></td>
+    <td>深度求索</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score s">S</span></td>
+    <td><strong>数学 / 编程 / 推理</strong>，价格极便宜，国产开源标杆</td>
+  </tr>
+  <tr>
+    <td><strong>Qwen 3.5 / 3.7 Max</strong></td>
+    <td>阿里通义</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score s">S</span></td>
+    <td>系列最完整（0.5B → 480B 全覆盖）、<strong>多语言 / 工具调用</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Qwen-Coder 3</strong></td>
+    <td>阿里通义</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score a">A+</span></td>
+    <td>专攻编程、SWE-bench 高分</td>
+  </tr>
+  <tr>
+    <td><strong>GLM-5 / GLM-4.7</strong></td>
+    <td>智谱 Z.AI</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score s">S</span></td>
+    <td>LMArena 开源榜常年前三、<strong>代码 / 综合能力</strong>均衡</td>
+  </tr>
+  <tr>
+    <td><strong>Kimi K2.5 / K2.6</strong></td>
+    <td>月之暗面</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score s">S</span></td>
+    <td><strong>超长上下文（200K+）、长文档阅读 / 摘要</strong></td>
+  </tr>
+  <tr>
+    <td><strong>豆包 Doubao 1.5/2.0 Pro</strong></td>
+    <td>字节跳动</td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score a">A+</span></td>
+    <td><strong>语音 / 多模态 / C 端体验</strong>，APP 用户基数大</td>
+  </tr>
+  <tr>
+    <td><strong>MiniMax M2.5</strong></td>
+    <td>稀宇科技</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score a">A+</span></td>
+    <td>SWE-bench 第一，<strong>真实工程任务（修 GitHub issue）</strong>强</td>
+  </tr>
+  <tr>
+    <td><strong>文心一言 4.5/5.0</strong></td>
+    <td>百度</td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>中文古文 / 知识问答、搜索整合好</td>
+  </tr>
+  <tr>
+    <td><strong>混元 Hunyuan</strong></td>
+    <td>腾讯</td>
+    <td><span class="flag open">部分开源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>微信生态集成、广告 / 营销文案场景</td>
+  </tr>
+  <tr>
+    <td><strong>Step / 阶跃星辰</strong></td>
+    <td>阶跃星辰</td>
+    <td><span class="flag closed">闭源</span></td>
+    <td><span class="score a">A</span></td>
+    <td>多模态生成（图 / 视频 / 语音三合一）</td>
+  </tr>
+  <tr>
+    <td><strong>Yi 系列</strong></td>
+    <td>零一万物</td>
+    <td><span class="flag open">开源</span></td>
+    <td><span class="score b">B+</span></td>
+    <td>中英双语、本地部署轻量选择</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>梯队仅供参考：</strong>S 表示当前 LMArena Elo 进前 10，A 表示前 30，B 表示前 50。<strong>30 分差以内基本是"持平"</strong>，别太较真排名。
+</div>
+
+<h2>四、按"擅长领域"反查（任务 → 推荐模型）</h2>
+
+<table>
+  <tr><th>你要干啥</th><th>首选</th><th>备选 / 国内替代</th></tr>
+  <tr>
+    <td>写代码 / 改 bug</td>
+    <td>Claude Opus 4.x</td>
+    <td>DeepSeek V4、GLM-4.7、Qwen-Coder 3</td>
+  </tr>
+  <tr>
+    <td>数学 / 逻辑推理</td>
+    <td>GPT-5 Pro、DeepSeek R1</td>
+    <td>GLM-5 Reasoning</td>
+  </tr>
+  <tr>
+    <td>长文档 / PDF / 论文阅读</td>
+    <td>Kimi K2.6（国内首选）</td>
+    <td>Gemini 3 Pro、Claude Opus</td>
+  </tr>
+  <tr>
+    <td>中文写作 / 文案 / 古文</td>
+    <td>豆包、文心一言</td>
+    <td>Qwen-Max、Kimi</td>
+  </tr>
+  <tr>
+    <td>翻译（中英 / 小语种）</td>
+    <td>GPT-5、Gemini 3</td>
+    <td>Qwen Max（多语种支持广）</td>
+  </tr>
+  <tr>
+    <td>语音对话 / 同声传译</td>
+    <td>豆包（中文最自然）</td>
+    <td>GPT-5 Realtime、Gemini Live</td>
+  </tr>
+  <tr>
+    <td>识图 / 看截图办公</td>
+    <td>Gemini 3 Pro、GPT-5</td>
+    <td>豆包、Qwen-VL</td>
+  </tr>
+  <tr>
+    <td>生成图片</td>
+    <td>不直接推 LLM —— 用即梦 / 可灵 / Midjourney</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>实时新闻 / 搜索类</td>
+    <td>Grok 4（X 数据）、Perplexity</td>
+    <td>Kimi、豆包（都接联网）</td>
+  </tr>
+  <tr>
+    <td>跑在自己电脑 / 本地部署</td>
+    <td>Llama 4、Gemma 3、Qwen 3.5</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>价格敏感 / 大批量调 API</td>
+    <td>DeepSeek V4</td>
+    <td>Qwen-Turbo、Kimi 长上下文版</td>
+  </tr>
+</table>
+
+<h2>五、3 个"反直觉"经验</h2>
+
+<div class="card">
+  <p><strong>1. 不要迷信"最新"</strong><br>
+  新版本不一定比老版本好——尤其是免费版上线一个月内常常不稳定。新模型出来先观察两周再换。</p>
+
+  <p><strong>2. 不要只看一个榜单</strong><br>
+  LMArena 主观偏好高的模型可能在 <span class="term">SWE-bench<span class="tooltip">真实软件工程能力评测——给模型一个 GitHub issue 让它修代码。比传统编程题更贴近实际工作。</span></span> 上很弱；MMLU 高分的模型可能日常聊天很死板。<strong>把任务对应到 2~3 个相关榜单交叉看</strong>。</p>
+
+  <p><strong>3. 国产模型 ≠ 弱</strong><br>
+  截至 2026 年中，<strong>DeepSeek、GLM、Kimi、Qwen 在多项榜单上已经追平甚至反超</strong>同期闭源前沿。差距主要在生态 / 工具链 / 多模态成熟度，不在"硬实力"。</p>
+</div>
+
+<h2>六、决策建议（一句话总结）</h2>
+
+<div class="card">
+  <p>📱 <strong>手机 / 日常聊天</strong>：豆包（中文最舒服）或 ChatGPT App</p>
+  <p>💻 <strong>电脑写代码</strong>：<a class="ref" href="课外-本地AI命令行工具.html">Claude Code</a> + Claude Opus，或 <a class="ref" href="课外-cc-switch安装教程.html">cc-switch</a> 切到 DeepSeek</p>
+  <p>📚 <strong>读长文档</strong>：Kimi 网页版（拖文件进去就行）</p>
+  <p>🌐 <strong>查最新信息</strong>：Perplexity 或带联网的豆包 / Kimi</p>
+  <p>🎨 <strong>多模态（图 / 视频）</strong>：Gemini 3 或国内豆包 / 即梦</p>
+  <p>💰 <strong>预算紧 / 跑量</strong>：DeepSeek API（按量计费便宜一个数量级）</p>
+  <p>🔒 <strong>注重隐私 / 内网</strong>：本地跑 Llama 4 或 Qwen 3.5（参考<a class="ref" href="课外-本地AI命令行工具.html">本地命令行工具</a>）</p>
+</div>
+
+<div class="ref-list">
+  <h2>📚 参考链接（排行榜 & GitHub 项目）</h2>
+  <ol>
+    <li>LMArena 实时排行：<a class="ref" href="https://lmarena.ai" target="_blank">https://lmarena.ai</a></li>
+    <li>SuperCLUE 中文榜：<a class="ref" href="https://www.superclueai.com" target="_blank">https://www.superclueai.com</a> · GitHub：<a class="ref" href="https://github.com/CLUEbenchmark/SuperCLUE" target="_blank">CLUEbenchmark/SuperCLUE</a></li>
+    <li>FastChat / Chatbot Arena 源码：<a class="ref" href="https://github.com/lm-sys/FastChat" target="_blank">github.com/lm-sys/FastChat</a></li>
+    <li>OpenCompass 综合评测：<a class="ref" href="https://github.com/open-compass/opencompass" target="_blank">github.com/open-compass/opencompass</a></li>
+    <li>EleutherAI 评测框架：<a class="ref" href="https://github.com/EleutherAI/lm-evaluation-harness" target="_blank">github.com/EleutherAI/lm-evaluation-harness</a></li>
+    <li>Awesome-LLM 大模型清单：<a class="ref" href="https://github.com/Hannibal046/Awesome-LLM" target="_blank">github.com/Hannibal046/Awesome-LLM</a></li>
+    <li>HuggingFace Open LLM Leaderboard：<a class="ref" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank">huggingface.co/spaces/open-llm-leaderboard</a></li>
+    <li>llm-stats 第三方汇总：<a class="ref" href="https://llm-stats.com" target="_blank">https://llm-stats.com</a></li>
+    <li>Vellum LLM Leaderboard：<a class="ref" href="https://www.vellum.ai/llm-leaderboard" target="_blank">vellum.ai/llm-leaderboard</a></li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 杂谈结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a>
+</p>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>

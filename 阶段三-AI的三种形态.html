@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>第三阶段：理解 AI 的三种形态 · AI 小白入门课程</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>mermaid.initialize({startOnLoad:true,theme:'default',securityLevel:'loose',flowchart:{curve:'basis'}}));</script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
+  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
+  .nav-back:hover { text-decoration: underline; }
+  h1 { font-size: 30px; border-bottom: 3px solid #4a90e2; padding-bottom: 14px; margin-bottom: 6px; }
+  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
+  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #4a90e2; }
+  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  p, li { font-size: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
+  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
+  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
+  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
+  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
+  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
+  .term:hover { background: #e8f4fd; }
+  .term .tooltip { visibility: hidden; opacity: 0; width: 300px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
+  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  .term:hover .tooltip { visibility: visible; opacity: 1; }
+  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
+  a.ref:hover { border-bottom-color: #4a90e2; }
+  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
+  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  .ref-list ol { padding-left: 22px; }
+  .ref-list li { margin: 8px 0; font-size: 14.5px; }
+  .checkbox { margin: 8px 0; padding-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 14.5px; vertical-align: top; }
+  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .form-card { background: #fff; border-radius: 10px; padding: 22px 28px; margin: 22px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid #4a90e2; }
+  .form-card.cli { border-left-color: #16a085; }
+  .form-card.agent { border-left-color: #9b59b6; }
+  .form-card.ide { border-left-color: #e67e22; }
+  .form-card h3 { margin-top: 0; color: #2c3e50; font-size: 20px; }
+  .form-card .meta { font-size: 14px; color: #888; margin-bottom: 12px; }
+  .form-card .examples { background: #f7fafc; padding: 10px 14px; border-radius: 6px; font-size: 14.5px; margin-top: 10px; }
+  .diagram { background: #fff; border-radius: 8px; padding: 24px 18px 18px; margin: 22px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center; overflow-x: auto; position: relative; }
+  .diagram:hover { box-shadow: 0 4px 14px rgba(74,144,226,0.18); }
+  .diagram .caption { font-size: 13px; color: #888; margin-top: 12px; }
+  .diagram .zoom-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 6px; }
+  .diagram .zoom-btn { font-size: 12px; color: #4a90e2; background: #e8f4fd; padding: 3px 10px; border: 1px solid #b8d8f5; border-radius: 12px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+  .diagram .zoom-btn:hover { background: #4a90e2; color: #fff; border-color: #4a90e2; }
+  .mermaid { display: inline-block; max-width: 100%; }
+
+  /* 放大/全屏 lightbox */
+  .diagram-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; cursor: zoom-out; align-items: center; justify-content: center; padding: 24px; }
+  .diagram-modal.open { display: flex; }
+  .diagram-modal .modal-inner { display: flex; align-items: center; justify-content: center; overflow: auto; background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); cursor: default; }
+  /* 放大：约屏幕 1/2 */
+  .diagram-modal.half .modal-inner { width: 60vw; height: 60vh; max-width: 800px; max-height: 600px; }
+  /* 全屏：占满视口 */
+  .diagram-modal.full .modal-inner { width: 96vw; height: 92vh; }
+  .diagram-modal svg { max-width: 100%; max-height: 100%; width: auto; height: auto; transform-origin: center center; transition: transform 0.2s; }
+  .diagram-modal .modal-close { position: fixed; top: 16px; right: 20px; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+  .diagram-modal .modal-close:hover { background: rgba(255,255,255,0.3); }
+  .diagram-modal .modal-tip { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.75); font-size: 13px; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<a href="目录.html" class="nav-back">← 返回课程目录</a>
+
+<h1>第三阶段：理解 AI 的三种形态</h1>
+<p class="subtitle">学习时长：1 天 · 学习目标：分清"聊天 AI / CLI AI / Agent"，知道什么场景该用哪种</p>
+
+<div class="card">
+  <p>到了第二阶段你已经在用"聊天 AI"了。但 AI 不只这一种形态——还有<strong>能进入你电脑动手干活的</strong>、<strong>能自己拆任务连续执行的</strong>。这一阶段我们把市面上常听到的"AI 产品"理清楚，让你以后看到任何新工具都能一眼归类。</p>
+  <p>本节不需要动手安装，<strong>看懂概念即可</strong>。具体安装与使用，留到课外教程和后续进阶部分。</p>
+</div>
+
+<h2>一、为什么要分清楚形态？</h2>
+
+<p>很多人把"AI"当成一个东西，结果遇到问题搞混：</p>
+<ul>
+  <li>看到博主说"AI 能帮我配置路由器" → 想当然以为豆包能做，结果发现根本不行</li>
+  <li>听说"Agent 智能体很强大" → 不知道指的是一个产品还是一种能力</li>
+  <li>纠结"我到底该用 ChatGPT 还是 Claude Code 还是扣子"</li>
+</ul>
+
+<p>其实它们处于<strong>不同的"形态层级"</strong>，能力和适用场景完全不同。下面这张图你按场景挑形态，以后再看到新工具，也能秒判断：</p>
+
+<div class="diagram" data-zoomable>
+  <div class="zoom-actions">
+    <button type="button" class="zoom-btn" data-zoom="half">🔍 放大</button>
+    <button type="button" class="zoom-btn" data-zoom="full">⛶ 全屏</button>
+  </div>
+  <pre class="mermaid">
+flowchart LR
+    A([你的需求]) --> B{需要做什么?}
+    B -->|聊天 / 查信息 / 写作| C[聊天 AI<br/>豆包 · Kimi · ChatGPT]
+    B -->|操作本地文件 / 跑命令| D[CLI AI<br/>Claude Code · Codex]
+    B -->|自动连续完成多步任务| E[Agent / 智能体<br/>扣子 · GPTs · Manus]
+    B -->|在 IDE 里边写代码边问 AI| F[IDE 插件 AI<br/>CC GUI · Copilot · Cursor]
+    C --> CC[云端 · 只能说<br/>风险低 · 门槛极低]
+    D --> DD[本机 · 能动手<br/>风险中 · 需懂命令行]
+    E --> EE[一种能力描述<br/>可云可本地]
+    F --> FF[嵌入编辑器 · 看代码上下文<br/>风险中 · 偏程序员]
+    classDef chat fill:#e8f4fd,stroke:#4a90e2,color:#2c3e50
+    classDef cli fill:#e8f8f3,stroke:#16a085,color:#2c3e50
+    classDef agent fill:#f4ecf7,stroke:#9b59b6,color:#2c3e50
+    classDef ide fill:#fdf2e9,stroke:#e67e22,color:#2c3e50
+    class C,CC chat
+    class D,DD cli
+    class E,EE agent
+    class F,FF ide
+  </pre>
+  <div class="caption">图 3-1 ｜ 四种 AI 形态的能力与适用场景</div>
+</div>
+
+<h2>二、形态一：聊天 AI（你已经熟悉）</h2>
+
+<div class="form-card">
+  <h3>💬 聊天 AI（Chat AI）</h3>
+  <div class="meta">代表产品：<a class="ref" href="https://www.doubao.com" target="_blank">豆包</a>、<a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a>、<a class="ref" href="https://yiyan.baidu.com" target="_blank">文心一言</a>、<a class="ref" href="https://tongyi.aliyun.com" target="_blank">通义千问</a>、<a class="ref" href="https://chatgpt.com" target="_blank">ChatGPT</a>、<a class="ref" href="https://claude.ai" target="_blank">Claude</a></div>
+
+  <p><strong>怎么工作：</strong>你在它的网页或 App 输入框打字，它回答你。它<strong>住在云端</strong>（厂商的服务器上），通过网络给你回话。</p>
+
+  <p><strong>能力边界：</strong></p>
+  <ul>
+    <li>✅ 聊天、回答问题、生成文字/图片/视频</li>
+    <li>✅ 读你上传的文件、看你发的图</li>
+    <li>✅ 联网查最新信息（开了联网功能的）</li>
+    <li>❌ <strong>不能</strong>看到你电脑里其他文件</li>
+    <li>❌ <strong>不能</strong>在你电脑上执行任何动作</li>
+    <li>❌ <strong>不能</strong>访问你的微信、邮箱等私人数据</li>
+  </ul>
+
+  <div class="examples">
+    <strong>典型场景：</strong>写文案、查信息、解释概念、翻译、做表格——也就是前两阶段你已经在用的所有事。
+  </div>
+</div>
+
+<div class="analogy">
+  聊天 AI 就像你加了一个<strong>万事通的微信好友</strong>。你发消息他回消息，仅此而已。他看不见你家里的东西，也不会替你去做事。
+</div>
+
+<h2>三、形态二：CLI AI（命令行 AI）</h2>
+
+<div class="form-card cli">
+  <h3>🖥 CLI AI（命令行 AI）</h3>
+  <div class="meta">代表产品：<span class="term">Claude Code<span class="tooltip">Anthropic 出的命令行 AI 工具，运行在你电脑的终端里，能读你的文件、跑命令、改代码。底层调用 Claude 大模型。</span></span>、<span class="term">Codex CLI<span class="tooltip">OpenAI 出的命令行 AI 工具，类似 Claude Code，底层调用 GPT 系列模型。</span></span>、Gemini CLI、Aider、Cursor、Windsurf</div>
+
+  <p><strong>怎么工作：</strong>你把它<strong>装到自己电脑上</strong>（通常通过<span class="term">命令行<span class="tooltip">英文叫 Terminal 或 CLI（Command Line Interface），是一种用打字命令而不是点按钮来操作电脑的方式。Mac 上叫"终端"，Windows 上叫"PowerShell"或"命令提示符"。</span></span>启动），它就能：</p>
+  <ul>
+    <li>✅ 看你当前文件夹里的所有文件</li>
+    <li>✅ 真的去执行命令（如改文件、装软件、连服务器）</li>
+    <li>✅ 连续多步完成一个任务（出错自己换法子重试）</li>
+    <li>⚠️ 每个"动手"动作默认会问你"允许吗？"</li>
+  </ul>
+
+  <p><strong>它和聊天 AI 的关键区别：</strong>它<strong>不只是"说"，而是"做"</strong>。</p>
+
+  <div class="examples">
+    <strong>典型场景：</strong>修改代码、批量重命名文件、读写 Excel / CSV 表格（汇总、清洗、跨表合并）、诊断网络问题、SSH 登录路由器改配置、把照片批量压缩——一切"需要动你电脑"的事。
+  </div>
+</div>
+
+<div class="analogy">
+  CLI AI 就像一个<strong>上门服务的师傅</strong>。你把家门钥匙给他，他能进屋、检查情况、亲手修东西。强大，但也<strong>必须当面盯着</strong>，不能放任他乱来。
+</div>
+
+<div class="warn">
+  能力越大、风险越大。CLI AI 默认每次"动手"前会请示，<strong>不要无脑放行</strong>，否则可能误删文件、改坏配置。
+</div>
+
+<h2>四、形态三：Agent / 智能体</h2>
+
+<div class="form-card agent">
+  <h3>🤖 Agent / 智能体</h3>
+  <div class="meta">代表平台：<a class="ref" href="https://www.coze.cn" target="_blank">扣子（Coze）</a>、<a class="ref" href="https://www.doubao.com/chat/agent-square" target="_blank">豆包智能体</a>、<a class="ref" href="https://kimi.com" target="_blank">Kimi+ 应用</a>、<a class="ref" href="https://chatgpt.com/gpts" target="_blank">GPTs</a>、<a class="ref" href="https://manus.im" target="_blank">Manus</a>、<a class="ref" href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank">AutoGPT</a></div>
+
+  <p><strong>Agent 不是一个具体产品，而是一种"能力描述"</strong>——指<strong>能自己拆任务、调用工具、连续执行多步</strong>的 AI 程序。</p>
+
+  <p><strong>表现形式：</strong></p>
+  <ul>
+    <li>可以是云端的（扣子上做的智能体、GPTs、Manus）</li>
+    <li>也可以是本地的（CLI AI 本身就具有 Agent 能力）</li>
+    <li>可以是文字界面，也可以是浏览器自动操作</li>
+  </ul>
+
+  <p><strong>核心特征 —— 自主性：</strong></p>
+  <ul>
+    <li>给它一个目标（"帮我订下周三北京到上海的高铁，要二等座靠窗"）</li>
+    <li>它自己拆步骤：查车次 → 选座 → 下单 → 支付确认</li>
+    <li>遇到障碍自己想办法（比如靠窗没了，问你"换过道行不行"）</li>
+  </ul>
+
+  <div class="examples">
+    <strong>典型场景：</strong>把一段你常用的"提示词 + 知识库 + 工具"封装成专用机器人，下次直接调用，不用重复交代。比如"专门给娃讲题的解题助手"、"翻译官"、"简历优化师"。
+  </div>
+</div>
+
+<div class="analogy">
+  Agent 像"<strong>能自己干活的 AI</strong>"这个职业类别。微信好友（聊天 AI）可以是 Agent，上门师傅（CLI AI）也可以是 Agent——它描述的是"<strong>能不能自己完成多步任务</strong>"，不是某一个具体产品。
+</div>
+
+<h2>五、形态四：IDE 插件 AI（嵌进编辑器里的助手）</h2>
+
+<div class="form-card ide">
+  <h3>🧩 IDE 插件 AI（IDE Plugin AI）</h3>
+  <div class="meta">代表产品：<a class="ref" href="https://plugins.jetbrains.com/plugin/29342-claude-code-gui" target="_blank">CC GUI（IntelliJ / PyCharm 等 JetBrains 全家桶）</a>、<a class="ref" href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a>、<a class="ref" href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code" target="_blank">Claude Code for VS Code</a>、<a class="ref" href="https://www.cursor.com" target="_blank">Cursor</a> / <a class="ref" href="https://windsurf.com" target="_blank">Windsurf</a>（独立 IDE）、通义灵码、豆包 MarsCode</div>
+
+  <p><strong>怎么工作：</strong>把 AI 直接<strong>嵌进你写代码的编辑器</strong>里。AI 能看到你当前打开的文件、光标位置、整个工程结构，<strong>边敲代码边帮你写</strong>，也能在侧边栏聊天。</p>
+
+  <p><strong>它和 CLI AI 的区别：</strong>底层模型/能力相近，但<strong>界面在 IDE 里</strong>——可以图形化点选改动、查看 diff、点跳转、看高亮——比纯命令行直观得多，对程序员更友好。</p>
+
+  <p><strong>能力边界：</strong></p>
+  <ul>
+    <li>✅ 看到整个工程的代码上下文（@ 引用文件、# 引用 agent）</li>
+    <li>✅ 把 AI 改动以 diff 形式展示，逐处确认是否采纳</li>
+    <li>✅ 跑命令、查文件（继承了 CLI AI 的能力）</li>
+    <li>✅ 通过 MCP 扩展更多工具</li>
+    <li>⚠️ 主要面向编程场景，非程序员日常用不上</li>
+  </ul>
+
+  <div class="examples">
+    <strong>典型场景：</strong>写代码时让 AI 自动补全整段函数、解释陌生代码、修 bug 时让它直接改、跨文件重构、把 AI 给的方案以 diff 形式 review 后再应用。
+  </div>
+</div>
+
+<div class="analogy">
+  IDE 插件 AI 就像<strong>给上门师傅配了一个透明工作台</strong>——他动你电脑的同时，每一步改动都在你面前的屏幕上画给你看（红色减、绿色加），你点一下就接受或拒绝。同样的能力，体验比纯命令行(CLI AI) 友好得多。
+</div>
+
+<div class="tip">
+  比如 JetBrains 系（IDEA / PyCharm / WebStorm 等）的同学，可以装 <strong>CC GUI</strong> 插件，直接在 IDE 里用 Claude Code / Codex 的全部能力——支持双引擎切换、@ 引用文件、可视化 diff、MCP 集成，免去开终端。
+</div>
+
+<h2>六、一张表看清四种形态</h2>
+
+<table>
+  <tr>
+    <th>维度</th>
+    <th>聊天 AI</th>
+    <th>CLI AI</th>
+    <th>Agent / 智能体</th>
+    <th>IDE 插件 AI</th>
+  </tr>
+  <tr>
+    <td><strong>住在哪</strong></td>
+    <td>云端</td>
+    <td>装在你电脑上（模型仍在云端）</td>
+    <td>云端或本地</td>
+    <td>装在你 IDE 里（模型仍在云端）</td>
+  </tr>
+  <tr>
+    <td><strong>能看见什么</strong></td>
+    <td>只能看到你发的消息</td>
+    <td>能看到本机文件、命令输出</td>
+    <td>视实现而定</td>
+    <td>能看到当前工程的代码上下文</td>
+  </tr>
+  <tr>
+    <td><strong>能做什么</strong></td>
+    <td>回答、生成内容</td>
+    <td>真实执行命令、改文件</td>
+    <td>自主拆任务、连续执行</td>
+    <td>改代码、跑命令、可视化 diff</td>
+  </tr>
+  <tr>
+    <td><strong>风险</strong></td>
+    <td>低（最多答得不对）</td>
+    <td>较高（可能改坏电脑）</td>
+    <td>看权限范围</td>
+    <td>中（每处改动都能确认）</td>
+  </tr>
+  <tr>
+    <td><strong>使用门槛</strong></td>
+    <td>极低（打字就行）</td>
+    <td>中等（需懂一点命令行）</td>
+    <td>低到中（看具体平台）</td>
+    <td>中（需要装并会用 IDE）</td>
+  </tr>
+  <tr>
+    <td><strong>新手该不该用</strong></td>
+    <td>立刻用</td>
+    <td>课程后期再碰</td>
+    <td>用别人做好的随时用</td>
+    <td>程序员可立刻用，非程序员不必</td>
+  </tr>
+</table>
+
+<h2>七、什么场景选哪种？</h2>
+
+<table>
+  <tr><th>你想做的事</th><th>选哪种</th><th>具体推荐</th></tr>
+  <tr><td>查信息、写文案、想点子</td><td>聊天 AI</td><td><a class="ref" href="https://www.doubao.com" target="_blank">豆包</a> / <a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a></td></tr>
+  <tr><td>解释一份合同/化验单</td><td>聊天 AI（上传文件）</td><td><a class="ref" href="https://www.kimi.com" target="_blank">Kimi</a></td></tr>
+  <tr><td>把一段常用提示词重复利用</td><td>Agent（用别人做好的）</td><td><a class="ref" href="https://www.doubao.com/chat/agent-square" target="_blank">豆包"智能体广场"</a></td></tr>
+  <tr><td>自己做一个专用 AI 助手</td><td>Agent（自己搭）</td><td><a class="ref" href="https://www.coze.cn" target="_blank">扣子 Coze</a></td></tr>
+  <tr><td>批量处理本地文件/照片</td><td>CLI AI</td><td><a class="ref" href="https://claude.com/claude-code" target="_blank">Claude Code</a> / <a class="ref" href="https://github.com/openai/codex" target="_blank">Codex</a></td></tr>
+  <tr><td>诊断网络、改路由器配置</td><td>CLI AI</td><td><a class="ref" href="https://claude.com/claude-code" target="_blank">Claude Code</a></td></tr>
+  <tr><td>在 IDE 里边写代码边让 AI 改</td><td>IDE 插件 AI</td><td><a class="ref" href="https://plugins.jetbrains.com/plugin/29342-claude-code-gui" target="_blank">CC GUI</a>（JetBrains 系）/ <a class="ref" href="https://github.com/features/copilot" target="_blank">Copilot</a> / <a class="ref" href="https://www.cursor.com" target="_blank">Cursor</a></td></tr>
+  <tr><td>修改自己写的代码（脱离 IDE）</td><td>CLI AI</td><td><a class="ref" href="https://claude.com/claude-code" target="_blank">Claude Code</a> / <a class="ref" href="https://github.com/openai/codex" target="_blank">Codex</a></td></tr>
+</table>
+
+<h2>八、新手最容易搞错的 4 件事</h2>
+
+<div class="card">
+  <p><strong>❌ 误解 1：以为 ChatGPT / 豆包能进我电脑帮我整理文件。</strong><br>
+  ✅ 真相：聊天 AI 没有进入你电脑的权限。要进电脑只能用 CLI AI 或 IDE 插件 AI。</p>
+
+  <p><strong>❌ 误解 2：以为"Agent 智能体"是一种新产品。</strong><br>
+  ✅ 真相：它是一种能力。豆包智能体、扣子智能体、GPTs 都是不同平台对这种能力的实现。</p>
+
+  <p><strong>❌ 误解 3：以为 CLI AI 比聊天 AI 更"聪明"。</strong><br>
+  ✅ 真相：它们背后用的可能是同一个大模型。区别在<strong>权限和工具</strong>，不在智力。</p>
+
+  <p><strong>❌ 误解 4：以为新手就该直接上 CLI AI 或 Agent。</strong><br>
+  ✅ 真相：聊天 AI 已经能覆盖 80% 的日常需求。先把聊天 AI 用熟，再按需进阶。</p>
+</div>
+
+<h2>九、本阶段自查清单</h2>
+
+<div class="card">
+  <div class="checkbox">☐ 我能用一句话区分"聊天 AI"和"CLI AI"</div>
+  <div class="checkbox">☐ 我知道"Agent"是一种能力，不是一个产品</div>
+  <div class="checkbox">☐ 我知道 IDE 插件 AI 和 CLI AI 的关系（能力相近，界面不同）</div>
+  <div class="checkbox">☐ 我能说出 3 个聊天 AI、2 个 CLI AI、1 个 IDE 插件 AI 的名字</div>
+  <div class="checkbox">☐ 给我一个场景，我能从四种形态里选出合适的</div>
+  <div class="checkbox">☐ 我清楚为什么 CLI AI 的风险比聊天 AI 高</div>
+</div>
+
+<div class="practice">
+  小练习：把下面三件事分别归类——①让 AI 帮你写一首生日歌 ②让 AI 把你硬盘上所有 jpg 改名 ③让 AI 每天早上自动汇总当天新闻发到你邮箱。答案见<a class="ref" href="课外-本地AI命令行工具.html">课外教程</a>对应章节。
+</div>
+
+<div class="ref-list">
+  <h2>📚 延伸阅读 & 参考链接</h2>
+  <ol>
+    <li>Claude Code 官方介绍：<a class="ref" href="https://claude.com/claude-code" target="_blank">https://claude.com/claude-code</a></li>
+    <li>OpenAI Codex CLI 开源仓库：<a class="ref" href="https://github.com/openai/codex" target="_blank">https://github.com/openai/codex</a></li>
+    <li>扣子智能体平台：<a class="ref" href="https://www.coze.cn" target="_blank">https://www.coze.cn</a></li>
+    <li>豆包智能体广场（App 内"发现"页）</li>
+    <li>关于 AI Agent 的科普文章（中文综述）：搜索"AI Agent 是什么"</li>
+    <li>本课程的<a class="ref" href="课外-本地AI命令行工具.html">课外教程</a>：CLI AI 安装与家用实战</li>
+  </ol>
+</div>
+
+<p style="text-align:center; margin-top:40px; color:#888; font-size:14px;">
+  —— 第三阶段结束 ——<br>
+  <a class="ref" href="目录.html">回到目录</a> 进入第四阶段（学会问对问题）
+</p>
+
+<div class="diagram-modal" id="diagramModal" role="dialog" aria-modal="true" aria-label="放大查看示意图">
+  <button class="modal-close" id="diagramModalClose" aria-label="关闭">×</button>
+  <div class="modal-inner" id="diagramModalInner"></div>
+  <div class="modal-tip">点击空白处 / 按 Esc 关闭 · 滚轮缩放（部分浏览器支持手势）</div>
+</div>
+
+<script>
+(function() {
+  const modal = document.getElementById('diagramModal');
+  const inner = document.getElementById('diagramModalInner');
+  const closeBtn = document.getElementById('diagramModalClose');
+  let currentScale = 1;
+
+  function openDiagram(diagramEl, mode) {
+    const svg = diagramEl.querySelector('svg');
+    if (!svg) return;
+    inner.innerHTML = '';
+    const clone = svg.cloneNode(true);
+    clone.removeAttribute('style');
+    clone.style.transform = 'scale(1)';
+    currentScale = 1;
+    inner.appendChild(clone);
+    modal.classList.remove('half', 'full');
+    modal.classList.add(mode === 'full' ? 'full' : 'half');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDiagram() {
+    modal.classList.remove('open', 'half', 'full');
+    inner.innerHTML = '';
+    document.body.style.overflow = '';
+    currentScale = 1;
+  }
+
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.zoom-btn[data-zoom]');
+    if (btn) {
+      const diagram = btn.closest('.diagram[data-zoomable]');
+      if (diagram) openDiagram(diagram, btn.dataset.zoom);
+      e.stopPropagation();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeDiagram);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeDiagram();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeDiagram();
+  });
+
+  // 滚轮缩放
+  inner.addEventListener('wheel', function(e) {
+    if (!modal.classList.contains('open')) return;
+    const svg = inner.querySelector('svg');
+    if (!svg) return;
+    e.preventDefault();
+    const delta = e.deltaY < 0 ? 0.12 : -0.12;
+    currentScale = Math.min(4, Math.max(0.4, currentScale + delta));
+    svg.style.transform = 'scale(' + currentScale + ')';
+  }, { passive: false });
+})();
+</script>
+
+<div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
+  作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
+</div>
+
+</body>
+</html>
