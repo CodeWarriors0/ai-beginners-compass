@@ -27,9 +27,64 @@
     --c-green-tint: oklch(24% 0.05 145);
     --c-red: oklch(72% 0.16 22);
     --c-red-tint: oklch(24% 0.06 22);
+    --cmd-bg: oklch(11% 0.008 250);
+    --cmd-prompt: oklch(72% 0.16 145);
+    --cmd-user: oklch(80% 0.14 80);
+    --tooltip-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    --shot-filter: brightness(.94);
+    --selection-bg: var(--accent-tint);
+    --os-mac-bg: oklch(22% 0.04 145);
+    --os-mac-border: oklch(45% 0.10 145);
+    --os-mac-fg: oklch(78% 0.13 145);
+    --os-win-bg: oklch(22% 0.04 245);
+    --os-win-border: oklch(45% 0.10 245);
+    --os-win-fg: oklch(78% 0.13 245);
+    --os-linux-bg: oklch(22% 0.04 60);
+    --os-linux-border: oklch(45% 0.10 60);
+    --os-linux-fg: oklch(78% 0.13 60);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(98% 0.006 80);
+    --bg-soft: oklch(96% 0.010 80);
+    --bg-elev: oklch(92% 0.014 80);
+    --ink: oklch(22% 0.012 250);
+    --ink-soft: oklch(38% 0.014 250);
+    --ink-faint: oklch(56% 0.014 250);
+    --rule: oklch(86% 0.012 80);
+    --rule-soft: oklch(90% 0.010 80);
+    --accent: oklch(50% 0.15 var(--hue));
+    --accent-bright: oklch(45% 0.16 var(--hue));
+    --accent-deep: oklch(38% 0.16 var(--hue));
+    --accent-tint: oklch(94% 0.04 var(--hue));
+    --accent-wash: oklch(96% 0.03 var(--hue));
+    --c-blue: oklch(50% 0.16 245);
+    --c-blue-tint: oklch(95% 0.025 245);
+    --c-amber: oklch(58% 0.15 80);
+    --c-amber-tint: oklch(95% 0.030 80);
+    --c-green: oklch(48% 0.15 145);
+    --c-green-tint: oklch(95% 0.030 145);
+    --c-red: oklch(52% 0.18 22);
+    --c-red-tint: oklch(95% 0.030 22);
+    --cmd-bg: oklch(96% 0.010 250);
+    --cmd-prompt: oklch(48% 0.16 145);
+    --cmd-user: oklch(58% 0.15 80);
+    --tooltip-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    --shot-filter: none;
+    --selection-bg: oklch(86% 0.07 var(--hue));
+    --os-mac-bg: oklch(94% 0.04 145);
+    --os-mac-border: oklch(70% 0.10 145);
+    --os-mac-fg: oklch(40% 0.13 145);
+    --os-win-bg: oklch(94% 0.04 245);
+    --os-win-border: oklch(70% 0.10 245);
+    --os-win-fg: oklch(42% 0.13 245);
+    --os-linux-bg: oklch(94% 0.04 60);
+    --os-linux-border: oklch(70% 0.10 60);
+    --os-linux-fg: oklch(45% 0.13 60);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.10);
   }
   * { box-sizing: border-box; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); transition: background .25s ease; }
   body {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
     max-width: 720px;
@@ -41,7 +96,39 @@
     line-height: 1.78;
     text-wrap: pretty;
     font-feature-settings: "palt" 1;
+    transition: color .25s ease, background .25s ease;
   }
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 100;
+    background: var(--bg-elev);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 14px 6px 12px;
+    font-size: 12.5px;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: color .15s, background .15s, border-color .15s, transform .15s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: var(--toggle-shadow);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    background: var(--bg-soft);
+    border-color: var(--ink-faint);
+    transform: translateY(-1px);
+  }
+  .theme-toggle:active { transform: translateY(0); }
+  .theme-toggle .icon { font-size: 14px; line-height: 1; }
   .nav-back {
     display: inline-block;
     color: var(--ink-faint);
@@ -203,7 +290,7 @@
     line-height: 1.6;
     font-weight: normal;
     transition: opacity .2s;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    box-shadow: var(--tooltip-shadow);
     border: 1px solid var(--rule);
     pointer-events: none;
   }
@@ -303,7 +390,7 @@
     font-size: 13px;
   }
   .cmd {
-    background: oklch(11% 0.008 250);
+    background: var(--cmd-bg);
     color: var(--ink);
     padding: 14px 18px;
     border-radius: 4px;
@@ -315,9 +402,9 @@
     overflow-x: auto;
     border: 1px solid var(--rule);
   }
-  .cmd .prompt { color: oklch(72% 0.16 145); user-select: none; margin-right: 8px; }
+  .cmd .prompt { color: var(--cmd-prompt); user-select: none; margin-right: 8px; }
   .cmd .comment { color: var(--ink-faint); }
-  .cmd .user { color: oklch(80% 0.14 80); }
+  .cmd .user { color: var(--cmd-user); }
   code {
     background: var(--bg-elev);
     color: var(--accent-bright);
@@ -340,7 +427,7 @@
     max-width: 100%;
     border-radius: 4px;
     border: 1px solid var(--rule);
-    filter: brightness(.94);
+    filter: var(--shot-filter);
   }
   .shot .caption { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
   .os-tabs { display: flex; gap: 8px; margin: 16px 0 6px; flex-wrap: wrap; }
@@ -353,10 +440,10 @@
     color: var(--ink-soft);
     border: 1px solid var(--rule);
   }
-  .os-tag.mac { color: oklch(78% 0.13 145); border-color: oklch(45% 0.10 145); background: oklch(22% 0.04 145); }
-  .os-tag.win { color: oklch(78% 0.13 245); border-color: oklch(45% 0.10 245); background: oklch(22% 0.04 245); }
-  .os-tag.linux { color: oklch(78% 0.13 60); border-color: oklch(45% 0.10 60); background: oklch(22% 0.04 60); }
-  ::selection { background: var(--accent-tint); color: var(--ink); }
+  .os-tag.mac { color: var(--os-mac-fg); border-color: var(--os-mac-border); background: var(--os-mac-bg); }
+  .os-tag.win { color: var(--os-win-fg); border-color: var(--os-win-border); background: var(--os-win-bg); }
+  .os-tag.linux { color: var(--os-linux-fg); border-color: var(--os-linux-border); background: var(--os-linux-bg); }
+  ::selection { background: var(--selection-bg); color: var(--ink); }
   /* Override inline styles on legacy bottom blocks */
   .author-info {
     text-align: center !important;
@@ -391,11 +478,24 @@
     h2 { font-size: 22px; margin-top: 48px; }
     h3 { font-size: 17px; }
     table { font-size: 14px; }
+    .theme-toggle { top: 12px; right: 12px; padding: 5px 12px 5px 10px; font-size: 11.5px; }
   }
 
 </style>
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('course-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    } catch(e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 </head>
 <body>
+
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换明暗主题" title="切换主题"><span class="icon" aria-hidden="true">☀</span><span class="label">亮色</span></button>
 
 <a href="00-目录.html" class="nav-back">← 返回课程目录</a>
 
@@ -603,6 +703,35 @@
 <div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
   作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
 </div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var iconEl = btn.querySelector('.icon');
+    var labelEl = btn.querySelector('.label');
+    function paint(){
+      var t = document.documentElement.getAttribute('data-theme') || 'dark';
+      if (t === 'dark') {
+        iconEl.textContent = '☀';
+        labelEl.textContent = '亮色';
+        btn.title = '切换到亮色主题';
+      } else {
+        iconEl.textContent = '☾';
+        labelEl.textContent = '暗色';
+        btn.title = '切换到暗色主题';
+      }
+    }
+    paint();
+    btn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var nxt = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nxt);
+      try { localStorage.setItem('course-theme', nxt); } catch(e) {}
+      paint();
+    });
+  })();
+</script>
 
 </body>
 </html>

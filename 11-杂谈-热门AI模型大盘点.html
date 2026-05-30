@@ -26,6 +26,83 @@
     --note-amber-tint: oklch(24% 0.05 80);
     --note-red: oklch(72% 0.16 22);
     --note-red-tint: oklch(24% 0.06 22);
+
+    --tooltip-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.45);
+    --selection-bg: var(--accent-tint);
+
+    --flag-cn-bg: oklch(22% 0.04 50);
+    --flag-cn-border: oklch(45% 0.10 50);
+    --flag-cn-fg: oklch(78% 0.13 55);
+    --flag-us-bg: oklch(22% 0.04 245);
+    --flag-us-border: oklch(45% 0.10 245);
+    --flag-us-fg: oklch(78% 0.13 245);
+    --flag-eu-bg: oklch(22% 0.04 300);
+    --flag-eu-border: oklch(45% 0.10 300);
+    --flag-eu-fg: oklch(78% 0.13 300);
+    --flag-open-bg: oklch(22% 0.04 145);
+    --flag-open-border: oklch(45% 0.10 145);
+    --flag-open-fg: oklch(78% 0.13 145);
+    --flag-closed-bg: oklch(22% 0.04 20);
+    --flag-closed-border: oklch(45% 0.10 20);
+    --flag-closed-fg: oklch(78% 0.13 20);
+
+    --score-s-fg: oklch(78% 0.18 25);
+    --score-s-border: oklch(60% 0.15 25);
+    --score-a-fg: oklch(80% 0.14 55);
+    --score-a-border: oklch(60% 0.13 55);
+    --score-b-fg: oklch(82% 0.13 90);
+    --score-b-border: oklch(60% 0.11 90);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(98% 0.006 80);
+    --bg-soft: oklch(96% 0.010 80);
+    --bg-elev: oklch(92% 0.014 80);
+    --ink: oklch(22% 0.012 250);
+    --ink-soft: oklch(38% 0.014 250);
+    --ink-faint: oklch(56% 0.014 250);
+    --rule: oklch(86% 0.012 80);
+    --rule-soft: oklch(90% 0.010 80);
+
+    --accent: oklch(54% 0.17 55);
+    --accent-bright: oklch(48% 0.18 55);
+    --accent-deep: oklch(40% 0.16 50);
+    --accent-tint: oklch(94% 0.045 55);
+    --accent-wash: oklch(96% 0.030 55);
+
+    --note-blue: oklch(50% 0.15 235);
+    --note-blue-tint: oklch(95% 0.025 235);
+    --note-amber: oklch(58% 0.15 80);
+    --note-amber-tint: oklch(95% 0.030 80);
+    --note-red: oklch(52% 0.18 22);
+    --note-red-tint: oklch(95% 0.030 22);
+
+    --tooltip-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.10);
+    --selection-bg: oklch(88% 0.07 55);
+
+    --flag-cn-bg: oklch(95% 0.035 50);
+    --flag-cn-border: oklch(72% 0.10 50);
+    --flag-cn-fg: oklch(42% 0.14 50);
+    --flag-us-bg: oklch(95% 0.030 245);
+    --flag-us-border: oklch(72% 0.10 245);
+    --flag-us-fg: oklch(42% 0.14 245);
+    --flag-eu-bg: oklch(95% 0.030 300);
+    --flag-eu-border: oklch(72% 0.10 300);
+    --flag-eu-fg: oklch(42% 0.16 300);
+    --flag-open-bg: oklch(95% 0.030 145);
+    --flag-open-border: oklch(70% 0.10 145);
+    --flag-open-fg: oklch(38% 0.13 145);
+    --flag-closed-bg: oklch(95% 0.030 20);
+    --flag-closed-border: oklch(70% 0.10 20);
+    --flag-closed-fg: oklch(45% 0.16 20);
+
+    --score-s-fg: oklch(50% 0.18 25);
+    --score-s-border: oklch(65% 0.16 25);
+    --score-a-fg: oklch(52% 0.16 55);
+    --score-a-border: oklch(65% 0.14 55);
+    --score-b-fg: oklch(48% 0.13 90);
+    --score-b-border: oklch(65% 0.12 90);
   }
 
   * { box-sizing: border-box; }
@@ -34,6 +111,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: var(--bg);
+    transition: background .25s ease;
   }
 
   body {
@@ -47,7 +125,40 @@
     line-height: 1.78;
     text-wrap: pretty;
     font-feature-settings: "palt" 1;
+    transition: color .25s ease, background .25s ease;
   }
+
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 100;
+    background: var(--bg-elev);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 14px 6px 12px;
+    font-size: 12.5px;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: color .15s, background .15s, border-color .15s, transform .15s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: var(--toggle-shadow);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    background: var(--bg-soft);
+    border-color: var(--ink-faint);
+    transform: translateY(-1px);
+  }
+  .theme-toggle:active { transform: translateY(0); }
+  .theme-toggle .icon { font-size: 14px; line-height: 1; }
 
   .serif {
     font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
@@ -194,7 +305,7 @@
     line-height: 1.6;
     font-weight: normal;
     transition: opacity .2s;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    box-shadow: var(--tooltip-shadow);
     border: 1px solid var(--rule);
     pointer-events: none;
   }
@@ -260,11 +371,11 @@
     color: var(--ink-soft);
     background: var(--bg-soft);
   }
-  .flag.cn { border-color: oklch(45% 0.10 50); color: oklch(78% 0.13 55); background: oklch(22% 0.04 50); }
-  .flag.us { border-color: oklch(45% 0.10 245); color: oklch(78% 0.13 245); background: oklch(22% 0.04 245); }
-  .flag.eu { border-color: oklch(45% 0.10 300); color: oklch(78% 0.13 300); background: oklch(22% 0.04 300); }
-  .flag.open { border-color: oklch(45% 0.10 145); color: oklch(78% 0.13 145); background: oklch(22% 0.04 145); }
-  .flag.closed { border-color: oklch(45% 0.10 20); color: oklch(78% 0.13 20); background: oklch(22% 0.04 20); }
+  .flag.cn { border-color: var(--flag-cn-border); color: var(--flag-cn-fg); background: var(--flag-cn-bg); }
+  .flag.us { border-color: var(--flag-us-border); color: var(--flag-us-fg); background: var(--flag-us-bg); }
+  .flag.eu { border-color: var(--flag-eu-border); color: var(--flag-eu-fg); background: var(--flag-eu-bg); }
+  .flag.open { border-color: var(--flag-open-border); color: var(--flag-open-fg); background: var(--flag-open-bg); }
+  .flag.closed { border-color: var(--flag-closed-border); color: var(--flag-closed-fg); background: var(--flag-closed-bg); }
 
   .score {
     display: inline-block;
@@ -278,9 +389,9 @@
     color: var(--ink);
     background: transparent;
   }
-  .score.s { color: oklch(78% 0.18 25); border-color: oklch(60% 0.15 25); }
-  .score.a { color: oklch(80% 0.14 55); border-color: oklch(60% 0.13 55); }
-  .score.b { color: oklch(82% 0.13 90); border-color: oklch(60% 0.11 90); }
+  .score.s { color: var(--score-s-fg); border-color: var(--score-s-border); }
+  .score.a { color: var(--score-a-fg); border-color: var(--score-a-border); }
+  .score.b { color: var(--score-b-fg); border-color: var(--score-b-border); }
   .score.c { color: var(--ink-faint); border-color: var(--ink-faint); }
 
   .badge {
@@ -385,7 +496,7 @@
     border-bottom: 1px dashed var(--rule);
   }
 
-  ::selection { background: var(--accent-tint); color: var(--ink); }
+  ::selection { background: var(--selection-bg); color: var(--ink); }
 
   @media (max-width: 640px) {
     body { padding: 36px 20px 64px; font-size: 15.5px; }
@@ -393,10 +504,23 @@
     h2 { font-size: 23px; margin-top: 56px; }
     .decision-item { grid-template-columns: 1fr; gap: 4px; }
     table { font-size: 14px; }
+    .theme-toggle { top: 12px; right: 12px; padding: 5px 12px 5px 10px; font-size: 11.5px; }
   }
 </style>
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('course-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    } catch(e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 </head>
 <body>
+
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换明暗主题" title="切换主题"><span class="icon" aria-hidden="true">☀</span><span class="label">亮色</span></button>
 
 <a href="00-目录.html" class="nav-back">← 返回课程目录</a>
 
@@ -475,65 +599,65 @@
   </thead>
   <tbody>
     <tr>
-      <td><strong>GPT-5 / GPT-5 Pro</strong></td>
-      <td>OpenAI <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://chatgpt.com" target="_blank">GPT-5 / GPT-5 Pro</a></strong></td>
+      <td><a class="ref" href="https://openai.com" target="_blank">OpenAI</a> <span class="flag us">US</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score s">S</span></td>
-      <td>通用对话、办公写作、生态最完整（插件 / GPTs 多）</td>
+      <td>通用对话、办公写作、生态最完整(插件 / GPTs 多)</td>
     </tr>
     <tr>
-      <td><strong>Claude Opus 4.x</strong></td>
-      <td>Anthropic <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://www.anthropic.com/claude" target="_blank">Claude Opus 4.x</a></strong></td>
+      <td><a class="ref" href="https://www.anthropic.com" target="_blank">Anthropic</a> <span class="flag us">US</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score s">S</span></td>
       <td><strong>写代码 / 长文档分析 / 严谨推理</strong>——开发者首选</td>
     </tr>
     <tr>
-      <td><strong>Claude Sonnet 4.x</strong></td>
-      <td>Anthropic <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://www.anthropic.com/claude" target="_blank">Claude Sonnet 4.x</a></strong></td>
+      <td><a class="ref" href="https://www.anthropic.com" target="_blank">Anthropic</a> <span class="flag us">US</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score a">A+</span></td>
-      <td>性价比版 Claude，日常编程 / 写作够用</td>
+      <td>性价比版 Claude,日常编程 / 写作够用</td>
     </tr>
     <tr>
-      <td><strong>Gemini 3 Pro / Ultra</strong></td>
-      <td>Google <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://gemini.google.com" target="_blank">Gemini 3 Pro / Ultra</a></strong></td>
+      <td><a class="ref" href="https://deepmind.google" target="_blank">Google</a> <span class="flag us">US</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score s">S</span></td>
-      <td><strong>多模态（图 / 视频 / 音频）</strong>、超长上下文、Google 全家桶集成</td>
+      <td><strong>多模态(图 / 视频 / 音频)</strong>、超长上下文、Google 全家桶集成</td>
     </tr>
     <tr>
-      <td><strong>Grok 4</strong></td>
-      <td>xAI <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://grok.com" target="_blank">Grok 4</a></strong></td>
+      <td><a class="ref" href="https://x.ai" target="_blank">xAI</a> <span class="flag us">US</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score a">A</span></td>
-      <td>实时信息（接 X / Twitter）、风格幽默直白、敢说</td>
+      <td>实时信息(接 X / Twitter)、风格幽默直白、敢说</td>
     </tr>
     <tr>
-      <td><strong>Llama 4 系列</strong></td>
-      <td>Meta <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://www.llama.com" target="_blank">Llama 4 系列</a></strong></td>
+      <td><a class="ref" href="https://ai.meta.com" target="_blank">Meta</a> <span class="flag us">US</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score a">A</span></td>
       <td>本地部署首选、英语能力强、社区生态最大</td>
     </tr>
     <tr>
-      <td><strong>Mistral Large 3</strong></td>
-      <td>Mistral <span class="flag eu">EU</span></td>
+      <td><strong><a class="ref" href="https://mistral.ai" target="_blank">Mistral Large 3</a></strong></td>
+      <td><a class="ref" href="https://mistral.ai" target="_blank">Mistral</a> <span class="flag eu">EU</span></td>
       <td><span class="flag open">部分开源</span></td>
       <td><span class="score a">A</span></td>
       <td>欧洲合规友好、多语言(含小语种)能力均衡</td>
     </tr>
     <tr>
-      <td><strong>Gemma 3</strong></td>
-      <td>Google <span class="flag us">US</span></td>
+      <td><strong><a class="ref" href="https://ai.google.dev/gemma" target="_blank">Gemma 3</a></strong></td>
+      <td><a class="ref" href="https://deepmind.google" target="_blank">Google</a> <span class="flag us">US</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score b">B+</span></td>
-      <td>小尺寸（2B / 9B / 27B），笔记本就能跑</td>
+      <td>小尺寸(2B / 9B / 27B),笔记本就能跑</td>
     </tr>
   </tbody>
 </table>
 
-<h2><span class="num">叁 · III</span>国内主流模型（2026 年 5 月）</h2>
+<h2><span class="num">叁 · III</span>国内主流模型(2026 年 5 月)</h2>
 
 <table>
   <thead>
@@ -547,78 +671,78 @@
   </thead>
   <tbody>
     <tr>
-      <td><strong>DeepSeek V4 / R1</strong></td>
-      <td>深度求索 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://chat.deepseek.com" target="_blank">DeepSeek V4 / R1</a></strong></td>
+      <td><a class="ref" href="https://www.deepseek.com" target="_blank">深度求索</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score s">S</span></td>
       <td><strong>数学 / 编程 / 推理</strong>，价格极便宜，国产开源标杆</td>
     </tr>
     <tr>
-      <td><strong>Qwen 3.5 / 3.7 Max</strong></td>
-      <td>阿里通义 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://chat.qwen.ai" target="_blank">Qwen 3.5 / 3.7 Max</a></strong></td>
+      <td><a class="ref" href="https://tongyi.aliyun.com" target="_blank">阿里通义</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score s">S</span></td>
-      <td>系列最完整（0.5B → 480B 全覆盖）、<strong>多语言 / 工具调用</strong></td>
+      <td>系列最完整(0.5B → 480B 全覆盖)、<strong>多语言 / 工具调用</strong></td>
     </tr>
     <tr>
-      <td><strong>Qwen-Coder 3</strong></td>
-      <td>阿里通义 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://chat.qwen.ai" target="_blank">Qwen-Coder 3</a></strong></td>
+      <td><a class="ref" href="https://tongyi.aliyun.com" target="_blank">阿里通义</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score a">A+</span></td>
       <td>专攻编程、SWE-bench 高分</td>
     </tr>
     <tr>
-      <td><strong>GLM-5 / GLM-4.7</strong></td>
-      <td>智谱 Z.AI <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://chatglm.cn" target="_blank">GLM-5 / GLM-4.7</a></strong></td>
+      <td><a class="ref" href="https://z.ai" target="_blank">智谱 Z.AI</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score s">S</span></td>
       <td>LMArena 开源榜常年前三、<strong>代码 / 综合能力</strong>均衡</td>
     </tr>
     <tr>
-      <td><strong>Kimi K2.5 / K2.6</strong></td>
-      <td>月之暗面 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://www.kimi.com" target="_blank">Kimi K2.5 / K2.6</a></strong></td>
+      <td><a class="ref" href="https://www.moonshot.cn" target="_blank">月之暗面</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score s">S</span></td>
-      <td><strong>超长上下文（200K+）、长文档阅读 / 摘要</strong></td>
+      <td><strong>超长上下文(200K+)、长文档阅读 / 摘要</strong></td>
     </tr>
     <tr>
-      <td><strong>豆包 Doubao 1.5 / 2.0 Pro</strong></td>
-      <td>字节跳动 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://www.doubao.com" target="_blank">豆包 Doubao 1.5 / 2.0 Pro</a></strong></td>
+      <td><a class="ref" href="https://www.bytedance.com" target="_blank">字节跳动</a> <span class="flag cn">CN</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score a">A+</span></td>
       <td><strong>语音 / 多模态 / C 端体验</strong>，APP 用户基数大</td>
     </tr>
     <tr>
-      <td><strong>MiniMax M2.5</strong></td>
-      <td>稀宇科技 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://chat.minimaxi.com" target="_blank">MiniMax M2.5</a></strong></td>
+      <td><a class="ref" href="https://www.minimaxi.com" target="_blank">稀宇科技</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score a">A+</span></td>
-      <td>SWE-bench 第一，<strong>真实工程任务（修 GitHub issue）</strong>强</td>
+      <td>SWE-bench 第一,<strong>真实工程任务(修 GitHub issue)</strong>强</td>
     </tr>
     <tr>
-      <td><strong>文心一言 4.5 / 5.0</strong></td>
-      <td>百度 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://yiyan.baidu.com" target="_blank">文心一言 4.5 / 5.0</a></strong></td>
+      <td><a class="ref" href="https://www.baidu.com" target="_blank">百度</a> <span class="flag cn">CN</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score a">A</span></td>
       <td>中文古文 / 知识问答、搜索整合好</td>
     </tr>
     <tr>
-      <td><strong>混元 Hunyuan</strong></td>
-      <td>腾讯 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://hunyuan.tencent.com" target="_blank">混元 Hunyuan</a></strong></td>
+      <td><a class="ref" href="https://www.tencent.com" target="_blank">腾讯</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">部分开源</span></td>
       <td><span class="score a">A</span></td>
       <td>微信生态集成、广告 / 营销文案场景</td>
     </tr>
     <tr>
-      <td><strong>Step / 阶跃星辰</strong></td>
-      <td>阶跃星辰 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://yuewen.cn" target="_blank">Step / 阶跃星辰</a></strong></td>
+      <td><a class="ref" href="https://www.stepfun.com" target="_blank">阶跃星辰</a> <span class="flag cn">CN</span></td>
       <td><span class="flag closed">闭源</span></td>
       <td><span class="score a">A</span></td>
-      <td>多模态生成（图 / 视频 / 语音三合一）</td>
+      <td>多模态生成(图 / 视频 / 语音三合一)</td>
     </tr>
     <tr>
-      <td><strong>Yi 系列</strong></td>
-      <td>零一万物 <span class="flag cn">CN</span></td>
+      <td><strong><a class="ref" href="https://01.ai" target="_blank">Yi 系列</a></strong></td>
+      <td><a class="ref" href="https://www.lingyiwanwu.com" target="_blank">零一万物</a> <span class="flag cn">CN</span></td>
       <td><span class="flag open">开源</span></td>
       <td><span class="score b">B+</span></td>
       <td>中英双语、本地部署轻量选择</td>
@@ -769,6 +893,35 @@
 <div class="author-info">
   作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank">www.gaiden.top</a>
 </div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var iconEl = btn.querySelector('.icon');
+    var labelEl = btn.querySelector('.label');
+    function paint(){
+      var t = document.documentElement.getAttribute('data-theme') || 'dark';
+      if (t === 'dark') {
+        iconEl.textContent = '☀';
+        labelEl.textContent = '亮色';
+        btn.title = '切换到亮色主题';
+      } else {
+        iconEl.textContent = '☾';
+        labelEl.textContent = '暗色';
+        btn.title = '切换到暗色主题';
+      }
+    }
+    paint();
+    btn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var nxt = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nxt);
+      try { localStorage.setItem('course-theme', nxt); } catch(e) {}
+      paint();
+    });
+  })();
+</script>
 
 </body>
 </html>

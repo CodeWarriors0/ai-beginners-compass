@@ -23,9 +23,38 @@
     --c-orange-tint: oklch(22% 0.04 55);
     --c-amber: oklch(80% 0.14 80);
     --c-amber-tint: oklch(22% 0.04 80);
+    --c-teal-hover: oklch(25% 0.05 175);
+    --c-purple-hover: oklch(25% 0.06 310);
+    --c-orange-hover: oklch(25% 0.06 55);
+    --selection-bg: oklch(28% 0.06 245);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(98% 0.006 80);
+    --bg-soft: oklch(96% 0.010 80);
+    --bg-elev: oklch(92% 0.014 80);
+    --ink: oklch(22% 0.012 250);
+    --ink-soft: oklch(38% 0.014 250);
+    --ink-faint: oklch(56% 0.014 250);
+    --rule: oklch(86% 0.012 80);
+    --c-blue: oklch(50% 0.16 245);
+    --c-blue-tint: oklch(95% 0.025 245);
+    --c-teal: oklch(46% 0.13 175);
+    --c-teal-tint: oklch(94% 0.030 175);
+    --c-purple: oklch(50% 0.19 310);
+    --c-purple-tint: oklch(95% 0.030 310);
+    --c-orange: oklch(58% 0.17 55);
+    --c-orange-tint: oklch(95% 0.030 55);
+    --c-amber: oklch(60% 0.15 80);
+    --c-amber-tint: oklch(95% 0.030 80);
+    --c-teal-hover: oklch(90% 0.045 175);
+    --c-purple-hover: oklch(91% 0.050 310);
+    --c-orange-hover: oklch(91% 0.050 55);
+    --selection-bg: oklch(85% 0.06 245);
+    --toggle-shadow: 0 2px 14px rgba(0,0,0,0.10);
   }
   * { box-sizing: border-box; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); transition: background .25s ease; }
   body {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
     max-width: 760px;
@@ -37,7 +66,39 @@
     line-height: 1.78;
     text-wrap: pretty;
     font-feature-settings: "palt" 1;
+    transition: color .25s ease, background .25s ease;
   }
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 100;
+    background: var(--bg-elev);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 14px 6px 12px;
+    font-size: 12.5px;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: color .15s, background .15s, border-color .15s, transform .15s;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: var(--toggle-shadow);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    background: var(--bg-soft);
+    border-color: var(--ink-faint);
+    transform: translateY(-1px);
+  }
+  .theme-toggle:active { transform: translateY(0); }
+  .theme-toggle .icon { font-size: 14px; line-height: 1; }
   h1 {
     font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
     text-align: center;
@@ -132,7 +193,7 @@
     line-height: 1.7;
   }
   .tips {
-    margin-top: 48px;
+    margin: 0 0 40px;
     background: var(--c-amber-tint);
     border: 1px solid var(--rule);
     border-left: 2px solid var(--c-amber);
@@ -155,7 +216,7 @@
     border-left-color: var(--c-teal);
     background: var(--c-teal-tint);
   }
-  .stage-bonus:hover { background: oklch(25% 0.05 175); }
+  .stage-bonus:hover { background: var(--c-teal-hover); }
   .stage-bonus .duration { background: var(--c-teal); color: var(--bg); }
   .stage-bonus h2 a:hover { color: var(--c-teal); border-bottom-color: var(--c-teal); }
   .stage-bonus h2 a::after { color: var(--c-teal); }
@@ -163,7 +224,7 @@
     border-left-color: var(--c-purple);
     background: var(--c-purple-tint);
   }
-  .stage-6:hover { background: oklch(25% 0.06 310); }
+  .stage-6:hover { background: var(--c-purple-hover); }
   .stage-6 .duration { background: var(--c-purple); color: var(--bg); }
   .stage-6 h2 a:hover { color: var(--c-purple); border-bottom-color: var(--c-purple); }
   .stage-6 h2 a::after { color: var(--c-purple); }
@@ -171,11 +232,11 @@
     border-left-color: var(--c-orange);
     background: var(--c-orange-tint);
   }
-  .stage-talk:hover { background: oklch(25% 0.06 55); }
+  .stage-talk:hover { background: var(--c-orange-hover); }
   .stage-talk .duration { background: var(--c-orange); color: var(--bg); }
   .stage-talk h2 a:hover { color: var(--c-orange); border-bottom-color: var(--c-orange); }
   .stage-talk h2 a::after { color: var(--c-orange); }
-  ::selection { background: oklch(28% 0.06 245); color: var(--ink); }
+  ::selection { background: var(--selection-bg); color: var(--ink); }
   .author-info {
     text-align: center !important;
     margin-top: 72px !important;
@@ -198,11 +259,32 @@
   }
 
 </style>
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('course-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    } catch(e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 </head>
 <body>
 
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换明暗主题" title="切换主题"><span class="icon" aria-hidden="true">☀</span><span class="label">亮色</span></button>
+
 <h1>AI 小白入门课程</h1>
 <p class="subtitle">从认识 AI 到用 AI 查信息 · 零基础学习路径</p>
+
+<div class="tips">
+  <h2>学习心态三句话</h2>
+  <ol>
+    <li>AI 不会骂你，问错、问蠢都没关系，多问就熟练。</li>
+    <li>别全信，AI 会编，重要信息一定核对。</li>
+    <li>越具体越好，把它当一个刚来上班的新同事，交代得越清楚做得越好。</li>
+  </ol>
+</div>
 
 <div class="stage">
   <h2><a href="01-阶段一-认识AI.html">第一阶段：认识 AI</a><span class="duration">1-2 天</span></h2>
@@ -287,15 +369,6 @@
   </ul>
 </div>
 
-<div class="tips">
-  <h2>学习心态三句话</h2>
-  <ol>
-    <li>AI 不会骂你，问错、问蠢都没关系，多问就熟练。</li>
-    <li>别全信，AI 会编，重要信息一定核对。</li>
-    <li>越具体越好，把它当一个刚来上班的新同事，交代得越清楚做得越好。</li>
-  </ol>
-</div>
-
 <div class="stage stage-bonus">
   <h2><a href="08-课外-npm安装教程.html">课外教程：npm(Node.js)安装</a><span class="duration">工具准备</span></h2>
   <div class="goal" style="color:#16a085; font-weight:600;">为安装 Claude Code / Codex / Gemini CLI 做准备</div>
@@ -345,6 +418,35 @@
 <div class="author-info" style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #e0e6ed; color:#888; font-size:13px;">
   作者：鱼翅 · 博客：<a href="https://www.gaiden.top" target="_blank" style="color:#888; border-bottom:1px dashed #bbb; text-decoration:none;">www.gaiden.top</a>
 </div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var iconEl = btn.querySelector('.icon');
+    var labelEl = btn.querySelector('.label');
+    function paint(){
+      var t = document.documentElement.getAttribute('data-theme') || 'dark';
+      if (t === 'dark') {
+        iconEl.textContent = '☀';
+        labelEl.textContent = '亮色';
+        btn.title = '切换到亮色主题';
+      } else {
+        iconEl.textContent = '☾';
+        labelEl.textContent = '暗色';
+        btn.title = '切换到暗色主题';
+      }
+    }
+    paint();
+    btn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var nxt = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nxt);
+      try { localStorage.setItem('course-theme', nxt); } catch(e) {}
+      paint();
+    });
+  })();
+</script>
 
 </body>
 </html>
