@@ -4,44 +4,395 @@
 <meta charset="UTF-8">
 <title>第五阶段：用 AI 查网络信息 · AI 小白入门课程</title>
 <style>
+  :root {
+    --hue: 245;
+    --bg: oklch(16% 0.012 250);
+    --bg-soft: oklch(20% 0.014 250);
+    --bg-elev: oklch(23% 0.016 250);
+    --ink: oklch(92% 0.012 80);
+    --ink-soft: oklch(76% 0.014 80);
+    --ink-faint: oklch(58% 0.014 80);
+    --rule: oklch(30% 0.016 250);
+    --rule-soft: oklch(26% 0.014 250);
+    --accent: oklch(72% 0.13 var(--hue));
+    --accent-bright: oklch(80% 0.14 var(--hue));
+    --accent-deep: oklch(62% 0.12 var(--hue));
+    --accent-tint: oklch(28% 0.06 var(--hue));
+    --accent-wash: oklch(22% 0.04 var(--hue));
+    --c-blue: oklch(72% 0.13 245);
+    --c-blue-tint: oklch(24% 0.05 245);
+    --c-amber: oklch(80% 0.14 80);
+    --c-amber-tint: oklch(24% 0.05 80);
+    --c-green: oklch(75% 0.14 145);
+    --c-green-tint: oklch(24% 0.05 145);
+    --c-red: oklch(72% 0.16 22);
+    --c-red-tint: oklch(24% 0.06 22);
+  }
   * { box-sizing: border-box; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 28px 80px; color: #2c3e50; line-height: 1.85; background: #fafafa; font-size: 16px; }
-  .nav-back { display: inline-block; color: #4a90e2; text-decoration: none; margin-bottom: 20px; font-size: 14px; }
-  .nav-back:hover { text-decoration: underline; }
-  h1 { font-size: 30px; border-bottom: 3px solid #e74c3c; padding-bottom: 14px; margin-bottom: 6px; }
-  .subtitle { color: #888; margin-bottom: 36px; font-size: 14px; }
-  .badge { display: inline-block; background: #e74c3c; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
-  h2 { font-size: 22px; color: #2c3e50; margin-top: 44px; padding-left: 12px; border-left: 5px solid #e74c3c; }
-  h3 { font-size: 18px; color: #34495e; margin-top: 28px; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 28px 96px;
+    color: var(--ink-soft);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.78;
+    text-wrap: pretty;
+    font-feature-settings: "palt" 1;
+  }
+  .nav-back {
+    display: inline-block;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-bottom: 36px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-back:hover { color: var(--accent-bright); border-bottom-color: var(--accent); text-decoration: none; }
+  h1 {
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+    font-size: 34px;
+    line-height: 1.3;
+    font-weight: 600;
+    margin: 0 0 14px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 18px;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 0 0 48px;
+  }
+  .badge {
+    display: inline-block;
+    font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    color: var(--accent-bright);
+    background: var(--accent-tint);
+    border-radius: 2px;
+    margin-left: 12px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  h2 {
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 64px 0 20px;
+    line-height: 1.4;
+    padding: 20px 0 0 14px;
+    border-top: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+  }
+  h3 {
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
+    font-size: 19px;
+    color: var(--ink);
+    margin-top: 32px;
+    font-weight: 600;
+  }
+  p { margin: 14px 0; }
   p, li { font-size: 16px; }
-  .card { background: #fff; border-radius: 8px; padding: 20px 26px; margin: 16px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-  .analogy { background: #e8f4fd; border-left: 4px solid #4a90e2; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
-  .analogy::before { content: "💡 打个比方："; font-weight: 600; color: #2980b9; }
-  .tip { background: #fff8e1; border-left: 4px solid #f5a623; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
-  .tip::before { content: "📌 小提示："; font-weight: 600; color: #d68910; }
-  .practice { background: #eafaf1; border-left: 4px solid #27ae60; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
-  .practice::before { content: "✍️ 动手试一试："; font-weight: 600; color: #1e8449; display: block; margin-bottom: 6px; }
-  .warn { background: #fdecea; border-left: 4px solid #e74c3c; padding: 14px 20px; margin: 14px 0; border-radius: 4px; }
-  .warn::before { content: "⚠️ 注意："; font-weight: 600; color: #c0392b; }
-  .term { position: relative; color: #4a90e2; border-bottom: 1px dashed #4a90e2; cursor: help; font-weight: 500; }
-  .term:hover { background: #e8f4fd; }
-  .term .tooltip { visibility: hidden; opacity: 0; width: 280px; background: #2c3e50; color: #fff; text-align: left; border-radius: 6px; padding: 10px 14px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); font-size: 13px; line-height: 1.55; font-weight: normal; transition: opacity 0.2s; box-shadow: 0 4px 14px rgba(0,0,0,0.2); pointer-events: none; }
-  .term .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #2c3e50 transparent transparent transparent; }
+  strong { color: var(--ink); font-weight: 600; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 5px 0; }
+  .card {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin: 18px 0;
+  }
+  .analogy {
+    background: var(--c-blue-tint);
+    border-left: 2px solid var(--c-blue);
+    border-radius: 0 3px 3px 0;
+    padding: 14px 20px;
+    margin: 16px 0;
+  }
+  .analogy::before {
+    content: "打个比方 ";
+    font-weight: 600;
+    color: var(--c-blue);
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+  .tip {
+    background: var(--c-amber-tint);
+    border-left: 2px solid var(--c-amber);
+    border-radius: 0 3px 3px 0;
+    padding: 14px 20px;
+    margin: 16px 0;
+  }
+  .tip::before {
+    content: "小提示 ";
+    font-weight: 600;
+    color: var(--c-amber);
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+  .practice {
+    background: var(--c-green-tint);
+    border-left: 2px solid var(--c-green);
+    border-radius: 0 3px 3px 0;
+    padding: 14px 20px;
+    margin: 16px 0;
+  }
+  .practice::before {
+    content: "动手试一试";
+    font-weight: 600;
+    color: var(--c-green);
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .warn {
+    background: var(--c-red-tint);
+    border-left: 2px solid var(--c-red);
+    border-radius: 0 3px 3px 0;
+    padding: 14px 20px;
+    margin: 16px 0;
+  }
+  .warn::before {
+    content: "注意 ";
+    font-weight: 600;
+    color: var(--c-red);
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+  .term {
+    position: relative;
+    color: var(--accent-bright);
+    border-bottom: 1px dotted var(--accent);
+    cursor: help;
+    font-weight: 500;
+  }
+  .term:hover { background: var(--accent-wash); }
+  .term .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 280px;
+    background: var(--bg-elev);
+    color: var(--ink);
+    text-align: left;
+    border-radius: 4px;
+    padding: 12px 14px;
+    position: absolute;
+    z-index: 10;
+    bottom: 140%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: normal;
+    transition: opacity .2s;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    border: 1px solid var(--rule);
+    pointer-events: none;
+  }
+  .term .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--bg-elev) transparent transparent transparent;
+  }
   .term:hover .tooltip { visibility: visible; opacity: 1; }
-  a.ref { color: #4a90e2; text-decoration: none; border-bottom: 1px solid #b8d8f5; }
-  a.ref:hover { border-bottom-color: #4a90e2; }
-  .ref-list { background: #fff; border-radius: 8px; padding: 20px 28px; margin-top: 30px; border: 1px solid #e0e6ed; }
-  .ref-list h2 { margin-top: 0; border-left-color: #95a5a6; }
+  a {
+    color: var(--accent-bright);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-tint);
+    transition: border-color .15s, color .15s;
+  }
+  a:hover { border-bottom-color: var(--accent); color: var(--accent-bright); }
+  a.ref { color: var(--accent-bright); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    line-height: 1.65;
+  }
+  th, td {
+    padding: 12px 14px 12px 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+  }
+  th:last-child, td:last-child { padding-right: 0; }
+  th {
+    background: transparent;
+    color: var(--accent-bright);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid var(--ink-soft);
+    padding-bottom: 10px;
+  }
+  tbody tr:last-child td { border-bottom: 1.5px solid var(--ink-soft); }
+  td { color: var(--ink-soft); }
+  td strong { color: var(--ink); }
+  tbody tr:hover { background: var(--bg-soft); }
+  .ref-list {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 24px 28px;
+    margin-top: 56px;
+  }
+  .ref-list h2 {
+    margin-top: 0;
+    border-top: none;
+    border-left: none;
+    padding: 0;
+    font-size: 18px;
+    color: var(--accent-bright);
+  }
   .ref-list ol { padding-left: 22px; }
-  .ref-list li { margin: 8px 0; font-size: 14.5px; }
-  .checkbox { margin: 8px 0; padding-left: 4px; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #eee; font-size: 15px; vertical-align: top; }
-  th { background: #f0f6fc; color: #2c3e50; font-weight: 600; }
-  tr:last-child td { border-bottom: none; }
-  .step { background: #fff; border-radius: 8px; padding: 18px 24px; margin: 12px 0; border-left: 4px solid #e74c3c; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-  .step-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: #e74c3c; color: #fff; border-radius: 50%; font-weight: 600; margin-right: 10px; }
-  .template { background: #2c3e50; color: #ecf0f1; padding: 16px 20px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.8; margin: 12px 0; white-space: pre-wrap; }
+  .ref-list li { margin: 8px 0; font-size: 14px; color: var(--ink-soft); }
+  .checkbox {
+    margin: 8px 0;
+    padding-left: 4px;
+    color: var(--ink-soft);
+  }
+  .step {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 3px 3px 0;
+    padding: 16px 22px;
+    margin: 12px 0;
+    box-shadow: none;
+  }
+  .step-num {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 50%;
+    font-weight: 700;
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .cmd {
+    background: oklch(11% 0.008 250);
+    color: var(--ink);
+    padding: 14px 18px;
+    border-radius: 4px;
+    font-family: "SF Mono", "JetBrains Mono", "Courier New", monospace;
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin: 12px 0;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+  }
+  .cmd .prompt { color: oklch(72% 0.16 145); user-select: none; margin-right: 8px; }
+  .cmd .comment { color: var(--ink-faint); }
+  .cmd .user { color: oklch(80% 0.14 80); }
+  code {
+    background: var(--bg-elev);
+    color: var(--accent-bright);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: "SF Mono", "JetBrains Mono", "Courier New", monospace;
+    font-size: 13.5px;
+    border: 1px solid var(--rule);
+  }
+  .shot {
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: none;
+  }
+  .shot img {
+    max-width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    filter: brightness(.94);
+  }
+  .shot .caption { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
+  .os-tabs { display: flex; gap: 8px; margin: 16px 0 6px; flex-wrap: wrap; }
+  .os-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 12.5px;
+    background: var(--bg-elev);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+  }
+  .os-tag.mac { color: oklch(78% 0.13 145); border-color: oklch(45% 0.10 145); background: oklch(22% 0.04 145); }
+  .os-tag.win { color: oklch(78% 0.13 245); border-color: oklch(45% 0.10 245); background: oklch(22% 0.04 245); }
+  .os-tag.linux { color: oklch(78% 0.13 60); border-color: oklch(45% 0.10 60); background: oklch(22% 0.04 60); }
+  ::selection { background: var(--accent-tint); color: var(--ink); }
+  /* Override inline styles on legacy bottom blocks */
+  .author-info {
+    text-align: center !important;
+    margin-top: 64px !important;
+    padding-top: 22px !important;
+    border-top: 1px solid var(--rule) !important;
+    color: var(--ink-faint) !important;
+    font-size: 13px !important;
+    background: transparent !important;
+  }
+  .author-info a {
+    color: var(--ink-faint) !important;
+    border-bottom: 1px dashed var(--rule) !important;
+  }
+  body > p[style] {
+    text-align: center !important;
+    color: var(--ink-faint) !important;
+    margin-top: 56px !important;
+    padding-top: 22px !important;
+    border-top: 1px solid var(--rule) !important;
+    font-size: 13px !important;
+    letter-spacing: 0.08em;
+    background: transparent !important;
+  }
+  body > p[style] a {
+    color: var(--accent-bright) !important;
+    letter-spacing: 0;
+  }
+  @media (max-width: 640px) {
+    body { padding: 36px 20px 64px; font-size: 15.5px; }
+    h1 { font-size: 27px; }
+    h2 { font-size: 22px; margin-top: 48px; }
+    h3 { font-size: 17px; }
+    table { font-size: 14px; }
+  }
+
 </style>
 </head>
 <body>
@@ -67,6 +418,15 @@
 </div>
 
 <h2>二、哪些 AI 能联网查信息？</h2>
+
+<p>联网查询能力在<strong>两种使用形态</strong>里都有，但场景完全不同——一边是"在网页/App 里聊天"，一边是"在终端命令行里跑"。看你自己是哪种用户，选对应的表。</p>
+
+<div class="analogy">
+  聊天 AI 联网 = 在浏览器开搜索引擎，自己看结果。<br>
+  CLI AI 联网 = 一边写代码，AI 顺手帮你查文档/官网/最新版本号，结果直接拼进它给你的回答或代码注释里。
+</div>
+
+<h3>1. 聊天 AI（在网页 / App 里直接对话）—— 小白首选场景</h3>
 
 <table>
   <tr>
@@ -109,12 +469,53 @@
     <td><a class="ref" href="https://www.perplexity.ai" target="_blank">Perplexity</a></td>
     <td>专门做联网搜索</td>
     <td>默认开启，引用极清晰</td>
-    <td>⭐⭐⭐⭐⭐（需英文/特殊网络）</td>
+    <td>⭐⭐⭐⭐⭐（需英文 / 特殊网络）</td>
   </tr>
 </table>
 
 <div class="tip">
-  小白查信息，<strong>直接用 Kimi 或豆包</strong>，开箱即用、引用清晰、中文体验好。
+  小白查信息，<strong>直接用 Kimi 或豆包</strong>，开箱即用、引用清晰、中文体验好。日常查政策、菜谱、产品对比，这一档就够。
+</div>
+
+<h3>2. CLI AI（在终端命令行里用）—— 进阶 / 写代码场景</h3>
+
+<p>这些工具住在你电脑的<strong>终端</strong>里，主要服务于写代码、查文档、做开发。它们的"联网"不是给你看一堆链接卡片，而是<strong>自己去查完直接把答案揉进回答里</strong>。详细工具介绍参见 <a class="ref" href="09-课外-本地AI命令行工具.html">课外-本地 AI 命令行工具</a>。</p>
+
+<table>
+  <tr>
+    <th>工具</th>
+    <th>联网 / 搜索能力</th>
+    <th>怎么触发</th>
+    <th>典型场景</th>
+  </tr>
+  <tr>
+    <td><strong>Claude Code</strong></td>
+    <td>内置 <code>WebSearch</code> / <code>WebFetch</code> 工具</td>
+    <td>对话里说"帮我搜一下 XXX"或"打开这个网址看看"，它会自动调用</td>
+    <td>查最新 API 文档、库版本号、报错信息</td>
+  </tr>
+  <tr>
+    <td><strong>Codex CLI</strong>（OpenAI）</td>
+    <td>支持 Web 搜索工具</td>
+    <td>启用 <code>--search</code> 或在 prompt 里要求联网</td>
+    <td>同上，偏写脚本 / 数据处理</td>
+  </tr>
+  <tr>
+    <td><strong>Gemini CLI</strong>（Google）</td>
+    <td>Google Search 接地（Grounding）</td>
+    <td>默认开启，回答自带 Google 引用</td>
+    <td>查最新新闻、Google 生态文档</td>
+  </tr>
+  <tr>
+    <td><strong>Aider</strong></td>
+    <td>不内置联网，需手动喂网页内容</td>
+    <td><code>/web 网址</code> 命令拉网页给它</td>
+    <td>对照官方文档改代码</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>怎么选场景？</strong> 你只是想"问个问题查个资料" → 用聊天 AI（Kimi / 豆包）。你是在<strong>写代码、改配置、调脚本</strong>，希望 AI 边干活边帮你查资料 → 用 CLI AI（Claude Code 最常用）。本阶段后面的方法论两边都适用。
 </div>
 
 <h2>三、查信息黄金三步法</h2>
@@ -182,36 +583,40 @@
 </div>
 
 <div class="warn">
-  <strong>真实案例：</strong>有律师把 AI 编的"假判例"用进法庭文书，被法官当场识破并罚款。AI 引用的所有案例编号都查不到——但写得有鼻子有眼。
+  <strong>真实案例：</strong>2023 年美国 <em>Mata v. Avianca</em> 案，纽约律师 Steven Schwartz 用 ChatGPT 写法庭文书，里面引用了 6 个看起来"有鼻子有眼"的判例（含案号、法官姓名、引文段落）——结果对方律师在 Westlaw / LexisNexis 上一个都查不到。Schwartz 还专门回头问 ChatGPT"这些案子是真的吗？"，ChatGPT 答"千真万确，可在权威数据库查到"。最终法官 P. Kevin Castel 于 2023 年 6 月 22 日对两位律师及其所在律所各罚 5000 美元。来源：<a class="ref" href="https://www.cnn.com/2023/05/27/business/chat-gpt-avianca-mata-lawyers" target="_blank">CNN 报道</a> ｜ <a class="ref" href="https://www.cnbc.com/2023/06/22/judge-sanctions-lawyers-whose-ai-written-filing-contained-fake-citations.html" target="_blank">CNBC 判决报道</a>。
 </div>
 
 <h2>六、6 个高价值的查询场景</h2>
+
+<div class="warn">
+  <strong>铁律：</strong>下表所有场景里，<strong>买东西做决策、查政策 / 办事流程、读懂新闻事件、解释专业内容</strong> 这几类——只要涉及钱、时效、官方规定或专业判断，<strong>都必须在提问末尾加一句"请附上来源链接 / 引用出处"</strong>，并养成"点开链接核对一遍"的习惯。AI 没给来源的结论，先当它是<strong>提示</strong>而不是结论。
+</div>
 
 <table>
   <tr><th>场景</th><th>示例提问</th></tr>
   <tr>
     <td><strong>买东西做决策</strong></td>
-    <td>"请帮我对比 3 款 3000 元以内的扫地机器人，列出优劣并给出推荐。"</td>
+    <td>"请帮我对比 3 款 3000 元以内的扫地机器人，列出优劣并给出推荐。<strong>价格 / 参数请以京东或天猫官方店为准，并附商品链接；评测信息附媒体出处。</strong>"</td>
   </tr>
   <tr>
-    <td><strong>查政策/办事流程</strong></td>
-    <td>"在上海办理居住证需要哪些材料？流程是什么？请附官方页面链接。"</td>
+    <td><strong>查政策 / 办事流程</strong></td>
+    <td>"在上海办理居住证需要哪些材料？流程是什么？<strong>请优先引用上海市政府 / 公安局官网最新公告，附官方页面链接并注明文件发布日期。</strong>"</td>
   </tr>
   <tr>
     <td><strong>读懂某个新闻事件</strong></td>
-    <td>"最近 XX 公司爆出的瓜是怎么回事？请给我时间线和各方观点，并附信息来源。"</td>
+    <td>"最近 XX 公司爆出的瓜是怎么回事？请给我时间线和各方观点，<strong>每条关键事实都附信息来源（最好是新华社 / 财新 / 36 氪等主流媒体），并标注报道日期。</strong>"</td>
   </tr>
   <tr>
     <td><strong>规划行程</strong></td>
-    <td>"帮我规划国庆 5 天云南自由行，预算 1 万，带父母，需要养生型行程。"</td>
+    <td>"帮我规划国庆 5 天云南自由行，预算 1 万，带父母，需要养生型行程。<strong>景点门票 / 酒店价格请附携程或官方页面链接，参考最新攻略时也标明出处。</strong>"</td>
   </tr>
   <tr>
     <td><strong>解释专业内容</strong></td>
-    <td>"医生说我妈妈是'冠脉钙化'，到底是什么意思？严重吗？应该怎么办？请附医学权威来源。"</td>
+    <td>"医生说我妈妈是'冠脉钙化'，到底是什么意思？严重吗？应该怎么办？<strong>请附医学权威来源（如丁香医生 / 国家卫健委 / 公开发表的医学综述），并明确告诉我哪些是普遍共识、哪些还有争议。</strong>"</td>
   </tr>
   <tr>
     <td><strong>查询软件操作</strong></td>
-    <td>"微信怎么把聊天记录迁移到新手机？请按步骤说明，最好截图描述。"</td>
+    <td>"微信怎么把聊天记录迁移到新手机？请按步骤说明，最好截图描述。<strong>请附微信官方帮助中心链接，避免引用过期教程。</strong>"</td>
   </tr>
 </table>
 
@@ -263,7 +668,7 @@
     <li>新华网（核对新闻）：<a class="ref" href="http://www.xinhuanet.com" target="_blank">http://www.xinhuanet.com</a></li>
     <li>Perplexity（专门的联网搜索 AI）：<a class="ref" href="https://www.perplexity.ai" target="_blank">https://www.perplexity.ai</a></li>
     <li>关于 AI 幻觉的科普文章（IBM）：<a class="ref" href="https://www.ibm.com/topics/ai-hallucinations" target="_blank">ibm.com/topics/ai-hallucinations</a></li>
-    <li>"AI 律师引用假案例被罚款"案例报道：搜索"ChatGPT lawyer fake cases"</li>
+    <li>"AI 律师引用假案例被罚款"案例报道（Mata v. Avianca, 2023）：<a class="ref" href="https://www.cnn.com/2023/05/27/business/chat-gpt-avianca-mata-lawyers" target="_blank">CNN</a> ｜ <a class="ref" href="https://www.cnbc.com/2023/06/22/judge-sanctions-lawyers-whose-ai-written-filing-contained-fake-citations.html" target="_blank">CNBC 判决</a></li>
   </ol>
 </div>
 

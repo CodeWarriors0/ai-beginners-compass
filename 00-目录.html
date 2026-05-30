@@ -4,79 +4,122 @@
 <meta charset="UTF-8">
 <title>AI 小白入门课程 · 目录</title>
 <style>
+
+  :root {
+    --bg: oklch(16% 0.012 250);
+    --bg-soft: oklch(20% 0.014 250);
+    --bg-elev: oklch(23% 0.016 250);
+    --ink: oklch(92% 0.012 80);
+    --ink-soft: oklch(76% 0.014 80);
+    --ink-faint: oklch(58% 0.014 80);
+    --rule: oklch(30% 0.016 250);
+    --c-blue: oklch(72% 0.13 245);
+    --c-blue-tint: oklch(22% 0.04 245);
+    --c-teal: oklch(72% 0.13 175);
+    --c-teal-tint: oklch(22% 0.04 175);
+    --c-purple: oklch(72% 0.15 310);
+    --c-purple-tint: oklch(22% 0.04 310);
+    --c-orange: oklch(72% 0.16 55);
+    --c-orange-tint: oklch(22% 0.04 55);
+    --c-amber: oklch(80% 0.14 80);
+    --c-amber-tint: oklch(22% 0.04 80);
+  }
   * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); }
   body {
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    max-width: 860px;
-    margin: 40px auto;
-    padding: 0 24px 60px;
-    color: #2c3e50;
-    line-height: 1.75;
-    background: #fafafa;
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+    color: var(--ink-soft);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.78;
+    text-wrap: pretty;
+    font-feature-settings: "palt" 1;
   }
   h1 {
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
     text-align: center;
-    font-size: 32px;
-    border-bottom: 3px solid #4a90e2;
-    padding-bottom: 16px;
-    margin-bottom: 8px;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+    letter-spacing: -0.01em;
+    position: relative;
+  }
+  h1::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: var(--c-blue);
   }
   .subtitle {
     text-align: center;
-    color: #888;
-    margin-bottom: 40px;
-    font-size: 15px;
+    color: var(--ink-faint);
+    margin: 14px 0 56px;
+    font-size: 14.5px;
+    letter-spacing: 0.05em;
   }
   .stage {
-    background: #fff;
-    border-left: 4px solid #4a90e2;
-    border-radius: 6px;
-    padding: 20px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    background: var(--bg-soft);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--c-blue);
+    border-radius: 0 4px 4px 0;
+    padding: 22px 28px;
+    margin-bottom: 18px;
+    box-shadow: none;
+    transition: border-left-width .15s, background .15s;
   }
+  .stage:hover { background: var(--bg-elev); }
   .stage h2 {
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     font-size: 20px;
-    color: #2c3e50;
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
+    font-weight: 600;
+    color: var(--ink);
   }
   .stage h2 a {
-    color: #2c3e50;
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
+    border-bottom: 1px solid transparent;
+    transition: color .15s, border-color .15s;
   }
-  .stage h2 a:hover {
-    color: #4a90e2;
-    border-bottom-color: #4a90e2;
-  }
+  .stage h2 a:hover { color: var(--c-blue); border-bottom-color: var(--c-blue); }
   .stage h2 a::after {
     content: " →";
-    color: #4a90e2;
-    font-size: 16px;
-    opacity: 0.6;
+    color: var(--c-blue);
+    font-size: 15px;
+    margin-left: 6px;
+    opacity: .75;
+    transition: opacity .15s, transform .15s;
+    display: inline-block;
   }
-  .stage-bonus {
-    border-left-color: #16a085;
-    background: #f0fbf8;
-  }
-  .stage-bonus .duration {
-    background: #16a085;
-  }
+  .stage h2 a:hover::after { opacity: 1; transform: translateX(3px); }
   .duration {
     display: inline-block;
-    font-size: 13px;
-    color: #fff;
-    background: #4a90e2;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--bg);
+    background: var(--c-blue);
     padding: 2px 10px;
     border-radius: 12px;
-    margin-left: 8px;
+    margin-left: 10px;
     vertical-align: middle;
+    font-weight: 600;
   }
   .goal {
-    color: #e67e22;
-    font-weight: 600;
-    margin: 8px 0 12px;
+    color: var(--c-orange) !important;
+    font-weight: 600 !important;
+    margin: 6px 0 12px;
+    font-size: 14.5px;
+    letter-spacing: 0.02em;
   }
   ul {
     margin: 0;
@@ -84,26 +127,76 @@
   }
   ul li {
     margin: 4px 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.7;
   }
   .tips {
-    margin-top: 40px;
-    background: #fff8e1;
-    border-left: 4px solid #f5a623;
-    padding: 20px 28px;
-    border-radius: 6px;
+    margin-top: 48px;
+    background: var(--c-amber-tint);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--c-amber);
+    padding: 22px 28px;
+    border-radius: 0 4px 4px 0;
   }
   .tips h2 {
     margin-top: 0;
-    color: #d68910;
+    color: var(--c-amber);
+    font-family: "Source Han Serif SC", "Noto Serif SC", serif;
+    font-size: 19px;
+    font-weight: 600;
   }
   .tips ol {
     padding-left: 22px;
     margin-bottom: 0;
   }
-  .stage-6 { border-left-color: #9b59b6; }
-  .stage-6 .duration { background: #9b59b6; }
-  .stage-talk { border-left-color: #e67e22; background: #fef5e7; }
-  .stage-talk .duration { background: #e67e22; }
+  .tips ol li { margin: 6px 0; color: var(--ink-soft); }
+  .stage-bonus {
+    border-left-color: var(--c-teal);
+    background: var(--c-teal-tint);
+  }
+  .stage-bonus:hover { background: oklch(25% 0.05 175); }
+  .stage-bonus .duration { background: var(--c-teal); color: var(--bg); }
+  .stage-bonus h2 a:hover { color: var(--c-teal); border-bottom-color: var(--c-teal); }
+  .stage-bonus h2 a::after { color: var(--c-teal); }
+  .stage-6 {
+    border-left-color: var(--c-purple);
+    background: var(--c-purple-tint);
+  }
+  .stage-6:hover { background: oklch(25% 0.06 310); }
+  .stage-6 .duration { background: var(--c-purple); color: var(--bg); }
+  .stage-6 h2 a:hover { color: var(--c-purple); border-bottom-color: var(--c-purple); }
+  .stage-6 h2 a::after { color: var(--c-purple); }
+  .stage-talk {
+    border-left-color: var(--c-orange);
+    background: var(--c-orange-tint);
+  }
+  .stage-talk:hover { background: oklch(25% 0.06 55); }
+  .stage-talk .duration { background: var(--c-orange); color: var(--bg); }
+  .stage-talk h2 a:hover { color: var(--c-orange); border-bottom-color: var(--c-orange); }
+  .stage-talk h2 a::after { color: var(--c-orange); }
+  ::selection { background: oklch(28% 0.06 245); color: var(--ink); }
+  .author-info {
+    text-align: center !important;
+    margin-top: 72px !important;
+    padding-top: 24px !important;
+    border-top: 1px solid var(--rule) !important;
+    color: var(--ink-faint) !important;
+    font-size: 13px !important;
+    background: transparent !important;
+  }
+  .author-info a {
+    color: var(--ink-faint) !important;
+    border-bottom: 1px dashed var(--rule) !important;
+    text-decoration: none;
+  }
+  @media (max-width: 640px) {
+    body { padding: 40px 20px 64px; }
+    h1 { font-size: 30px; }
+    .stage { padding: 18px 22px; }
+    .stage h2 { font-size: 18px; }
+  }
+
 </style>
 </head>
 <body>
